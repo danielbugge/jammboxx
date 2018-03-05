@@ -1,5 +1,5 @@
 Arguments: 
-  /usr/bin/node /usr/share/yarn/bin/yarn.js install
+  /usr/bin/node /usr/share/yarn/bin/yarn.js upgrade -D webpack-dev-server@^2.11.1
 
 PATH: 
   /home/daniel/.rbenv/versions/2.4.3/bin:/home/daniel/.rbenv/libexec:/home/daniel/.rbenv/plugins/ruby-build/bin:./bin:./node_modules/.bin:/home/daniel/.rbenv/shims:/home/daniel/.rbenv/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/usr/local/sbin
