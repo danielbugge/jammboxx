@@ -1,17 +1,5 @@
 Rails.application.routes.draw do
-  get 'jamms/index'
 
-  get 'jamms/show'
-
-  get 'jamms/new'
-
-  get 'jamms/create'
-
-  get 'jamms/update'
-
-  get 'jamms/edit'
-
-  get 'jamms/destroy'
 
   devise_for :users
   root to: 'pages#home'

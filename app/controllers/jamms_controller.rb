@@ -1,11 +1,15 @@
 class JammsController < ApplicationController
+  before_action :set_jamm, only: [:show, :edit, :update, :delete]
+
   def index
+    @jamm = Jamm.all
   end
 
   def show
   end
 
   def new
+    @jamm = Jamm.new
   end
 
   def create
@@ -27,6 +31,6 @@ class JammsController < ApplicationController
   end
 
   def jamm_params
-    params.require(:jamm).permit(:name, :address, :description)
+    params.require(:jamm).permit(:name, :address, :description, :genre, :date)
   end
 end
