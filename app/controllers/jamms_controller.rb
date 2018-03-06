@@ -3,7 +3,6 @@ class JammsController < ApplicationController
 
   def index
     @jamms = Jamm.all
-    # not the good search just for trying
   end
 
   def show
