@@ -1,6 +1,7 @@
 class JammPlayersController < ApplicationController
 before_action :set_jamm_player, only: [:show, :edit, :update, :delete]
 
+
   def index
   end
 
