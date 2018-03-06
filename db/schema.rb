@@ -10,7 +10,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+<<<<<<< HEAD
 ActiveRecord::Schema.define(version: 20180306182441) do
+=======
+ActiveRecord::Schema.define(version: 20180306182045) do
+>>>>>>> f85ccc63ab15072388a59bc67e0da94c279978a4
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -54,7 +58,6 @@ ActiveRecord::Schema.define(version: 20180306182441) do
     t.text "description"
     t.text "address"
     t.date "date"
-    t.time "time"
     t.integer "duration"
     t.bigint "genre_id"
     t.integer "max_players"
@@ -63,8 +66,12 @@ ActiveRecord::Schema.define(version: 20180306182441) do
     t.string "photo"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+<<<<<<< HEAD
     t.float "latitude"
     t.float "longitude"
+=======
+    t.integer "time"
+>>>>>>> f85ccc63ab15072388a59bc67e0da94c279978a4
     t.index ["genre_id"], name: "index_jamms_on_genre_id"
   end
 

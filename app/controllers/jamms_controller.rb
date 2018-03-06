@@ -2,8 +2,7 @@ class JammsController < ApplicationController
   before_action :set_jamm, only: [:show, :edit, :update, :delete]
 
   def index
-    @jamms = Jamm.all
-    # not the good search just for trying
+    @jamms = policy_scope(Jamm.all)
   end
 
   def show
