@@ -12,6 +12,13 @@ Jamm.delete_all
 User.delete_all
 Genre.delete_all
 
+# INSTRUMENTS TYPES
+instruments_array = [ "accordion","agogo bells","bagpipes","banjo","baritone","bass drum","bassoon","bell lyre","bongos","bugle","castanets","celeste","cello","chimes","clarinet","claves","conga","cornet","cowbell","crash cymbal","cymbal","drum","drum set","electric guitar","euphonium","flugelhorn","flute","French horn","glockenspiel","gong","grand piano","guitar","harmonica","harp","kettledrum","lute","mandolin","maracas","marimba","oboe","orchestra bells","piano","piccolo","recorder","ride cymbal","saxophone","scraper","sizzle cymbal","snare drum","sousaphone","splash cymbal","steel drums","tenor drum","timbales","timpani","tom-tom","triangle","trombone","trumpet","tuba","vibraphone","violin","xylophone"]
+instrumens_array.each do |instrument|
+  name = genres
+  Genre.create( name: name)
+end
+
 # USER
 100.times do
  email = Faker::Internet.email
@@ -48,3 +55,5 @@ address_array = ["8 Nugent Rd, London N19 3QF, UK","15 Meadow Rd, Windermere LA2
                            genre_id: genre, max_players: players, allow_new_instruments: new_intruments,
                            level: level, image_url: img)
 end
+
+
