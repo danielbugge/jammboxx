@@ -11,6 +11,16 @@ require 'faker'
 Jamm.delete_all
 User.delete_all
 Genre.delete_all
+InstrumentType.delete_all
+
+
+# INSTRUMENTS TYPES MODEL
+instrument_types_array = [ "accordion","agogo bells","bagpipes","banjo","baritone","bass drum","bassoon","bell lyre","bongos","bugle","castanets","celeste","cello","chimes","clarinet","claves","conga","cornet","cowbell","crash cymbal","cymbal","drum","drum set","electric guitar","euphonium","flugelhorn","flute","French horn","glockenspiel","gong","grand piano","guitar","harmonica","harp","kettledrum","lute","mandolin","maracas","marimba","oboe","orchestra bells","piano","piccolo","recorder","ride cymbal","saxophone","scraper","sizzle cymbal","snare drum","sousaphone","splash cymbal","steel drums","tenor drum","timbales","timpani","tom-tom","triangle","trombone","trumpet","tuba","vibraphone","violin","xylophone"]
+
+instrument_types = "instruments_array.each do |instrument|
+ name = instrument ##
+  InstrumentType.create( name: name)
+end"
 
 # USER
 100.times do
@@ -18,6 +28,7 @@ Genre.delete_all
  password = '123456'
  User.create(email: email, password: password)
 end
+}
 
 # GENRE
 genre_array = [ "Alternative Music", "Blues", "Classical Music", "Country Music", "Dance Music", "Easy Listening", "Electronic Music", "European Music (Folk / Pop)", "Hip Hop / Rap", "Indie Pop", "Inspirational (incl. Gospel)", "Asian Pop (J-Pop, K-pop)", "Jazz", "Latin Music", "New Age", "Opera", "Pop (Popular music)", "R&B / Soul", "Reggae", "Rock", "Singer / Songwriter (inc. Folk)", "World Music / Beats" ]
@@ -26,6 +37,20 @@ genre_array.each do |genre|
   name = genre
   Genre.create( name: name)
 end
+
+# Instruments Join Table
+
+100.times do
+  instument_name = Faker::RockBand.name
+  user_id = User.all.sample
+  instrument_type_id = Instrument.all.sample
+end
+
+
+## JAMM PLAYERS
+
+
+
 
 
 # JAMMS
@@ -48,3 +73,5 @@ address_array = ["8 Nugent Rd, London N19 3QF, UK","15 Meadow Rd, Windermere LA2
                            genre_id: genre, max_players: players, allow_new_instruments: new_intruments,
                            level: level, image_url: img)
 end
+
+
