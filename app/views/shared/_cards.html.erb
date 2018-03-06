@@ -1,15 +1,18 @@
 <div class="cards_container">
   <% @jams.each do |jam|  %>
     <div class="card">
-      <div class="card-top">
+      <div class="card-left">
         <div class="image">
-
+          <p class= "jamm-address"><%= jam.address %></p>
+          <p class= "jamm-date"><%= jam.date %></p>
+        </div>
+        <div class="card-right">
+          <h3 class= "jamm-name"><%= jam.name %></h3>
+          <h3 class= "jamm-genre"><%= jam.genre %></h3>
+          <h3 class= "jamm-level"><%= jam.level %></h3>
+          <h3> Instruments </h3>
         </div>
       </div>
-      <div class="card-bottom">
-
-      </div>
-    </div>
-  <div class="card">
+    <div class="card">
   </div>
 </div>
