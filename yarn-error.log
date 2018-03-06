@@ -2,7 +2,7 @@ Arguments:
   /usr/bin/node /usr/share/yarn/bin/yarn.js check --integrity
 
 PATH: 
-  /home/danielbugge/.rbenv/versions/2.4.3/lib/ruby/gems/2.4.0/bin:/home/danielbugge/.rbenv/versions/2.4.3/bin:/home/danielbugge/.rbenv/libexec:/home/danielbugge/.rbenv/plugins/ruby-build/bin:./bin:./node_modules/.bin:/home/danielbugge/.rbenv/shims:/home/danielbugge/.rbenv/bin:/home/danielbugge/bin:/home/danielbugge/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin
+  /home/paolo/.rbenv/versions/2.4.3/lib/ruby/gems/2.4.0/bin:/home/paolo/.rbenv/versions/2.4.3/bin:/home/paolo/.rbenv/libexec:/home/paolo/.rbenv/plugins/ruby-build/bin:./bin:./node_modules/.bin:/home/paolo/.rbenv/shims:/home/paolo/.rbenv/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games
 
 Yarn version: 
   1.5.1
