@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   devise_for :users
   root to: 'pages#home'
 
-  resources :jamm, only: [ :index, :show, :new, :create  ]
+  resources :jamms, only: [ :index, :show, :new, :create ]
 
   resources :instruments, only: [ :show, :new, :create, :destroy]
 
