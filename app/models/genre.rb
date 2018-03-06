@@ -1,4 +1,4 @@
 class Genre < ApplicationRecord
   has_many :jamms
-  validates :name, precence: :true
+  validates :name, presence: :true
 end
