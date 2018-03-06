@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <!-- SQL XML created by WWW SQL Designer, https://github.com/ondras/wwwsqldesigner/ -->
-<!-- Active URL: http://db.lewagon.com/ -->
+<!-- Active URL: https://kitt.lewagon.com/products/1659/product_schemas/latest -->
 <sql>
 <datatypes db="mysql">
   <group label="Numeric" color="rgb(238,238,170)">
@@ -37,14 +37,10 @@
     <type label="SET" length="1" sql="SET" quote=""/>
     <type label="Bit" length="0" sql="bit" quote=""/>
   </group>
-</datatypes><table x="325" y="244" name="jamms">
+</datatypes><table x="319" y="171" name="jamms">
 <row name="id" null="1" autoincrement="1">
 <datatype>INTEGER</datatype>
 <default>NULL</default></row>
-<row name="user_id (leader)" null="1" autoincrement="0">
-<datatype>INTEGER</datatype>
-<default>NULL</default><relation table="users" row="id" />
-</row>
 <row name="name" null="1" autoincrement="0">
 <datatype>DOUBLE</datatype>
 <default>NULL</default></row>
@@ -64,18 +60,20 @@
 <row name="max_players" null="1" autoincrement="0">
 <datatype>INTEGER</datatype>
 <default>NULL</default></row>
+<row name="level" null="1" autoincrement="0">
+<datatype>INTEGER</datatype>
+<default>NULL</default></row>
 <row name="allow_new_instrument" null="1" autoincrement="0">
+<datatype>BINARY</datatype>
+<default>NULL</default></row>
+<row name="photo" null="1" autoincrement="0">
 <datatype>INTEGER</datatype>
 <default>NULL</default></row>
-<row name="level_id" null="1" autoincrement="0">
-<datatype>INTEGER</datatype>
-<default>NULL</default><relation table="levels" row="id" />
-</row>
 <key type="PRIMARY" name="">
 <part>id</part>
 </key>
 </table>
-<table x="691" y="732" name="instrument_types">
+<table x="1358" y="275" name="instrument_types">
 <row name="id" null="1" autoincrement="1">
 <datatype>INTEGER</datatype>
 <default>NULL</default></row>
@@ -86,7 +84,7 @@
 <part>id</part>
 </key>
 </table>
-<table x="586" y="467" name="users">
+<table x="788" y="213" name="users">
 <row name="id" null="1" autoincrement="1">
 <datatype>INTEGER</datatype>
 <default>NULL</default></row>
@@ -94,7 +92,7 @@
 <part>id</part>
 </key>
 </table>
-<table x="151" y="357" name="genres">
+<table x="124" y="392" name="genres">
 <row name="id" null="1" autoincrement="1">
 <datatype>INTEGER</datatype>
 <default>NULL</default></row>
@@ -105,7 +103,7 @@
 <part>id</part>
 </key>
 </table>
-<table x="771" y="266" name="jamm_players">
+<table x="552" y="210" name="jamm_players">
 <row name="id" null="1" autoincrement="1">
 <datatype>INTEGER</datatype>
 <default>NULL</default></row>
@@ -113,34 +111,26 @@
 <datatype>INTEGER</datatype>
 <default>NULL</default><relation table="jamms" row="id" />
 </row>
-<row name="user_id (leader)" null="1" autoincrement="0">
+<row name="user_id " null="1" autoincrement="0">
 <datatype>INTEGER</datatype>
 <default>NULL</default><relation table="users" row="id" />
 </row>
-<row name="instrument_id" null="1" autoincrement="0">
+<row name="played_instrument " null="1" autoincrement="0">
 <datatype>INTEGER</datatype>
 <default>NULL</default><relation table="instruments" row="id" />
 </row>
-<key type="PRIMARY" name="">
-<part>id</part>
-</key>
-</table>
-<table x="82" y="549" name="levels">
-<row name="id" null="1" autoincrement="1">
-<datatype>INTEGER</datatype>
-<default>NULL</default></row>
-<row name="level" null="1" autoincrement="0">
-<datatype>INTEGER</datatype>
+<row name="leader" null="1" autoincrement="0">
+<datatype>BINARY</datatype>
 <default>NULL</default></row>
 <key type="PRIMARY" name="">
 <part>id</part>
 </key>
 </table>
-<table x="963" y="609" name="instruments">
-<row name="id" null="1" autoincrement="1">
+<table x="1015" y="279" name="instruments">
+<row name="Instrument_name " null="1" autoincrement="0">
 <datatype>INTEGER</datatype>
 <default>NULL</default></row>
-<row name="user_id (owner)" null="1" autoincrement="0">
+<row name="user_id (owner of instruments)" null="1" autoincrement="0">
 <datatype>INTEGER</datatype>
 <default>NULL</default><relation table="users" row="id" />
 </row>
@@ -148,8 +138,14 @@
 <datatype>INTEGER</datatype>
 <default>NULL</default><relation table="instrument_types" row="id" />
 </row>
+<row name="id" null="1" autoincrement="1">
+<datatype>INTEGER</datatype>
+<default>NULL</default></row>
 <key type="PRIMARY" name="">
 <part>id</part>
 </key>
 </table>
 </sql>
+
+
+
