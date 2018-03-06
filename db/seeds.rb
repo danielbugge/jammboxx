@@ -17,10 +17,10 @@ InstrumentType.delete_all
 # INSTRUMENTS TYPES MODEL
 instrument_types_array = [ "accordion","agogo bells","bagpipes","banjo","baritone","bass drum","bassoon","bell lyre","bongos","bugle","castanets","celeste","cello","chimes","clarinet","claves","conga","cornet","cowbell","crash cymbal","cymbal","drum","drum set","electric guitar","euphonium","flugelhorn","flute","French horn","glockenspiel","gong","grand piano","guitar","harmonica","harp","kettledrum","lute","mandolin","maracas","marimba","oboe","orchestra bells","piano","piccolo","recorder","ride cymbal","saxophone","scraper","sizzle cymbal","snare drum","sousaphone","splash cymbal","steel drums","tenor drum","timbales","timpani","tom-tom","triangle","trombone","trumpet","tuba","vibraphone","violin","xylophone"]
 
-instrument_types = "instruments_array.each do |instrument|
- name = instrument ##
+instruments_array.each do |instrument|
+ name = instrument
   InstrumentType.create( name: name)
-end"
+end
 
 # USER
 100.times do
@@ -28,7 +28,6 @@ end"
  password = '123456'
  User.create(email: email, password: password)
 end
-}
 
 # GENRE
 genre_array = [ "Alternative Music", "Blues", "Classical Music", "Country Music", "Dance Music", "Easy Listening", "Electronic Music", "European Music (Folk / Pop)", "Hip Hop / Rap", "Indie Pop", "Inspirational (incl. Gospel)", "Asian Pop (J-Pop, K-pop)", "Jazz", "Latin Music", "New Age", "Opera", "Pop (Popular music)", "R&B / Soul", "Reggae", "Rock", "Singer / Songwriter (inc. Folk)", "World Music / Beats" ]
