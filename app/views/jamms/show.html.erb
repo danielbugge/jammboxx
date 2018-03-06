@@ -1,2 +1,21 @@
-<h1>Jamms#show</h1>
-<p>Find me in app/views/jamms/show.html.erb</p>
+<h1><%= @jamm.name %></h1>
+<ul>
+  <li><%= @jamm.description %></li>
+  <li>location: <%= @jamm.address %></li>
+  <li>date: <%= @jamm.date %></li>
+  <li>time: <%= @jamm.time %></li>
+  <li>duration: <%= @jamm.duration %></li>
+  <li>genre: <%= @jamm.genre.name %></li>
+  <li>max-players: <%= @jamm.max_players %></li>
+  <li>level: <%= @jamm.level %></li>
+</ul>
+
+<h2>Group Members</h2>
+<ul>
+  <li><%= @jamm_players.id %></li>
+</ul>
+
+
+
+
+

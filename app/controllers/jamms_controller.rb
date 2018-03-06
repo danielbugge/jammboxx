@@ -1,4 +1,7 @@
 class JammsController < ApplicationController
+  skip_before_action :authenticate_user!, only: [:index, :show, :search]
+  skip_after_action :verify_authorized, only: [:show, :search]
+  skip_after_action :verify_policy_scoped, only: [:index]
   before_action :set_jamm, only: [:show, :edit, :update, :delete]
 
   def index
@@ -7,6 +10,16 @@ class JammsController < ApplicationController
   end
 
   def show
+     @jamm_players = JammPlayer.where(jamm_id: params[:id]).last
+    @jamm = Jamm.where.not(latitude: nil, longitude: nil)
+    @markers = @jamm.map do |jamm|
+      {
+        lat: jamm.latitude,
+        lng: jamm.longitude#,
+        # infoWindow: { content: render_to_string(partial: "/jamm/map_box", locals: { jamm: jamm }) }
+      }
+    end
+
   end
 
   def create
