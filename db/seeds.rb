@@ -77,12 +77,11 @@ end
 200.times do
   j_id = Jamm.all.sample.id
   u_id = User.all.sample.id
-  inst_id = Instrument.all.sample.id
 
-  Instrument.where(user_id: u_id).sample.nil? ? i_p_id = nil : i_p_id = Instrument.where(user_id: u_id).sample
+  i_p_id = Instrument.where(user_id: u_id).sample
+  #### DL CHANGED THIS LASTNIGHT AND DIDNT TEST IT. BE CAREFUL
 
-
-  new_jamm_player = JammPlayer.create(jamm_id: j_id, user_id: u_id, instrument_id: inst_id )
+  new_jamm_player = JammPlayer.create(jamm_id: j_id, user_id: u_id, instrument_id: i_p_id, )
 end
 
 

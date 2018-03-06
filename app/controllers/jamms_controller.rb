@@ -3,6 +3,7 @@ class JammsController < ApplicationController
 
   def index
     @jamms = policy_scope(Jamm.all)
+    @jamm_players = JammPlayer.all
   end
 
   def show
