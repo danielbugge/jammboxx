@@ -1,12 +1,15 @@
 class JammsController < ApplicationController
+  skip_before_action :authenticate_user!, only: [:index, :show, :search]
+  skip_after_action :verify_authorized, only: [:show, :search]
+  skip_after_action :verify_policy_scoped, only: [:index]
   before_action :set_jamm, only: [:show, :edit, :update, :delete]
 
   def index
     @jamms = Jamm.all
-    # not the good search just for trying
   end
 
   def show
+    @jamm_players = JammPlayer.where(jamm_id: params[:id]).last
   end
 
   def create
