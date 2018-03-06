@@ -1,2 +1,16 @@
-<h1>Jamms#new</h1>
-<p>Find me in app/views/jamms/new.html.erb</p>
+<div style="margin-top: 100px;">
+<%= simple_form_for @jamm do |f| %>
+  <%= f.input :name %>
+  <%= f.input :description %>
+  <%= f.input :address %>
+  <%= f.input :date %>
+  <%= f.input :time %>
+  <%= f.input :duration %>
+  <%= f.input :max_players %>
+  <%= f.input :genre_id %>
+  <%= f.input :level %>
+  <%= f.input :allow_new_instrument %>
+  <%= f.input :photo %>
+  <%= f.button :submit %>
+<% end %>
+</div>
