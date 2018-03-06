@@ -6,6 +6,15 @@ class JammsController < ApplicationController
   end
 
   def show
+
+    @jamm = Jamm.where.not(latitude: nil, longitude: nil)
+    @markers = @jamm.map do |jamm|
+      {
+        lat: jamm.latitude,
+        lng: jamm.longitude#,
+        # infoWindow: { content: render_to_string(partial: "/jamm/map_box", locals: { jamm: jamm }) }
+      }
+    end
   end
 
   def create
