@@ -2,7 +2,7 @@ class JammsController < ApplicationController
   before_action :set_jamm, only: [:show, :edit, :update, :delete]
 
   def index
-    @jamm = Jamm.where("name @@ ?", "#{params[:keyword]}")
+    @jamms = Jamm.all
     # not the good search just for trying
   end
 
