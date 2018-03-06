@@ -79,9 +79,20 @@ end
   user_id = (User.first.id..User.last.id).to_a.sample
   Instrument.where(user_id: user_id).sample.nil? ? instrument_played_id = nil : instrument_played_id = Instrument.where(user_id: user_id).sample.id
 
-  new_jamm_player = JammPlayer.create(jamm_id: jamm_id, user_id: user_id, instrument_id: instrument_played_id )
+  new_jamm_player = JammPlayer.create(jamm_id: jamm_id, user_id: user_id, instrument_id: instrument_played_id, leader: true)
+
+  ##### THIS IS NOT CREATING A JAMM PLAYER WITH THE LEADER ATRIBUTE = FALSE BY DEFAULT
+
+  new_jamm_player.errors.full_messages
 end
 
 ##InstrumentType.find(Instrument.where(user_id: 140).first.instrument_type_id).name
 
 ## WE SHOULD CREATE A SEED FOR THE LEADER
+
+js = JammPlayer.all
+
+js.each do |j|
+  ##JammPlayer.where(jamm_id: 40).sample
+  j.sample.leader = true
+end
