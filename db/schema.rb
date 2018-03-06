@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180305167110) do
+ActiveRecord::Schema.define(version: 20180306144555) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -28,6 +28,7 @@ ActiveRecord::Schema.define(version: 20180305167110) do
   end
 
   create_table "instruments", force: :cascade do |t|
+    t.string "model"
     t.bigint "user_id"
     t.bigint "instrument_type_id"
     t.datetime "created_at", null: false
@@ -40,6 +41,7 @@ ActiveRecord::Schema.define(version: 20180305167110) do
     t.bigint "jamm_id"
     t.bigint "user_id"
     t.bigint "instrument_id"
+    t.boolean "leader"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["instrument_id"], name: "index_jamm_players_on_instrument_id"
@@ -48,26 +50,20 @@ ActiveRecord::Schema.define(version: 20180305167110) do
   end
 
   create_table "jamms", force: :cascade do |t|
-    t.bigint "user_id"
     t.string "name"
     t.text "description"
     t.text "address"
-    t.datetime "date"
+    t.date "date"
+    t.time "time"
+    t.integer "duration"
     t.bigint "genre_id"
     t.integer "max_players"
-    t.boolean "allow_new_instruments"
-    t.bigint "level_id"
+    t.string "level"
+    t.boolean "allow_new_instrument"
+    t.string "photo"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["genre_id"], name: "index_jamms_on_genre_id"
-    t.index ["level_id"], name: "index_jamms_on_level_id"
-    t.index ["user_id"], name: "index_jamms_on_user_id"
-  end
-
-  create_table "levels", force: :cascade do |t|
-    t.integer "level"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
   end
 
   create_table "users", force: :cascade do |t|
@@ -93,6 +89,4 @@ ActiveRecord::Schema.define(version: 20180305167110) do
   add_foreign_key "jamm_players", "jamms"
   add_foreign_key "jamm_players", "users"
   add_foreign_key "jamms", "genres"
-  add_foreign_key "jamms", "levels"
-  add_foreign_key "jamms", "users"
 end

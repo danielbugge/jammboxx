@@ -8,16 +8,26 @@
 
 
 require 'faker'
-Jamm.delete_all
-User.delete_all
-Genre.delete_all
+JammPlayer.delete_all
+Instrument.delete_all
 InstrumentType.delete_all
+User.delete_all
+Jamm.delete_all
+Genre.delete_all
 
+
+# GENRE
+genre_array = [ "Alternative Music", "Blues", "Classical Music", "Country Music", "Dance Music", "Easy Listening", "Electronic Music", "European Music (Folk / Pop)", "Hip Hop / Rap", "Indie Pop", "Inspirational (incl. Gospel)", "Asian Pop (J-Pop, K-pop)", "Jazz", "Latin Music", "New Age", "Opera", "Pop (Popular music)", "R&B / Soul", "Reggae", "Rock", "Singer / Songwriter (inc. Folk)", "World Music / Beats" ]
+
+genre_array.each do |genre|
+  name = genre
+  Genre.create( name: name)
+end
 
 # INSTRUMENTS TYPES MODEL
 instrument_types_array = [ "accordion","agogo bells","bagpipes","banjo","baritone","bass drum","bassoon","bell lyre","bongos","bugle","castanets","celeste","cello","chimes","clarinet","claves","conga","cornet","cowbell","crash cymbal","cymbal","drum","drum set","electric guitar","euphonium","flugelhorn","flute","French horn","glockenspiel","gong","grand piano","guitar","harmonica","harp","kettledrum","lute","mandolin","maracas","marimba","oboe","orchestra bells","piano","piccolo","recorder","ride cymbal","saxophone","scraper","sizzle cymbal","snare drum","sousaphone","splash cymbal","steel drums","tenor drum","timbales","timpani","tom-tom","triangle","trombone","trumpet","tuba","vibraphone","violin","xylophone"]
 
-instruments_array.each do |instrument|
+instrument_types_array.each do |instrument|
  name = instrument
   InstrumentType.create( name: name)
 end
@@ -29,28 +39,15 @@ end
  User.create(email: email, password: password)
 end
 
-# GENRE
-genre_array = [ "Alternative Music", "Blues", "Classical Music", "Country Music", "Dance Music", "Easy Listening", "Electronic Music", "European Music (Folk / Pop)", "Hip Hop / Rap", "Indie Pop", "Inspirational (incl. Gospel)", "Asian Pop (J-Pop, K-pop)", "Jazz", "Latin Music", "New Age", "Opera", "Pop (Popular music)", "R&B / Soul", "Reggae", "Rock", "Singer / Songwriter (inc. Folk)", "World Music / Beats" ]
-
-genre_array.each do |genre|
-  name = genre
-  Genre.create( name: name)
-end
 
 # Instruments Join Table
 
 100.times do
-  instument_name = Faker::RockBand.name
-  user_id = User.all.sample
-  instrument_type_id = Instrument.all.sample
+  model = Faker::LordOfTheRings.location
+  user_id = User.all.sample.id
+  instrument_type_id = InstrumentType.all.sample.id
+  new_instrument = Instrument.create( model: model, user_id: user_id, instrument_type_id: instrument_type_id)
 end
-
-
-## JAMM PLAYERS
-
-
-
-
 
 # JAMMS
 
@@ -62,15 +59,32 @@ address_array = ["8 Nugent Rd, London N19 3QF, UK","15 Meadow Rd, Windermere LA2
   description = lorem
   address = address_array.sample
   date = Faker::Date.forward(30)
-  genre = Genre.all.sample
+  time = (1..24).to_a.sample
+  duration = (1..3).to_a.sample
+  genre = Genre.all.sample.id
   players = (1..10).to_a.sample
   new_intruments = [true, false].sample
   level = ["Beginer", "Medium", "Experts"].sample
-  user_id =  User.all.sample
+  user_id =  User.all.sample.id
   img = (1..23).to_a.sample.to_s
-  new_jamm = Jamm.create( name: name, description: description,  address: address, date: date,
-                           genre_id: genre, max_players: players, allow_new_instruments: new_intruments,
-                           level: level, image_url: img)
+  new_jamm = Jamm.create( name: name, description: description,  address: address, date: date, time: time, duration: duration,
+                           genre_id: genre, max_players: players, allow_new_instrument: new_intruments,
+                           level: level, photo: img)
+end
+
+## JAMM PLYERS
+
+200.times do
+  j_id = Jamm.all.sample.id
+  u_id = User.all.sample.id
+  inst_id = Instrument.all.sample.id
+
+  Instrument.where(user_id: u_id).sample.nil? ? i_p_id = nil : i_p_id = Instrument.where(user_id: u_id).sample
+
+
+  new_jamm_player = JammPlayer.create(jamm_id: j_id, user_id: u_id, instrument_id: inst_id )
 end
 
 
+
+## WE SHOULD CREATE A SEED FOR THE LEADER
