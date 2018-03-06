@@ -38,11 +38,11 @@ address_array = ["8 Nugent Rd, London N19 3QF, UK","15 Meadow Rd, Windermere LA2
   description = lorem
   address = address_array.sample
   date = Faker::Date.forward(30)
-  genre = (Genre.first.id..Genre.last.id).to_a.sample
+  genre = Genre.all.sample
   players = (1..10).to_a.sample
   new_intruments = [true, false].sample
   level = ["Beginer", "Medium", "Experts"].sample
-  user_id =  (User.first.id..User.last.id).to_a.sample
+  user_id =  User.all.sample
   img = (1..23).to_a.sample.to_s
   new_jamm = Jamm.create( name: name, description: description,  address: address, date: date,
                            genre_id: genre, max_players: players, allow_new_instruments: new_intruments,
