@@ -9,7 +9,7 @@ class Jamm < ApplicationRecord
   validates :description, presence: :true
   validates :address, presence: :true
   validates :max_players, presence: :true, numericality: { only_integer: true }
-
+  validates :time, presence: :true, numericality: { only_integer: true }, inclusion: { in: (1..23) }
   validates :date, presence: :true
   geocoded_by :address
   after_validation :geocode, if: :will_save_change_to_address?
