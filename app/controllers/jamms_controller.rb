@@ -8,7 +8,6 @@ class JammsController < ApplicationController
 
   def index
     @jamms = policy_scope(Jamm.all)
-    @instruments = Instruments.all
   end
 
   def show
