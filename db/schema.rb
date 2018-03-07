@@ -64,7 +64,6 @@ ActiveRecord::Schema.define(version: 20180307112024) do
     t.integer "time"
     t.float "latitude"
     t.float "longitude"
-    t.integer "time"
     t.bigint "user_id"
     t.index ["genre_id"], name: "index_jamms_on_genre_id"
     t.index ["user_id"], name: "index_jamms_on_user_id"
