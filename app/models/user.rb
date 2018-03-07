@@ -5,5 +5,5 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :trackable, :validatable
   has_many :instruments
   has_many :jamm_players
-  has_many :jamms, through: :jamm_players
+  has_many :jamms
 end

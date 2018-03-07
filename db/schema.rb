@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180306182441) do
+ActiveRecord::Schema.define(version: 20180307112024) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -41,7 +41,6 @@ ActiveRecord::Schema.define(version: 20180306182441) do
     t.bigint "jamm_id"
     t.bigint "user_id"
     t.bigint "instrument_id"
-    t.boolean "leader"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["instrument_id"], name: "index_jamm_players_on_instrument_id"
@@ -65,7 +64,9 @@ ActiveRecord::Schema.define(version: 20180306182441) do
     t.integer "time"
     t.float "latitude"
     t.float "longitude"
+    t.bigint "user_id"
     t.index ["genre_id"], name: "index_jamms_on_genre_id"
+    t.index ["user_id"], name: "index_jamms_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -91,4 +92,5 @@ ActiveRecord::Schema.define(version: 20180306182441) do
   add_foreign_key "jamm_players", "jamms"
   add_foreign_key "jamm_players", "users"
   add_foreign_key "jamms", "genres"
+  add_foreign_key "jamms", "users"
 end
