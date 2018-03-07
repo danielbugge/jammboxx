@@ -13,10 +13,12 @@
   </ul>
 
   <h2>Group Members</h2>
+    <% @jamm_players.each do |player| %>
   <ul>
-    <li>Player: <%= @jamm_players.id %></li>
-    <li>Instrument: <%= @jamm_players.instrument_id %></li>
+    <li>Player: <%= player.id %></li>
+    <li>Instrument: <%= player.instrument_id %></li>
   </ul>
+  <% end %>
 
   <div
     id="map"
