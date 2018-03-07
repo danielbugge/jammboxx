@@ -10,7 +10,7 @@ class JammsController < ApplicationController
   end
 
   def show
-     @jamm_players = JammPlayer.where(jamm_id: params[:id]).last
+    @jamm_players = JammPlayer.where(jamm_id: params[:id]).last
     @jamm = Jamm.where.not(latitude: nil, longitude: nil)
     @markers = @jamm.map do |jamm|
       {
