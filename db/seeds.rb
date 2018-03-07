@@ -79,10 +79,9 @@ end
 Jamm.all.each do |jam|
   ts = (1..jam.max_players).to_a.sample
   ts.times do
-    jamm_id = Jamm.all.sample.id
     user_id = User.all.sample.id
-    Instrument.where(user_id: user_id).empty? ? instrument_played_id = nil : instrument_played_id = Instrument.where(user_id: user_id).sample.id
+    Instrument.where(user_id: user_id).empty? ? instrument_played_id = Instrument.all.sample.id : instrument_played_id = Instrument.where(user_id: user_id).sample.id
 
-    new_jamm_player = JammPlayer.create(jamm_id: Jamm.all.sample.id, user_id: user_id, instrument_id: instrument_played_id)
+    new_jamm_player = JammPlayer.create(jamm_id: jam.id, user_id: user_id, instrument_id: instrument_played_id)
   end
 end
