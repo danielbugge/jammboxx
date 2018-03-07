@@ -28,7 +28,6 @@ class JammsController < ApplicationController
 
   def create
     @jamm = Jamm.new(jamm_params)
-    byebug
     if @jamm.save
       redirect_to jamm_index_path
     else
