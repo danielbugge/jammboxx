@@ -13,5 +13,5 @@ class Jamm < ApplicationRecord
   validates :date, presence: :true, uniqueness: { scope: :address, message: "You already created a jamm here at this time!" }
 
   geocoded_by :address
-  # after_validation :geocode, if: :will_save_change_to_address?
+  after_validation :geocode, if: :will_save_change_to_address?
 end
