@@ -19,7 +19,6 @@
             <% else %>
               <% instruments << InstrumentType.where(id: Instrument.where(id: player.instrument_id).first.instrument_type_id).last.name %>
             <% end %>
-
             <p> <%= instruments.sort.join(",") %> </p>
           <% end %>
           <h3> Instruments </h3>
