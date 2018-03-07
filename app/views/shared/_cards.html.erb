@@ -2,9 +2,9 @@
   <% @jamms.each do |jam|  %>
     <div class="card">
       <div class="card-left">
-        <div class="image">
-          <p class= "jamm-address"><%= jam.address %></p>
-          <p class= "jamm-date"><%= jam.date %></p>
+        <div class="image"> <%= cl_image_tag jam.photo, width: 400, height: 300, crop: :fill %>
+          <p class= "jamm-address"> <%= jam.address %> </p>
+          <p class= "jamm-date"> <%= jam.date %> </p>
         </div>
         <div class="card-right">
           <h3 class= "jamm-name"><%= jam.name %></h3>
@@ -13,15 +13,24 @@
 
           <%  JammPlayer.where(jamm_id: jam.id).all.each do |player|  %>
 
+
+            <!-- THIS SHOULD BE ICONS -->
+
             <% instruments = [] %>
             <% if player.instrument_id.nil? %>
                <% instruments << "No instrument"  %>
             <% else %>
               <% instruments << InstrumentType.where(id: Instrument.where(id: player.instrument_id).first.instrument_type_id).last.name %>
             <% end %>
-            <p> <%= instruments.sort.join(",") %> </p>
+
+            <!-- THIS SHOULD GO IN A EACH -->
+            <% instruments.each do |instrument| %>
+              <p class= "instrument">  <%= instrument  %> </p>
+            <% end %>
           <% end %>
-          <h3> Instruments </h3>
+
+          <h3 class= "jamm-max-players"> Max Num players <%= jam.max_players %></h3>
+
         </div>
       </div>
     <div class="card">
