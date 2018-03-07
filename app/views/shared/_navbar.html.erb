@@ -2,7 +2,7 @@
 (controller_name = "spaces" && action_name == "index") ? "" : "navbar-wagon-white" %> ">
   <!-- Logo -->
   <%= link_to root_path, class: "navbar-wagon-brand" do %>
-    <%= image_tag "", height: 50 %>
+    <%= image_tag "Grouplogo.png", height: 50 %>
   <% end %>
 
   <!-- Right Navigation -->
@@ -11,17 +11,17 @@
     <% if user_signed_in? %>
 
       <!-- Links when logged in -->
-      <%= link_to "Create a Jamm", new_jamm_path , class: "navbar-wagon-item navbar-wagon-link" %>
+      <%= link_to "Create a space", new_jamm_path , class: "navbar-wagon-item navbar-wagon-link" %>
 
       <!-- Avatar with dropdown menu -->
       <div class="navbar-wagon-item">
-        <div class="notification">1</div>
+        <div class="notification"></div>
         <div class="dropdown navbar-jammbox-avatar">
           <%= image_tag "http://kitt.lewagon.com/placeholder/users/danielbugge", class: "avatar dropdown-toggle", id: "navbar-wagon-menu", "data-toggle" => "dropdown" %>
           <ul class="dropdown-menu dropdown-menu-right navbar-wagon-dropdown-menu">
             <li>
               <%= link_to jamms_path do %>
-                <i class="fa fa-user"></i> <%= t(".profile", default: "Sessions") %>
+                <i class="fa fa-user"></i> <%= t(".profile", default: "Bookings") %>
               <% end %>
             </li>
             <li>
