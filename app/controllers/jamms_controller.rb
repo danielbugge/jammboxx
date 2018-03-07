@@ -19,13 +19,14 @@ class JammsController < ApplicationController
 
   def create
     @jamm = Jamm.new(jamm_params)
+    @jamm.user = current_user
+    # byebug
     if @jamm.save
-      redirect_to jamm_index_path
+      redirect_to jamms_path
     else
       render :new
     end
     authorize @jamm
-
   end
 
   def new
@@ -56,6 +57,6 @@ class JammsController < ApplicationController
   end
 
   def jamm_params
-    params.require(:jamm).permit(:name, :address, :description, :date, :time, :duration, :max_players, :genre_id, :level, :allow_new_instrument, :photo)
+    params.require(:jamm).permit(:user_id, :name, :address, :description, :date, :time, :duration, :max_players, :genre_id, :level, :allow_new_instrument, :photo)
   end
 end
