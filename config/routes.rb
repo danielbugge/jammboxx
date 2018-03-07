@@ -5,7 +5,9 @@ Rails.application.routes.draw do
   root to: 'pages#home'
 
 
-  resources :jamms, only: [ :index, :show, :new, :create  ]
+  resources :jamms, only: [ :index, :show, :new, :create, :destroy ] do
+    resources :jamm_players, only: [ :new, :create, :edit, :update, :destroy]
+  end
 
 
   resources :instruments, only: [ :show, :new, :create, :destroy]
