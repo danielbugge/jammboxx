@@ -8,12 +8,12 @@
 
 
 require 'faker'
-JammPlayer.delete_all
-Instrument.delete_all
-InstrumentType.delete_all
-User.delete_all
-Jamm.delete_all
-Genre.delete_all
+JammPlayer.destroy_all
+Instrument.destroy_all
+InstrumentType.destroy_all
+User.destroy_all
+Jamm.destroy_all
+Genre.destroy_all
 
 
 # GENRE
@@ -76,10 +76,11 @@ end
 
 200.times do
   jamm_id = Jamm.all.sample.id
-  user_id = (User.first.id..User.last.id).to_a.sample
-  Instrument.where(user_id: user_id).sample.nil? ? instrument_played_id = nil : instrument_played_id = Instrument.where(user_id: user_id).sample.id
+  user_id = User.all.sample.id
+  Instrument.where(user_id: user_id).empty? ? instrument_played_id = nil : instrument_played_id = Instrument.where(user_id: User.all.sample.id).sample.id
 
-  new_jamm_player = JammPlayer.create(jamm_id: jamm_id, user_id: user_id, instrument_id: instrument_played_id, leader: true)
+  new_jamm_player = JammPlayer.create(jamm_id: Jamm.all.sample.id, user_id: user_id, instrument_id: instrument_played_id, leader: true)
+
 
   ##### THIS IS NOT CREATING A JAMM PLAYER WITH THE LEADER ATRIBUTE = FALSE BY DEFAULT
 
@@ -90,9 +91,11 @@ end
 
 ## WE SHOULD CREATE A SEED FOR THE LEADER
 
-js = JammPlayer.all
+js = Jamm.all
 
 js.each do |j|
   ##JammPlayer.where(jamm_id: 40).sample
-  j.sample.leader = true
-end
+ # byebug
+ byebug
+ JammPlayer.where(jamm_id: j.id).sample.update(leader: true)
+ end

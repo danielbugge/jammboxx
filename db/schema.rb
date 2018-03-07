@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180306220627) do
+ActiveRecord::Schema.define(version: 20180306182441) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -62,9 +62,9 @@ ActiveRecord::Schema.define(version: 20180306220627) do
     t.string "photo"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "time"
     t.float "latitude"
     t.float "longitude"
-    t.integer "time"
     t.index ["genre_id"], name: "index_jamms_on_genre_id"
   end
 
