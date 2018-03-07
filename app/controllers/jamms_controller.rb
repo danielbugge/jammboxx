@@ -8,11 +8,13 @@ class JammsController < ApplicationController
 
   def index
     @jamms = policy_scope(Jamm.all)
-    @jamm_players = JammPlayer.all
+    @instruments = Instruments.all
   end
 
   def show
-    @jamm_players = JammPlayer.where(jamm_id: params[:id]).last
+
+     @jamm_players = JammPlayer.where(jamm_id: params[:id]).last
+
     # needs to be tailored to one not to show many:
     @jamm = Jamm.find(params[:id])
     @jamm1 = Jamm.where.not(latitude: nil, longitude: nil)
@@ -23,7 +25,6 @@ class JammsController < ApplicationController
          # infoWindow: { content: render_to_string(partial: "/jamm/map_box", locals: { jamm: jamm }) }
       }
     end
-
   end
 
   def create
