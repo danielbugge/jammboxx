@@ -1,24 +1,21 @@
 class JammPlayersController < ApplicationController
-before_action :set_jamm_player, only: [:show, :edit, :update, :delete]
-
-
-  def index
-  end
-
-  def show
-  end
+before_action :set_jamm_player, only: [:new, :create, :update, :edit, :destroy]
 
   def new
+    @jamm_player = Jamm_player.new
+    #Is leader method needed in private
+    authorize @jamm
   end
 
   def create
   end
 
+  def edit
+  end
+
   def update
   end
 
-  def edit
-  end
 
   def destroy
   end
