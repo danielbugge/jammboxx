@@ -25,7 +25,7 @@
 
             <!-- THIS SHOULD GO IN A EACH -->
             <% instruments.each do |instrument| %>
-              <p class= "instrument">  <%= instrument  %> </p>
+              <p class= "instrument"> <%=  User.where(id: player.user_id).last.email %>: <%= instrument  %> </p>
             <% end %>
           <% end %>
 
