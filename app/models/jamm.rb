@@ -11,6 +11,6 @@ class Jamm < ApplicationRecord
   validates :max_players, presence: :true, numericality: { only_integer: true }
 
   validates :date, presence: :true
-  # geocoded_by :address
-  # after_validation :geocode, if: :will_save_change_to_address?
+  geocoded_by :address
+  after_validation :geocode, if: :will_save_change_to_address?
 end
