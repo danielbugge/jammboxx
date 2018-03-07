@@ -11,24 +11,29 @@
           <h3 class= "jamm-genre"><%= jam.genre.name %></h3>
           <h3 class= "jamm-level"><%= jam.level %></h3>
 
+            <% instruments = [] %>
           <%  JammPlayer.where(jamm_id: jam.id).all.each do |player|  %>
 
 
             <!-- THIS SHOULD BE ICONS -->
+            <% instruments = InstrumentType.where(id: Instrument.where(id: player.instrument_id).first.instrument_type_id) %>
+            <!-- THIS IS FUCKED UP. I HAVE TO FIND THE INSTRUMENT FIRST IN THE LINE ABOVE. THEN SHOW THE TYPE AND THE USER -->
+            <!-- THEN FIX THE EACH. -->
+            <% instruments.all.each do |instrument|%>
+              <p> <%= instrument.name %> <% instrument.user_id %> </p>
+            <% end%>
 
-            <% instruments = [] %>
-            <% if player.instrument_id.nil? %>
-               <% instruments << "No instrument"  %>
-            <% else %>
-              <% instruments << InstrumentType.where(id: Instrument.where(id: player.instrument_id).first.instrument_type_id).last.name %>
-            <% end %>
-
-            <!-- THIS SHOULD GO IN A EACH -->
             <% instruments.each do |instrument| %>
               <p class= "instrument"> <%=  User.where(id: player.user_id).last.email %>: <%= instrument  %> </p>
             <% end %>
+
           <% end %>
 
+              <% jamm_players = instruments.count %>
+             <% available_spots = jam.max_players - jamm_players %>
+            <% available_spots.times do |av| %>
+              <p class= "avaliable"> <%= link_to "Available", jamm_path(jam)  %> </p>
+            <% end  %>
           <h3 class= "jamm-max-players"> Max Num players <%= jam.max_players %></h3>
 
         </div>
