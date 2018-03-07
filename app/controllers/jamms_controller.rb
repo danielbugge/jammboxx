@@ -6,17 +6,24 @@ class JammsController < ApplicationController
 
   def index
     @jamms = policy_scope(Jamm.all)
+<<<<<<< HEAD
     @instruments = Instruments.all
+=======
+    @jamm_players = JammPlayer.all
+>>>>>>> b6eaa1f0499f2f56f774413e177451c27bf98a00
   end
 
   def show
      @jamm_players = JammPlayer.where(jamm_id: params[:id]).last
-    @jamm = Jamm.where.not(latitude: nil, longitude: nil)
-    #@markers = @jamm.map do |jamm|
+
+    # needs to be tailored to one not to show many:
+    @jamm = Jamm.find(params[:id])
+    @jamm1 = Jamm.where.not(latitude: nil, longitude: nil)
+    @markers = @jamm1.map do |jamm|
       {
-     #   lat: jamm.latitude,
-     #   lng: jamm.longitude#,
-        # infoWindow: { content: render_to_string(partial: "/jamm/map_box", locals: { jamm: jamm }) }
+        lat: jamm.latitude,
+        lng: jamm.longitude
+         # infoWindow: { content: render_to_string(partial: "/jamm/map_box", locals: { jamm: jamm }) }
       }
     end
 

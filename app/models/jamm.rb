@@ -1,5 +1,6 @@
 class Jamm < ApplicationRecord
   belongs_to :genre
+  belongs_to :user
   has_many :jamm_players
   has_many :users, through: :jamm_players
   has_many :instruments, through: :jamm_players
