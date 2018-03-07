@@ -7,7 +7,7 @@
   <%= f.input :time %>
   <%= f.input :duration %>
   <%= f.input :max_players %>
-  <%= f.input :genre_id %>
+  <%= f.input :genre_id, :collection => Genre.all %>
   <%= f.input :level %>
   <%= f.input :allow_new_instrument %>
   <%= f.input :photo %>

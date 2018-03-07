@@ -1,3 +1,5 @@
+require 'byebug'
+
 class JammsController < ApplicationController
   skip_before_action :authenticate_user!, only: [:index, :show, :search]
   skip_after_action :verify_authorized, only: [:show, :search]
@@ -10,7 +12,7 @@ class JammsController < ApplicationController
   end
 
   def show
-     @jamm_players = JammPlayer.where(jamm_id: params[:id]).last
+    @jamm_players = JammPlayer.where(jamm_id: params[:id]).last
     # needs to be tailored to one not to show many:
     @jamm = Jamm.find(params[:id])
     @jamm1 = Jamm.where.not(latitude: nil, longitude: nil)
@@ -26,15 +28,19 @@ class JammsController < ApplicationController
 
   def create
     @jamm = Jamm.new(jamm_params)
+    byebug
     if @jamm.save
       redirect_to jamm_index_path
     else
       render :new
     end
+    authorize @jamm
+
   end
 
   def new
     @jamm = Jamm.new
+    authorize @jamm
   end
 
   def edit
@@ -60,6 +66,6 @@ class JammsController < ApplicationController
   end
 
   def jamm_params
-    params.require(:jamm).permit(:name, :address, :description, :genre, :date)
+    params.require(:jamm).permit(:name, :address, :description, :date, :time, :duration, :max_players, :genre_id, :level, :allow_new_instrument, :photo)
   end
 end
