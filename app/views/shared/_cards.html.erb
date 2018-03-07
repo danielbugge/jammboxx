@@ -7,7 +7,7 @@
           <p class= "jamm-date"> <%= jam.date %> </p>
         </div>
         <div class="card-right">
-          <h3 class= "jamm-name"><%= jam.name %></h3>
+          <h3 class= "jamm-name"><%= link_to jam.name, jamm_path(jam) %></h3>
           <h3 class= "jamm-genre"><%= jam.genre.name %></h3>
           <h3 class= "jamm-level"><%= jam.level %></h3>
 
