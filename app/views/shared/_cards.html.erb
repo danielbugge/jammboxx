@@ -11,25 +11,17 @@
           <h3 class= "jamm-genre"><%= jam.genre.name %></h3>
           <h3 class= "jamm-level"><%= jam.level %></h3>
 
-            <% instruments = [] %>
+          <% i = 0 %>
           <%  JammPlayer.where(jamm_id: jam.id).all.each do |player|  %>
 
-
+            <% instrument_t =InstrumentType.where(id: Instrument.where(id: player.instrument_id).first.instrument_type_id).first.name %>
+            <% email = User.where(id: player.user_id).first.email %>
             <!-- THIS SHOULD BE ICONS -->
-            <% instruments = InstrumentType.where(id: Instrument.where(id: player.instrument_id).first.instrument_type_id) %>
-            <!-- THIS IS FUCKED UP. I HAVE TO FIND THE INSTRUMENT FIRST IN THE LINE ABOVE. THEN SHOW THE TYPE AND THE USER -->
-            <!-- THEN FIX THE EACH. -->
-            <% instruments.all.each do |instrument|%>
-              <p> <%= instrument.name %> <% instrument.user_id %> </p>
-            <% end%>
-
-            <% instruments.each do |instrument| %>
-              <p class= "instrument"> <%=  User.where(id: player.user_id).last.email %>: <%= instrument  %> </p>
-            <% end %>
-
+           <p class="card-instrument-taken"> <%= instrument_t %>: <%= email %> </p>
+           <% i += 1 %>
           <% end %>
 
-              <% jamm_players = instruments.count %>
+              <% jamm_players = i %>
              <% available_spots = jam.max_players - jamm_players %>
             <% available_spots.times do |av| %>
               <p class= "avaliable"> <%= link_to "Available", jamm_path(jam)  %> </p>
