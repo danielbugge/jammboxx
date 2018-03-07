@@ -2,13 +2,13 @@ Arguments:
   /usr/bin/node /usr/share/yarn/bin/yarn.js check --integrity
 
 PATH: 
-  /home/paolo/.rbenv/versions/2.4.3/lib/ruby/gems/2.4.0/bin:/home/paolo/.rbenv/versions/2.4.3/bin:/home/paolo/.rbenv/libexec:/home/paolo/.rbenv/plugins/ruby-build/bin:./bin:./node_modules/.bin:/home/paolo/.rbenv/shims:/home/paolo/.rbenv/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games
+  /home/daniel/.rbenv/versions/2.4.3/lib/ruby/gems/2.4.0/bin:/home/daniel/.rbenv/versions/2.4.3/bin:/home/daniel/.rbenv/libexec:/home/daniel/.rbenv/plugins/ruby-build/bin:./bin:./node_modules/.bin:/home/daniel/.rbenv/shims:/home/daniel/.rbenv/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games
 
 Yarn version: 
   1.5.1
 
 Node version: 
-  8.9.4
+  6.11.4
 
 Platform: 
   linux x64
@@ -20,6 +20,7 @@ npm manifest:
     "dependencies": {
       "@rails/webpacker": "^3.3.0",
       "bootstrap": "3",
+      "gmaps": "^0.4.24",
       "jquery": "^3.3.1"
     },
     "devDependencies": {
@@ -2457,6 +2458,10 @@ Lockfile:
       glob "~7.1.1"
       lodash "~4.17.4"
       minimatch "~3.0.2"
+  
+  gmaps@^0.4.24:
+    version "0.4.24"
+    resolved "https://registry.yarnpkg.com/gmaps/-/gmaps-0.4.24.tgz#07f22f0cfc3e4e32498950ffafd7ca635ffc100c"
   
   graceful-fs@^4.1.11, graceful-fs@^4.1.2, graceful-fs@^4.1.6, graceful-fs@^4.1.9:
     version "4.1.11"
@@ -6109,9 +6114,9 @@ Lockfile:
 
 Trace: 
   Error: Found 1 errors.
+      at MessageError.Error (native)
       at new MessageError (/usr/share/yarn/lib/cli.js:186:110)
       at /usr/share/yarn/lib/cli.js:59470:13
-      at Generator.next (<anonymous>)
+      at next (native)
       at step (/usr/share/yarn/lib/cli.js:98:30)
       at /usr/share/yarn/lib/cli.js:109:13
-      at <anonymous>
