@@ -1,5 +1,5 @@
 <div class="navbar-wagon navbar-fixed-top <%=
-(controller_name = "spaces" && action_name == "index") ? "" : "navbar-wagon-white" %> ">
+(controller_name = "pages" && action_name == "home") ? "navbar-wagon-transparent" : "navbar-wagon-white" %> ">
   <!-- Logo -->
   <%= link_to root_path, class: "navbar-wagon-brand" do %>
     <%= image_tag "Grouplogo.png", height: 50 %>
@@ -21,7 +21,7 @@
           <ul class="dropdown-menu dropdown-menu-right navbar-wagon-dropdown-menu">
             <li>
               <%= link_to jamms_path do %>
-                <i class="fa fa-user"></i> <%= t(".profile", default: "Bookings") %>
+                <i class="fa fa-user"></i> <%= t(".profile", default: "Sessions") %>
               <% end %>
             </li>
             <li>

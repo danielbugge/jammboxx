@@ -1,0 +1,39 @@
+.banner {
+  background-image: asset-url('banner2.jpg');
+  // background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0, #fff 10%);
+  color: white;
+  text-align: center;
+  height: 93vh;
+  /* if you have a 70px navbar => height: calc(100vh - 70px); */
+  background-size: cover;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.banner p {
+  font-size: 25px;
+  font-weight: lighter;
+  color: rgb(255, 255, 255);
+
+  margin-bottom: 30px;
+}
+
+.banner h2 {
+  margin-left: 25%;
+  width: 50%;
+  border-radius: 30px;
+}
+
+.banner-show {
+  height: calc(50vh - 50px);
+  justify-content: space-between;
+  background-position: center;
+
+
+    h1 {
+      position: absolute;
+      bottom: 5px;
+      left: 40px;
+    }
+}
