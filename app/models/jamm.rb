@@ -10,8 +10,7 @@ class Jamm < ApplicationRecord
   validates :address, presence: :true
   validates :max_players, presence: :true, numericality: { only_integer: true }
 
-  validates :date, presence: :true, uniqueness: { scope: :address, message: "You already created a jamm here at this time!" }
-
-  geocoded_by :address
-  after_validation :geocode, if: :will_save_change_to_address?
+  validates :date, presence: :true
+  # geocoded_by :address
+  # after_validation :geocode, if: :will_save_change_to_address?
 end
