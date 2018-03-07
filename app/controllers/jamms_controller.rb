@@ -1,3 +1,5 @@
+require 'byebug'
+
 class JammsController < ApplicationController
   skip_before_action :authenticate_user!, only: [:index, :show, :search]
   skip_after_action :verify_authorized, only: [:show, :search]
@@ -6,20 +8,21 @@ class JammsController < ApplicationController
 
   def index
     @jamms = policy_scope(Jamm.all)
-    @jamm_players = JammPlayer.all
+    @instruments = Instruments.all
   end
 
   def show
+
     @jamm_players = JammPlayer.where(jamm_id: params[:id]).last
     @jamm = Jamm.where.not(latitude: nil, longitude: nil)
     @markers = @jamm.map do |jamm|
+
       {
         lat: jamm.latitude,
-        lng: jamm.longitude#,
-        # infoWindow: { content: render_to_string(partial: "/jamm/map_box", locals: { jamm: jamm }) }
+        lng: jamm.longitude
+         # infoWindow: { content: render_to_string(partial: "/jamm/map_box", locals: { jamm: jamm }) }
       }
     end
-
   end
 
   def create
@@ -29,10 +32,13 @@ class JammsController < ApplicationController
     else
       render :new
     end
+    authorize @jamm
+
   end
 
   def new
     @jamm = Jamm.new
+    authorize @jamm
   end
 
   def edit
@@ -58,6 +64,6 @@ class JammsController < ApplicationController
   end
 
   def jamm_params
-    params.require(:jamm).permit(:name, :address, :description, :genre, :date)
+    params.require(:jamm).permit(:name, :address, :description, :date, :time, :duration, :max_players, :genre_id, :level, :allow_new_instrument, :photo)
   end
 end
