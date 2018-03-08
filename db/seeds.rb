@@ -62,7 +62,7 @@ address_array = ["8 Nugent Rd, London N19 3QF, UK","15 Meadow Rd, Windermere LA2
   time = (0..23).to_a.sample
   duration = (1..3).to_a.sample
   genre = Genre.all.sample.id
-  players = (1..10).to_a.sample
+  players = (2..10).to_a.sample
   level = ["Beginer", "Medium", "Experts"].sample
   new_intruments = [true, false].sample
   img = (1..23).to_a.sample.to_s
@@ -79,10 +79,9 @@ end
 Jamm.all.each do |jam|
   ts = (1..jam.max_players).to_a.sample
   ts.times do
-    jamm_id = Jamm.all.sample.id
     user_id = User.all.sample.id
-    Instrument.where(user_id: user_id).empty? ? instrument_played_id = nil : instrument_played_id = Instrument.where(user_id: user_id).sample.id
+    Instrument.where(user_id: user_id).empty? ? instrument_played_id = Instrument.all.sample.id : instrument_played_id = Instrument.where(user_id: user_id).sample.id
 
-    new_jamm_player = JammPlayer.create(jamm_id: Jamm.all.sample.id, user_id: user_id, instrument_id: instrument_played_id)
+    new_jamm_player = JammPlayer.create(jamm_id: jam.id, user_id: user_id, instrument_id: instrument_played_id)
   end
 end

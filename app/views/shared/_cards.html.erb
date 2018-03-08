@@ -1,38 +1,39 @@
 <div class="cards_container">
   <% @jamms.each do |jam|  %>
-    <div class="card">
-      <div class="card-left">
-        <div class="image"> <%= cl_image_tag jam.photo, width: 400, height: 300, crop: :fill %>
-          <p class= "jamm-address"> <%= jam.address %> </p>
-          <p class= "jamm-date"> <%= jam.date %> </p>
-        </div>
-        <div class="card-right">
-          <h3 class= "jamm-name"><%= link_to jam.name, jamm_path(jam) %></h3>
-          <h3 class= "jamm-genre"><%= jam.genre.name %></h3>
-          <h3 class= "jamm-level"><%= jam.level %></h3>
-
-          <%  JammPlayer.where(jamm_id: jam.id).all.each do |player|  %>
-
-
-            <!-- THIS SHOULD BE ICONS -->
-
-            <% instruments = [] %>
-            <% if player.instrument_id.nil? %>
-               <% instruments << "No instrument"  %>
-            <% else %>
-              <% instruments << InstrumentType.where(id: Instrument.where(id: player.instrument_id).first.instrument_type_id).last.name %>
-            <% end %>
-
-            <!-- THIS SHOULD GO IN A EACH -->
-            <% instruments.each do |instrument| %>
-              <p class= "instrument"> <%=  User.where(id: player.user_id).last.email %>: <%= instrument  %> </p>
-            <% end %>
-          <% end %>
-
-          <h3 class= "jamm-max-players"> Max Num players <%= jam.max_players %></h3>
-
-        </div>
+  <div class="card">
+    <div class="card-left">
+      <div class="image"> <%= cl_image_tag jam.photo, width: 400, height: 300, crop: :fill %>
+        <p class= "jamm-address"> <%= jam.address %> </p>
+        <p class= "jamm-date"> <%= jam.date %> </p>
       </div>
-    <div class="card">
+    </div>
+    <div class="card-right">
+      <h3 class= "jamm-name"><%= link_to jam.name, jamm_path(jam) %></h3>
+      <h3 class= "jamm-genre"><%= jam.genre.name %></h3>
+      <h3 class= "jamm-level"><%= jam.level %></h3>
+
+      <% jamm_players = 0 %> <!-- COUNTER TO KNOW HOW MANY PLAYER ARE ACTIVE RIGHT NOW IN THE JAMM SESH -->
+        <%  JammPlayer.where(jamm_id: jam.id).all.each do |player|  %>
+
+        <!--THIS USES THE FIRST INSTRUMENT OF THE JAMMPLAYER AND PUT IN THE CARD,SHOULD CHANGE WHEN MANUALLY SELECT THE INSTRUMENT -->
+        <% instrument_t =InstrumentType.where(id: Instrument.where(id: player.instrument_id).first.instrument_type_id).first.name %>
+        <!--STORE THE EMAIL OF THE USER -->
+        <% email = User.where(id: player.user_id).first.email %>
+        <!-- THIS SHOULD BE ICONS...SHOW THE INSTRUMENT OF THE USER AND THE EMAIL -->
+        <p class="card-instrument-taken"> <%= instrument_t %>: <%= email %> </p>
+
+        <% jamm_players += 1 %>
+      <% end %>
+      <!-- STORE A VALUE WITH THE NUMBER OF AVAILABLE SPOTS -->
+      <% available_spots = jam.max_players - jamm_players %>
+
+      <!-- INJECTS ALL THE AVAILABLE SPOTS AS LINKS TO THE SHOW OF THE PAGE. COULD GO TO THE NEW JAMMPLAYER CONTROLLER ACTION -->
+      <% available_spots.times do |av| %>
+        <p class= "card-avaliable-spot"> <%= link_to "Available", jamm_path(jam)  %> </p>
+      <% end  %>
+      <h3 class= "jamm-max-players"> Max Num players <%= jam.max_players %></h3>
+
+    </div>
+  </div>
   <% end %>
 </div>
