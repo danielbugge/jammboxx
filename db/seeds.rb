@@ -37,7 +37,7 @@ end
   username = Faker::Internet.user_name
   email = Faker::Internet.email
   password = '123456'
-  User.create(email: email, password: password)
+  User.create(email: email, password: password, username: username)
 end
 
 
