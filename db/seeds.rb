@@ -62,19 +62,18 @@ address_array = ["8 Nugent Rd, London N19 3QF, UK","15 Meadow Rd, Windermere LA2
   description = lorem
   address = address_array.sample
   date = Faker::Date.forward(30)
-  time = (0..23).to_a.sample
   duration = (1..3).to_a.sample
   genre = Genre.all.sample.id
   players = (2..10).to_a.sample
   level = ["beginner", "intermediate", "expert"].sample
   new_intruments = [true, false].sample
   img = (1..23).to_a.sample.to_s
-  time = (1..24).to_a.sample
+  time = (8..22).to_a.sample
   user_id =  User.all.sample.id
-  new_jamm = Jamm.create!( name: Faker::Commerce.department, description: lorem,  address: address_array.sample, date: Faker::Date.forward(30),
-                          duration: (1..3).to_a.sample, genre_id: Genre.all.sample.id, max_players: (1..10).to_a.sample,
-                           level: ["Beginer", "Medium", "Experts"].sample, allow_new_instrument: [true, false].sample,
-                          photo: img, time: (1..23).to_a.sample, user_id: User.all.sample.id )
+  new_jamm = Jamm.create!( name: name, description: lorem,  address: address, date: date,
+                          duration: duration, genre_id: genre, max_players: players,
+                           level: level, allow_new_instrument: new_intruments,
+                          photo: img, time: time, user_id: user_id )
 end
 
 ## JAMM PLYERS

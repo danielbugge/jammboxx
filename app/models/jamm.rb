@@ -13,7 +13,6 @@ class Jamm < ApplicationRecord
   validates :date, presence: :true
   validates :level, presence: :true, inclusion: { in: ["beginner", "intermediate", "expert"] }
 
-
   geocoded_by :address
   after_validation :geocode, if: :will_save_change_to_address?
 end
