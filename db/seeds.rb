@@ -34,7 +34,7 @@ end
 
 # USER
 100.times do
-  username = Faker::Internet.user_name
+  username = Faker::Internet.user_name + rand(01..99).to_s
   email = Faker::Internet.email
   password = '123456'
   User.create(email: email, password: password, username: username)
@@ -42,12 +42,13 @@ end
 
 
 # Instruments Join Table
-
+instrument_user_id_counter = 1
 100.times do
   model = Faker::LordOfTheRings.location
-  user_id = (User.first.id..User.last.id).to_a.sample
+  user_id = instrument_user_id_counter
   instrument_type_id = InstrumentType.all.sample.id
   new_instrument = Instrument.create( model: model, user_id: user_id, instrument_type_id: instrument_type_id)
+  instrument_user_id_counter += 1
 end
 
 # JAMMS

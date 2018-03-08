@@ -10,7 +10,7 @@
       <div class="modal-body">
         <h4> Select your instrument </h4>
         <select>
-          <% User.find(1009).instruments.each do |instrument|%>
+          <% User.find(100).instruments.each do |instrument|%>
             <option value="volvo">  <%= instrument.instrument_type.name %>: <%= instrument.model  %> </option>
           <% end %>
         </select>
