@@ -14,29 +14,30 @@
 
   </div>
 
-<div class="players">
+  <div class="players">
 
-  <% jamm_players = 0 %>
-  <h2>Jamm Players</h2>
-    <% @jamm_players.each do |player| %>
+    <h2>Jamm Players</h2>
 
-      <p class="show-player-name">Player: <%= player.id %></p>
-      <p class="show-player-instrument">Instrument: <%= player.instrument_id %></p>
-      <% jamm_players += 1 %>
-    <% end %>
+      <div class="players-list">
+        <% jamm_players = 0 %>
+        <% @jamm_players.each do |player| %>
+          <p>Player: <strong> <%= player.user.username %> </strong> Instrument: <strong> <%= player.user.instruments.where(id: player.instrument_id).first.instrument_type.name%> </strong> </p>
+        <% jamm_players += 1 %>
+        <% end %>
+        <%= render "layouts/modal" %>
+        <% available_spots = @jamm.max_players - jamm_players %>
+          <!-- INJECTS ALL THE AVAILABLE SPOTS AS LINKS TO THE SHOW OF THE PAGE. COULD GO TO THE NEW JAMMPLAYER CONTROLLER ACTION -->
+        <% available_spots.times do |av| %>
+          <p class= "show-avaliable-spot"> <%= link_to "Available", new_jamm_jamm_player_path(@jamm.id), data: { toggle: "modal", target: "#newJammPlayer"}  %> </p>
+        <% end  %>
+      </div>
+  </div>
 
-    <% available_spots = @jamm.max_players - jamm_players %>
-      <!-- INJECTS ALL THE AVAILABLE SPOTS AS LINKS TO THE SHOW OF THE PAGE. COULD GO TO THE NEW JAMMPLAYER CONTROLLER ACTION -->
-    <% available_spots.times do |av| %>
-      <p class= "show-avaliable-spot"> <%= link_to "Available", new_jamm_jamm_player_path(@jamm.id), data: { toggle: "modal", target: "#newJammPlayer"}  %> </p>
-    <% end  %>
-    <h3 class= "jamm-max-players"> Max Num players <%= @jamm.max_players %></h3>
 
-    <%= render "layouts/modal" %>
 
- </div>
 
-  <div class="booking-form">
+  <div class="jamm-info">
+    <p> Max Num players <%= @jamm.max_players %></p>
     <p class= "show-duration">duration: <%= @jamm.duration %></p>
     <p class= "show-name">genre: <%= @jamm.genre.name %></p>
     <p class= "show-max-players">max-players: <%= @jamm.max_players %></p>
