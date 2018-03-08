@@ -21,7 +21,7 @@
       <div class="players-list">
         <% jamm_players = 0 %>
         <% @jamm_players.each do |player| %>
-        <p>Player: <strong> <%= player.user.username %> </strong> Instrument: <strong> <%= player.user.instruments.where(id: player.instrument_id).first.instrument_type.name%> </strong> </p>
+        <p>Player: <strong> <%= player.user.username %> </strong> Instrument: <strong> <%= player.instrument.instrument_type.name%> </strong> </p>
         <% jamm_players += 1 %>
         <% end %>
         <%= render "layouts/modal" %>
