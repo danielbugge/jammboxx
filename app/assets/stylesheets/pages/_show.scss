@@ -1,13 +1,21 @@
+.banner-show-container {
+  position: relative;
+}
+
 .banner-show {
   height: calc(50vh - 50px);
   justify-content: space-between;
   background-position: center;
-  position: relative;
-    h1 {
-      position: absolute;
-      bottom: 5px;
-      left: 40px;
-    }
+  filter: blur(1px);
+  -webkit-filter: blur(1px);
+}
+
+.banner-show-content {
+  position: absolute;
+  bottom: 5px;
+  left: 180px;
+  color: white;
+  text-shadow: 1px 1px 1px black;
 }
 
 .grid {
