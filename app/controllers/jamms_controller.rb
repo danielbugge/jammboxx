@@ -15,6 +15,7 @@ class JammsController < ApplicationController
     @jamm = Jamm.where.not(latitude: nil, longitude: nil).find(params[:id])
     @markers = [{ lat: @jamm.latitude, lng: @jamm.longitude }]
          # infoWindow: { content: render_to_string(partial: "/jamm/map_box", locals: { jamm: jamm }) }
+         # raise
   end
 
   def create
