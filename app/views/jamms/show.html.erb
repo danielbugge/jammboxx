@@ -21,10 +21,10 @@
     <% available_spots = @jamm.max_players - jamm_players %>
       <!-- INJECTS ALL THE AVAILABLE SPOTS AS LINKS TO THE SHOW OF THE PAGE. COULD GO TO THE NEW JAMMPLAYER CONTROLLER ACTION -->
     <% available_spots.times do |av| %>
-      <p class= "show-avaliable-spot"> <%= link_to "Available"  %> </p>
+      <p class= "show-avaliable-spot"> <%= link_to "Available", new_jamm_jamm_player_path(@jamm.id), data: { toggle: "modal", target: "#newJammPlayer"}  %> </p>
     <% end  %>
     <h3 class= "jamm-max-players"> Max Num players <%= @jamm.max_players %></h3>
-
+    <%= render "layouts/modal" %>
   <div
     id="map"
     style="width: 100%;
