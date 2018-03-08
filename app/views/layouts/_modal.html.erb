@@ -9,7 +9,8 @@
       </div>
       <div class="modal-body">
         <h4> Select your instrument </h4>
-        <p> <%= link_to "+ add instrument", new_instrument_path, data: { toggle: "modal", target: "#newInstrument"} %> </p>
+        <%= render "layouts/modal_new_instrument" %>
+        <%= link_to "+ add instrument",  new_instrument_path(jamm_id: @jamm.id)  %>
         <select>
           <% current_user.instruments.each do |instrument|%>
             <option value="volvo">  <%= instrument.instrument_type.name %>: <%= instrument.model  %> </option>

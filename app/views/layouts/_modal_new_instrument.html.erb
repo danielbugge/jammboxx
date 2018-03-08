@@ -9,17 +9,12 @@
       </div>
       <div class="modal-body">
         <form action="/action_page.php">
-          Instrument Model: <input type="text" name="fname" value="John"><br>
-          Instrument Type: <select name="" id="">
-                              <% InstrumentType.all.each do |instrument_type| %>
-                                <option value="instrument">  <%= instrument_type %> </option>
-                              <% end %>
-                            </select>
+          Instrument Model: <input type="text" name="fname" value=""><br>
         </form>
         <h4> Select your instrument </h4>
         <select>
           <% InstrumentType.all.each do |instrument_t|%>
-            <option value="instrument">  <%= instrument_type.name %>  %> </option>
+            <option value="instrument">  <%= instrument_t.name %> </option>
           <% end %>
         </select>
       </div>
