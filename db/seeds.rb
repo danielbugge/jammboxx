@@ -37,7 +37,8 @@ end
   username = Faker::Internet.user_name + rand(01..99).to_s
   email = Faker::Internet.email
   password = '123456'
-  User.create(email: email, password: password, username: username)
+  picture = "p#{(1..20).to_a.sample}"
+  User.create(email: email, password: password, username: username, picture: picture)
 end
 
 
@@ -77,6 +78,7 @@ address_array = ["8 Nugent Rd, London N19 3QF, UK","15 Meadow Rd, Windermere LA2
 end
 
 ## JAMM PLYERS
+
 
 Jamm.all.each do |jam|
   ts = (1..jam.max_players).to_a.sample
