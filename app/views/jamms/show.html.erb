@@ -19,6 +19,7 @@
   <% jamm_players = 0 %>
   <h2>Jamm Players</h2>
     <% @jamm_players.each do |player| %>
+
       <p class="show-player-name">Player: <%= player.id %></p>
       <p class="show-player-instrument">Instrument: <%= player.instrument_id %></p>
       <% jamm_players += 1 %>
@@ -27,11 +28,13 @@
     <% available_spots = @jamm.max_players - jamm_players %>
       <!-- INJECTS ALL THE AVAILABLE SPOTS AS LINKS TO THE SHOW OF THE PAGE. COULD GO TO THE NEW JAMMPLAYER CONTROLLER ACTION -->
     <% available_spots.times do |av| %>
-      <p class= "show-avaliable-spot"> <%= link_to "Available"  %> </p>
+      <p class= "show-avaliable-spot"> <%= link_to "Available", new_jamm_jamm_player_path(@jamm.id), data: { toggle: "modal", target: "#newJammPlayer"}  %> </p>
     <% end  %>
     <h3 class= "jamm-max-players"> Max Num players <%= @jamm.max_players %></h3>
 
-</div>
+    <%= render "layouts/modal" %>
+
+ </div>
 
   <div class="booking-form">
     <p class= "show-duration">duration: <%= @jamm.duration %></p>
