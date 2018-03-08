@@ -1,16 +1,18 @@
-<div style="margin-top: 100px;">
-<%= simple_form_for @jamm do |f| %>
-  <%= f.input :name %>
-  <%= f.input :description %>
-  <%= f.input :address %>
-  <%= f.input :date %>
-  <%= f.input :time %>
-  <%= f.input :duration %>
-  <%= f.input :max_players %>
-  <%= f.input :genre_id, :collection => Genre.all %>
-  <%= f.input :level %>
-  <%= f.input :allow_new_instrument %>
-  <%= f.input :photo %>
-  <%= f.button :submit %>
-<% end %>
+<div class="container">
+  <div class="ciao" style="margin-top: 100px;">
+  <%= simple_form_for @jamm do |f| %>
+    <%= f.input :name %>
+    <%= f.input :description %>
+    <%= f.input :address %>
+    <%= f.input :date %>
+    <%= f.input :time, :collection => (0..23) %>
+    <%= f.input :duration, :collection => (1..24) %>
+    <%= f.input :max_players, :collection => (1..10) %>
+    <%= f.input :genre_id, :collection => Genre.all %>
+    <%= f.input :level, :collection => ["beginner", "intermediate", "expert"] %>
+    <%= f.input :allow_new_instrument %>
+    <%= f.input :photo %>
+    <%= f.button :submit %>
+  <% end %>
+  </div>
 </div>
