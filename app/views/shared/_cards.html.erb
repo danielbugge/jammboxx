@@ -2,13 +2,13 @@
   <% @jamms.each do |jam|  %>
   <div class="card">
 
-    <div class="card-left_content" style="background-image: url('<%= cl_image_path jam.photo %>')">
+    <div class="card-left_content hidden-xs" style="background-image: url('<%= cl_image_path jam.user.picture %>')">
     </div>
 
     <div class="card-right_content">
 
       <div class= "card-top">
-          <h3><%= link_to jam.name, jamm_path(jam) %></h3>
+          <h3><%=  jam.name %></h3>
           <p> <%= jam.date %> </p>
       </div>
 
@@ -37,7 +37,7 @@
             <!--STORE THE EMAIL OF THE USER -->
             <% email = User.where(id: player.user_id).first.email %>
             <!-- THIS SHOULD BE ICONS...SHOW THE INSTRUMENT OF THE USER AND THE EMAIL -->
-            <p class="card-instrument-taken"> <%= instrument_t %>: <%= image_tag "https://avatars3.githubusercontent.com/u/34843704?v=4", width: 70, class: "avatar-large" %> </p>
+            <p class="card-instrument-taken"> <%= cl_image_tag(player.user.picture, width: 70, class: "avatar-large") %> </p>
 
             <% jamm_players += 1 %>
           <% end %>
@@ -49,7 +49,7 @@
             <p> <%= link_to "Available", jamm_path(jam)  %> </p>
           <% end  %>
 
-          <p> Max Num players <%= jam.max_players %></p>
+          <p> Player max <%= jam.max_players %></p>
 
       </div>
 
