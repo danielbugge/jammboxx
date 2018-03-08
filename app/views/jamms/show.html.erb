@@ -4,48 +4,46 @@
   </div>
 </div>
 
-<div class="grid">
+<div class="container">
+  <div class="grid">
+    <div class="description">
 
-  <div class="description">
+      <h3> <%= @jamm.description %> </h3>
+      <br>
+      <h4> <%= @jamm.time %>:00 - <%= @jamm.date %> <strong> @ </strong> <%= @jamm.address %></h4>
 
-    <h3> <%= @jamm.description %> </h3>
-    <br>
-    <h4> <%= @jamm.time %>:00 - <%= @jamm.date %> <strong> @ </strong> <%= @jamm.address %></h4>
+    </div>
 
-  </div>
+    <div class="players">
 
-  <div class="players">
-
-    <h2>Jamm Players</h2>
+      <h2>Jamm Players</h2>
 
       <div class="players-list">
         <% jamm_players = 0 %>
         <% @jamm_players.each do |player| %>
-          <p>Player: <strong> <%= player.user.username %> </strong> Instrument: <strong> <%= player.user.instruments.where(id: player.instrument_id).first.instrument_type.name%> </strong> </p>
+        <p>Player: <strong> <%= player.user.username %> </strong> Instrument: <strong> <%= player.user.instruments.where(id: player.instrument_id).first.instrument_type.name%> </strong> </p>
         <% jamm_players += 1 %>
         <% end %>
         <%= render "layouts/modal" %>
         <% available_spots = @jamm.max_players - jamm_players %>
-          <!-- INJECTS ALL THE AVAILABLE SPOTS AS LINKS TO THE SHOW OF THE PAGE. COULD GO TO THE NEW JAMMPLAYER CONTROLLER ACTION -->
+        <!-- INJECTS ALL THE AVAILABLE SPOTS AS LINKS TO THE SHOW OF THE PAGE. COULD GO TO THE NEW JAMMPLAYER CONTROLLER ACTION -->
         <% available_spots.times do |av| %>
-          <p class= "show-avaliable-spot"> <%= link_to "Available", new_jamm_jamm_player_path(@jamm.id), data: { toggle: "modal", target: "#newJammPlayer"}  %> </p>
+        <p class= "show-avaliable-spot"> <%= link_to "Available", new_jamm_jamm_player_path(@jamm.id), data: { toggle: "modal", target: "#newJammPlayer"}  %> </p>
         <% end  %>
       </div>
+    </div>
+
+    <div class="jamm-info">
+      <p> Max Num players <%= @jamm.max_players %></p>
+      <p class= "show-duration">duration: <%= @jamm.duration %></p>
+      <p class= "show-name">genre: <%= @jamm.genre.name %></p>
+      <p class= "show-max-players">max-players: <%= @jamm.max_players %></p>
+      <p class= "show-level">level: <%= @jamm.level %></p>
+    </div>
   </div>
 
-
-
-
-  <div class="jamm-info">
-    <p> Max Num players <%= @jamm.max_players %></p>
-    <p class= "show-duration">duration: <%= @jamm.duration %></p>
-    <p class= "show-name">genre: <%= @jamm.genre.name %></p>
-    <p class= "show-max-players">max-players: <%= @jamm.max_players %></p>
-    <p class= "show-level">level: <%= @jamm.level %></p>
+  <div class="map"
+    id="map" style="width: 99%;"
+    data-markers="<%= @markers.to_json %>">
   </div>
 </div>
-  <div class="map"
-      id="map" style="width: 99%;"
-      data-markers="<%= @markers.to_json %>">
-  </div>
-
