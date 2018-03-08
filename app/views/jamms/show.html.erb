@@ -10,11 +10,20 @@
     <p class= "show-max-players">max-players: <%= @jamm.max_players %></p>
     <p class= "show-level">level: <%= @jamm.level %></p>
 
+  <% jamm_players = 0 %>
   <h2>Group Members</h2>
     <% @jamm_players.each do |player| %>
       <p class="show-player-name">Player: <%= player.id %></p>
       <p class="show-player-instrument">Instrument: <%= player.instrument_id %></p>
+      <% jamm_players += 1 %>
     <% end %>
+
+    <% available_spots = @jamm.max_players - jamm_players %>
+      <!-- INJECTS ALL THE AVAILABLE SPOTS AS LINKS TO THE SHOW OF THE PAGE. COULD GO TO THE NEW JAMMPLAYER CONTROLLER ACTION -->
+    <% available_spots.times do |av| %>
+      <p class= "show-avaliable-spot"> <%= link_to "Available"  %> </p>
+    <% end  %>
+    <h3 class= "jamm-max-players"> Max Num players <%= @jamm.max_players %></h3>
 
   <div
     id="map"
