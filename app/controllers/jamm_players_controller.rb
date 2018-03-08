@@ -1,11 +1,13 @@
 class JammPlayersController < ApplicationController
-before_action :set_jamm_player, only: [:new, :create, :update, :edit, :destroy]
+before_action :set_jamm, only: [:new, :create, :update, :edit, :destroy]
+
+  def new
+    @jamm_player = JammPlayer.new(jamm_id: @jamm.id)
+    authorize @jamm_player
+  end
 
   def create
-     @jamm_player = Jamm.new(jamm_id: params[:id])
-    if @jamm_player.save
-      redirect_to jamm_path
-    end
+    @jamm_player.save
     authorize @jamm
   end
 
@@ -22,7 +24,7 @@ before_action :set_jamm_player, only: [:new, :create, :update, :edit, :destroy]
   private
 
   def set_jamm
-    @jamm = Jamm.find(params[:id])
+    @jamm = Jamm.find(params[:jamm_id])
   end
 
   def jamm_player_params
