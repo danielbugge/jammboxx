@@ -1,13 +1,12 @@
 class JammPlayersController < ApplicationController
 before_action :set_jamm_player, only: [:new, :create, :update, :edit, :destroy]
 
-  def new
-    @jamm_player = Jamm_player.new
-    #Is leader method needed in private
-    authorize @jamm
-  end
-
   def create
+     @jamm_player = Jamm.new(jamm_id: params[:id])
+    if @jamm_player.save
+      redirect_to jamm_path
+    end
+    authorize @jamm
   end
 
   def edit
@@ -22,8 +21,8 @@ before_action :set_jamm_player, only: [:new, :create, :update, :edit, :destroy]
 
   private
 
-  def set_jamm_player
-    @jamm_player = Jamm_player.find(params[:id])
+  def set_jamm
+    @jamm = Jamm.find(params[:id])
   end
 
   def jamm_player_params
