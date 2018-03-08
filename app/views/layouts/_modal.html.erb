@@ -11,7 +11,7 @@
         <h4> Select your instrument </h4>
         <select>
           <% User.find(100).instruments.each do |instrument|%>
-            <option value="volvo">  <%= instrument.instrument_type.name %> </option>
+            <option value="volvo">  <%= instrument.instrument_type.name %>: <%= instrument.model  %> </option>
           <% end %>
         </select>
       </div>
