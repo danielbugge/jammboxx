@@ -14,11 +14,11 @@
   display: grid;
   grid-template-columns: 500px 1fr 1fr;
   grid-template-rows: 50% 50%;
-  margin: 5px;
+  margin: 5px 0;
 }
 
 .jamm-info {
-  box-shadow: 15px 5px 5px 0 rgba(0,0,0,0.16),0 1px 0 0 rgba(0,0,0,0.16);
+  box-shadow: 2px 5px 5px 0 rgba(0,0,0,0.16),0 1px 0 0 rgba(0,0,0,0.16);
   grid-row: 1 / span 2;
   grid-column: 3 / span 1;
   background-color: white;
