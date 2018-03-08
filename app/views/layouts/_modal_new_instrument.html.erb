@@ -18,8 +18,8 @@
         </form>
         <h4> Select your instrument </h4>
         <select>
-          <% User.find(1009).instruments.each do |instrument|%>
-            <option value="volvo">  <%= instrument.instrument_type.name %>: <%= instrument.model  %> </option>
+          <% InstrumentType.all.each do |instrument_t|%>
+            <option value="instrument">  <%= instrument_type.name %>  %> </option>
           <% end %>
         </select>
       </div>
