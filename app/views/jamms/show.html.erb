@@ -1,17 +1,23 @@
-<div>
+<div class="banner banner-show" style="background-image: url('<%= image_url("banner_image.jpg") %>');">
+  <div class="banner-content">
+    <h1><%=@jamm.name %></h1>
+  </div>
+</div>
 
-  <h1><%= @jamm.name %></h1>
-    <p class= "show-description"><%= @jamm.description %></p>
-    <p class= "show-address">location: <%= @jamm.address %></p>
-    <p class= "show-date">date: <%= @jamm.date %></p>
-    <p class= "show-hour">time: <%= @jamm.time %></p>
-    <p class= "show-duration">duration: <%= @jamm.duration %></p>
-    <p class= "show-name">genre: <%= @jamm.genre.name %></p>
-    <p class= "show-max-players">max-players: <%= @jamm.max_players %></p>
-    <p class= "show-level">level: <%= @jamm.level %></p>
+<div class="grid">
+
+  <div class="description">
+
+    <h3> <%= @jamm.description %> </h3>
+    <br>
+    <h4> <%= @jamm.time %>:00 - <%= @jamm.date %> <strong> @ </strong> <%= @jamm.address %></h4>
+
+  </div>
+
+<div class="players">
 
   <% jamm_players = 0 %>
-  <h2>Group Members</h2>
+  <h2>Jamm Players</h2>
     <% @jamm_players.each do |player| %>
 
       <p class="show-player-name">Player: <%= player.id %></p>
@@ -25,16 +31,20 @@
       <p class= "show-avaliable-spot"> <%= link_to "Available", new_jamm_jamm_player_path(@jamm.id), data: { toggle: "modal", target: "#newJammPlayer"}  %> </p>
     <% end  %>
     <h3 class= "jamm-max-players"> Max Num players <%= @jamm.max_players %></h3>
+
     <%= render "layouts/modal" %>
-  <div
-    id="map"
-    style="width: 100%;
-    height: 300px;"
-    data-markers="<%= @markers.to_json %>">
+
+ </div>
+
+  <div class="booking-form">
+    <p class= "show-duration">duration: <%= @jamm.duration %></p>
+    <p class= "show-name">genre: <%= @jamm.genre.name %></p>
+    <p class= "show-max-players">max-players: <%= @jamm.max_players %></p>
+    <p class= "show-level">level: <%= @jamm.level %></p>
   </div>
 </div>
-
-
-
-
+  <div class="map"
+      id="map" style="width: 99%;"
+      data-markers="<%= @markers.to_json %>">
+  </div>
 
