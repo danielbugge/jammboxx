@@ -34,9 +34,10 @@ end
 
 # USER
 100.times do
- email = Faker::Internet.email
- password = '123456'
- User.create(email: email, password: password)
+  username = Faker::Internet.user_name
+  email = Faker::Internet.email
+  password = '123456'
+  User.create(email: email, password: password, username: username)
 end
 
 

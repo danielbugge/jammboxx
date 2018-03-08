@@ -1,0 +1,11 @@
+<p><b>Title:</b> <%= @jamm.name %></p>
+
+<p><b>Leader:</b> <%= @jamm.user %></p>
+
+<p><b>Address:</b> <%= @jamm.address %></p>
+
+<p><b>Description:</b> <%= @jamm.description %></p>
+
+<%= link_to 'Edit', edit_book_path(@book) %> |
+<%= link_to 'Show', @book %> |
+<%= link_to 'Remove', @book, method: :delete, data: { confirm: 'Are you sure?' } %>
