@@ -13,6 +13,9 @@
 
         <%= f.input :instrument_id, collection: User.find(146).instruments.map { |instrument| ["#{instrument.instrument_type.name}: #{instrument.model}", instrument.id] } %>
 
+        <%= render "layouts/modal_new_instrument" %>
+        <%= link_to "+ add instrument",  new_instrument_path(jamm_id: @jamm.id)  %>
+     
       </div>
       <div class="modal-footer">
 

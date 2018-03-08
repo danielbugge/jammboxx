@@ -1,9 +1,9 @@
-<div class="banner banner-show" style="background-image: url('<%= image_url("banner_image.jpg") %>');">
-  <div class="banner-content">
+<div class="banner-show-container" >
+  <div class="banner banner-show" style="background-image: url(<%= image_url(cl_image_path @jamm.photo) %>)"></div>
+  <div class="banner-show-content">
     <h1><%=@jamm.name %></h1>
   </div>
 </div>
-
 <div class="container">
   <div class="grid">
     <div class="description">

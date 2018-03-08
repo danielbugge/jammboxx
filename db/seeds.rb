@@ -37,7 +37,8 @@ end
   username = Faker::Internet.user_name + rand(01..99).to_s
   email = Faker::Internet.email
   password = '123456'
-  User.create(email: email, password: password, username: username)
+  picture = "p#{(1..20).to_a.sample}"
+  User.create(email: email, password: password, username: username, picture: picture)
 end
 
 
@@ -65,7 +66,7 @@ address_array = ["8 Nugent Rd, London N19 3QF, UK","15 Meadow Rd, Windermere LA2
   duration = (1..3).to_a.sample
   genre = Genre.all.sample.id
   players = (2..10).to_a.sample
-  level = ["Beginer", "Medium", "Experts"].sample
+  level = ["beginner", "intermediate", "expert"].sample
   new_intruments = [true, false].sample
   img = (1..23).to_a.sample.to_s
   time = (1..24).to_a.sample
@@ -77,6 +78,7 @@ address_array = ["8 Nugent Rd, London N19 3QF, UK","15 Meadow Rd, Windermere LA2
 end
 
 ## JAMM PLYERS
+
 
 Jamm.all.each do |jam|
   ts = (1..jam.max_players).to_a.sample
