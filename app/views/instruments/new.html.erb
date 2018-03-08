@@ -2,8 +2,9 @@
   <h2>Creating a new instrument</h2>
   <div class="row">
       <%= simple_form_for @instrument do |f| %>
+        <%= hidden_field_tag :jamm_id, @jamm.id    %>
         <%= f.input :model, label: 'Whats the model of your instrument:' %>
-        <%= f.input :instrument_type,  :collection => InstrumentType.all, label: 'Select your instrument type' %>
+        <%= f.input :instrument_type_id,  :collection => InstrumentType.all, label: 'Select your instrument type' %>
         <%= f.submit "Create", class: "btn btn-danger" %>
       <% end %>
   </div>
