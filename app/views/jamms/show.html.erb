@@ -13,6 +13,7 @@
   <% jamm_players = 0 %>
   <h2>Group Members</h2>
     <% @jamm_players.each do |player| %>
+
       <p class="show-player-name">Player: <%= player.id %></p>
       <p class="show-player-instrument">Instrument: <%= player.instrument_id %></p>
       <% jamm_players += 1 %>
