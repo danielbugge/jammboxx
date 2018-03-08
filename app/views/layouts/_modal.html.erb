@@ -8,9 +8,15 @@
         <h3 class="modal-title"> <%= @jamm.name  %> </h3>
       </div>
       <div class="modal-body">
-        <h4> Join the Jamm </h4>
+        <h4> Select your instrument </h4>
+        <select>
+          <% User.find(1009).instruments.each do |instrument|%>
+            <option value="volvo">  <%= instrument.instrument_type.name %> </option>
+          <% end %>
+        </select>
       </div>
       <div class="modal-footer">
+        <button type="button" class="btn btn-success"> JOIN </button>
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
       </div>
     </div>
