@@ -1,2 +1,11 @@
-<h1>Instruments#new</h1>
-<p>Find me in app/views/instruments/new.html.erb</p>
+<div class="container form form-container">
+  <h2>Creating a new instrument</h2>
+  <div class="row">
+      <%= simple_form_for @instrument do |f| %>
+        <%= f.input :model, label: 'Whats the model of your instrument:' %>
+        <%= f.input :instrument_type,  :collection => InstrumentType.all, label: 'Select your instrument type' %>
+        <%= f.submit "Create", class: "btn btn-danger" %>
+      <% end %>
+  </div>
+</div>
+
