@@ -21,7 +21,7 @@ genre_array = [ "Alternative Music", "Blues", "Classical Music", "Country Music"
 
 genre_array.each do |genre|
   name = genre
-  Genre.create( name: name)
+  Genre.create!( name: name)
 end
 
 # INSTRUMENTS TYPES MODEL
@@ -29,7 +29,7 @@ instrument_types_array = [ "accordion","agogo bells","bagpipes","banjo","bariton
 
 instrument_types_array.each do |instrument|
   name = instrument
-  InstrumentType.create( name: name)
+  InstrumentType.create!( name: name)
 end
 
 # USER
@@ -38,7 +38,7 @@ end
   email = Faker::Internet.email
   password = '123456'
   picture = "p#{(1..20).to_a.sample}"
-  User.create(email: email, password: password, username: username, picture: picture)
+  User.create!(email: email, password: password, username: username, picture: picture)
 end
 
 
@@ -48,7 +48,7 @@ instrument_user_id_counter = 1
   model = Faker::LordOfTheRings.location
   user_id = instrument_user_id_counter
   instrument_type_id = InstrumentType.all.sample.id
-  new_instrument = Instrument.create( model: model, user_id: user_id, instrument_type_id: instrument_type_id)
+  new_instrument = Instrument.create!( model: model, user_id: user_id, instrument_type_id: instrument_type_id)
   instrument_user_id_counter += 1
 end
 
@@ -71,7 +71,7 @@ address_array = ["8 Nugent Rd, London N19 3QF, UK","15 Meadow Rd, Windermere LA2
   img = (1..23).to_a.sample.to_s
   time = (1..24).to_a.sample
   user_id =  User.all.sample.id
-  new_jamm = Jamm.create( name: Faker::Commerce.department, description: lorem,  address: address_array.sample, date: Faker::Date.forward(30),
+  new_jamm = Jamm.create!( name: Faker::Commerce.department, description: lorem,  address: address_array.sample, date: Faker::Date.forward(30),
                           duration: (1..3).to_a.sample, genre_id: Genre.all.sample.id, max_players: (1..10).to_a.sample,
                            level: ["Beginer", "Medium", "Experts"].sample, allow_new_instrument: [true, false].sample,
                           photo: img, time: (1..23).to_a.sample, user_id: User.all.sample.id )
@@ -86,6 +86,6 @@ Jamm.all.each do |jam|
     user_id = User.all.sample.id
     Instrument.where(user_id: user_id).empty? ? instrument_played_id = Instrument.all.sample.id : instrument_played_id = Instrument.where(user_id: user_id).sample.id
 
-    new_jamm_player = JammPlayer.create(jamm_id: jam.id, user_id: user_id, instrument_id: instrument_played_id)
+    new_jamm_player = JammPlayer.create!(jamm_id: jam.id, user_id: user_id, instrument_id: instrument_played_id)
   end
 end
