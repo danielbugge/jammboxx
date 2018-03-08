@@ -1,18 +1,33 @@
 <div class="container">
-  <div class="ciao" style="margin-top: 100px;">
+  <div class="new-jamm-form" style=" color: white; margin-top: 100px;">
   <%= simple_form_for @jamm do |f| %>
-    <%= f.input :name %>
-    <%= f.input :description %>
+
+    <%= f.input :name, label: 'Title:', error: 'Title is mandatory, please specify one' %>
+    <%= f.input :description, label: 'Description:', error: 'Description is mandatory, please specify one' %>
     <%= f.input :address %>
-    <%= f.input :date %>
-    <%= f.input :time, :collection => (0..23) %>
-    <%= f.input :duration, :collection => (1..24) %>
-    <%= f.input :max_players, :collection => (1..10) %>
-    <%= f.input :genre_id, :collection => Genre.all %>
-    <%= f.input :level, :collection => ["beginner", "intermediate", "expert"] %>
-    <%= f.input :allow_new_instrument %>
+
+    <div style='columns: 3;'>
+      <%= f.input :date, label: 'Date:', error: 'Date is mandatory, please specify one' %>
+      <%= f.input :time, :collection => (0..23), label: 'Hour:', error: 'Hour is mandatory, please specify one' %>
+      <%= f.input :duration, :collection => (1..24), label: 'Session duration:' %>
+    </div>
+
+    <div style='columns: 2;'>
+      <%= f.input :max_players, :collection => (1..10), label: 'Max number of players:' %>
+      <%= f.input :genre_id, :collection => Genre.all %>
+    </div>
+
+    <div style='columns: 2;'>
+      <%= f.input :level, :collection => ["beginner", "intermediate", "expert"], label: 'Level of expertise:' %>
+      <%= f.input :allow_new_instrument,  as: :select, label: 'Are players allowed to bring their own instruments?' %>
+    </div>
+
     <%= f.input :photo %>
-    <%= f.button :submit %>
+
+    <div class="text-center">
+      <%= f.button :submit %>
+
+    </div>
   <% end %>
   </div>
 </div>
