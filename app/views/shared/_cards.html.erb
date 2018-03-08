@@ -1,39 +1,34 @@
-<div class="cards_container">
+<div class="cards_container container">
   <% @jamms.each do |jam|  %>
   <div class="card">
 
-    <div class="card-left_content card_image"> <%= cl_image_tag jam.photo, width: 300, height: 300, crop: :fill%>
+    <div class="card-left_content" style="background-image: url('<%= cl_image_path jam.photo %>')">
     </div>
 
     <div class="card-right_content">
 
-      <div class= "row card-top">
-        <div class="col-xs-10">
+      <div class= "card-top">
           <h3><%= link_to jam.name, jamm_path(jam) %></h3>
-        </div>
-        <div class="col-xs-2">
           <p> <%= jam.date %> </p>
-        </div>
       </div>
 
-      <div class="row card-middle-top">
-        <div class="col-xs-10">
+      <div class="card-middle-top">
+        <div>
           <h4 ><%= jam.genre.name %></h4>
         </div>
-        <div class="col-xs-2">
+        <div>
           <h4><%= jam.level %></h4>
         </div>
+
       </div>
 
-      <div class="row card-middle">
-        <div class="col-xs-6">
+      <div class="card-middle">
           <p><%= jam.address %></p>
           <hr>
-        </div>
       </div>
 
-      <div class="row card-bottom">
-        <div class="col-xs-10">
+      <div class="card-bottom">
+
           <% jamm_players = 0 %> <!-- COUNTER TO KNOW HOW MANY PLAYER ARE ACTIVE RIGHT NOW IN THE JAMM SESH -->
             <%  JammPlayer.where(jamm_id: jam.id).all.each do |player|  %>
 
@@ -42,7 +37,7 @@
             <!--STORE THE EMAIL OF THE USER -->
             <% email = User.where(id: player.user_id).first.email %>
             <!-- THIS SHOULD BE ICONS...SHOW THE INSTRUMENT OF THE USER AND THE EMAIL -->
-            <p class="card-instrument-taken"> <%= instrument_t %>: <%= email %> </p>
+            <p class="card-instrument-taken"> <%= instrument_t %>: <%= image_tag "https://avatars3.githubusercontent.com/u/34843704?v=4", width: 70, class: "avatar-large" %> </p>
 
             <% jamm_players += 1 %>
           <% end %>
@@ -53,10 +48,9 @@
           <% available_spots.times do |av| %>
             <p> <%= link_to "Available", jamm_path(jam)  %> </p>
           <% end  %>
-        </div>
-        <div class="col-xs-2">
+
           <p> Max Num players <%= jam.max_players %></p>
-        </div>
+
       </div>
 
 
