@@ -1,15 +1,22 @@
-<div id="newJammPlayer" class="modal fade" role="dialog">
+<div id="newInstrument" class="modal fade" role="dialog">
   <div class="modal-dialog">
 
     <!-- Modal content-->
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <h3 class="modal-title"> <%= @jamm.name  %> </h3>
+        <h3 class="modal-title"> Add your instrument </h3>
       </div>
       <div class="modal-body">
+        <form action="/action_page.php">
+          Instrument Model: <input type="text" name="fname" value="John"><br>
+          Instrument Type: <select name="" id="">
+                              <% InstrumentType.all.each do |instrument_type| %>
+                                <option value="instrument">  <%= instrument_type %> </option>
+                              <% end %>
+                            </select>
+        </form>
         <h4> Select your instrument </h4>
-        <p> <%= link_to "+ add instrument"%> </p>
         <select>
           <% User.find(1009).instruments.each do |instrument|%>
             <option value="volvo">  <%= instrument.instrument_type.name %>: <%= instrument.model  %> </option>
