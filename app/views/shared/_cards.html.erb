@@ -50,7 +50,9 @@
 
           <!-- INJECTS ALL THE AVAILABLE SPOTS AS LINKS TO THE SHOW OF THE PAGE. COULD GO TO THE NEW JAMMPLAYER CONTROLLER ACTION -->
           <% available_spots.times do |av| %>
-            <p> <%= link_to "Available", jamm_path(jam)  %> </p>
+            <%= link_to jamm_path(jam) do %>
+                <%= cl_image_tag("add.png", height: 50, width: 50, crop: "scale", class: "avatar-large plus-icon" )  %>
+            <% end %>
           <% end  %>
 
           <p> Player max <%= jam.max_players %></p>
