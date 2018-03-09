@@ -13,6 +13,10 @@ class JammPolicy < ApplicationPolicy
     true
   end
 
+  def new
+    create?
+  end
+
   def update?
     record.user == user
   end
