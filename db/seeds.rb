@@ -18,7 +18,7 @@ Genre.destroy_all
 counter = 1
 
 # GENRE
-genre_array = [ "Alternative Music", "Blues", "Classical Music", "Country Music", "Dance Music", "Easy Listening", "Electronic Music", "European Music (Folk / Pop)", "Hip Hop / Rap", "Indie Pop", "Inspirational (incl. Gospel)", "Asian Pop (J-Pop, K-pop)", "Jazz", "Latin Music", "New Age", "Opera", "Pop (Popular music)", "R&B / Soul", "Reggae", "Rock", "Singer / Songwriter (inc. Folk)", "World Music / Beats" ]
+genre_array = [ "Alternative Music", "Blues", "Classical Music", "Country Music", "Dance Music", "Easy Listening", "Electronic Music", "European Music", "Hip Hop / Rap", "Indie Pop", "Inspirational", "Asian Pop", "Jazz", "Latin Music", "New Age", "Opera", "Pop", "R&B / Soul", "Reggae", "Rock", "Folk", "World Music" ]
 
 genre_array.each do |genre|
   Genre.create!( name: genre)
@@ -78,8 +78,8 @@ counter = 1
 
 20.times do
   new_jamm = Jamm.create!(
-    name: Faker::Commerce.department,
-    description: lorem,
+    name: Faker::FamilyGuy.location,
+    description: Faker::HitchhikersGuideToTheGalaxy.quote,
     address: address_array.sample,
     date: Faker::Date.forward(30),
     duration: rand(1..3),
@@ -105,7 +105,6 @@ Jamm.all.each do |jam|
   ts.times do
     user_id = User.all.sample.id
     Instrument.where(user_id: user_id).empty? ? instrument_played_id = Instrument.all.sample.id : instrument_played_id = Instrument.where(user_id: user_id).sample.id
-
     new_jamm_player = JammPlayer.create!(jamm_id: jam.id, user_id: user_id, instrument_id: instrument_played_id)
   end
   puts "Jamm player joint ##{counter} done!"
@@ -113,6 +112,10 @@ Jamm.all.each do |jam|
   counter += 1
 end
 
+
 User.create!(email: 'ciao@ciao.com', password: '123456', username: 'ciaobello', picture: "p#{rand(1..20)}")
+Instrument.create!(model: Faker::LordOfTheRings.location, user_id: User.last.id, instrument_type_id: InstrumentType.all.sample.id)
+
 puts "basic user --- > email: 'ciao@ciao.com' password: '123456'"
+puts "\n"
 puts "All done mfkr!"
