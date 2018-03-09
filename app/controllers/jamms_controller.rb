@@ -37,7 +37,7 @@ class JammsController < ApplicationController
     @jamm.user = current_user
     # byebug
     if @jamm.save
-      redirect_to jamms_path
+      redirect_to jamm_path(@jamm)
     else
       render :new
     end
