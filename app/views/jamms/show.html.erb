@@ -9,7 +9,7 @@
     <div class="description">
 
       <h3> <%= @jamm.description %> </h3>
-      <br>
+      <hr>
       <h4> <%= @jamm.time %>:00 - <%= @jamm.date %> <strong> @ </strong> <%= @jamm.address %></h4>
 
     </div>
@@ -17,7 +17,7 @@
     <div class="players">
 
       <h3>Jamm Players</h3>
-
+      <hr>
       <div class="players-list">
         <% jamm_players = 0 %>
         <% @jamm_players.each do |player| %>
@@ -38,11 +38,13 @@
     </div>
 
     <div class="jamm-info">
+      <h3>Jamm Settings</h3>
+      <hr>
       <ul style="list-style-type: none;">
-        <li><%= @jamm.genre.name %> jamm</li>
-        <li style=" background-image: url(<%= asset_path "max_players.png" %>); background-size: 1.6rem 1.6rem;"><%= @jamm.max_players %> players maximun</li>
-        <li><%= @jamm.duration %> hours</li>
-        <li><%= @jamm.level %> level</li>
+        <li><img src="<%= asset_path "genre.png" %>" alt="Max Players"> <%= @jamm.genre.name %></li>
+        <li><img src="<%= asset_path "max_players.png" %>" alt="Max Players"> <%= @jamm.max_players %> players</li>
+        <li><img src="<%= asset_path "duration.png" %>" alt="Max Players"> <%= @jamm.duration %> hours</li>
+        <li><img src="<%= asset_path "level.png" %>" alt="Max Players"> <%= @jamm.level %></li>
       </ul>
     </div>
   </div>
