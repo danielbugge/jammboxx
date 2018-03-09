@@ -1,6 +1,11 @@
+
 <div class="cards_container container">
   <% @jamms.each do |jam|  %>
+
   <div class="card">
+
+    <%= link_to "", jamm_path(jam), class: "card-link" %>
+
     <% if jam.user.picture %>
       <div class="card-left_content hidden-xs" style="background-image: url('<%= cl_image_path jam.user.picture %>')">
       </div>
@@ -9,29 +14,37 @@
       </div>
     <% end %>
 
-    <div class="card-right_content">
+      <% if jam.user.picture %>
+        <div class="card-left_content hidden-xs" style="background-image: url('<%= cl_image_path jam.user.picture %>')">
+        </div>
+      <% else %>
+        <div class="card-left_content hidden-xs" style="background-image: url('images/banner_image.jpg')">
+        </div>
+      <% end %>
 
-      <div class= "card-top">
-          <h3><%=  jam.name %></h3>
+      <div class="card-right_content">
+
+        <div class= "card-top">
+          <h3><%= jam.name %></h3>
           <p> <%= jam.date %> </p>
-      </div>
-
-      <div class="card-middle-top">
-        <div>
-          <h4 ><%= jam.genre.name %></h4>
-        </div>
-        <div>
-          <h4><%= jam.level %></h4>
         </div>
 
-      </div>
+        <div class="card-middle-top">
+          <div>
+            <h4><%= jam.genre.name %></h4>
+          </div>
+          <div>
+            <h4><%= jam.level %></h4>
+          </div>
+        </div>
 
-      <div class="card-middle">
-          <p><%= jam.address %></p>
-          <hr>
-      </div>
+        <div class="card-middle">
+          <p><em>> <%= jam.address %></em></p>
+        </div>
 
-      <div class="card-bottom">
+        <div class="line"></div>
+
+        <div class="card-bottom">
 
           <% jamm_players = 0 %> <!-- COUNTER TO KNOW HOW MANY PLAYER ARE ACTIVE RIGHT NOW IN THE JAMM SESH -->
             <%  JammPlayer.where(jamm_id: jam.id).all.each do |player|  %>
@@ -60,7 +73,13 @@
       </div>
 
 
+
+
     </div>
+      <div class="card-extra-right">
+        <p>more info</p>
+      </div>
   </div>
+
   <% end %>
 </div>
