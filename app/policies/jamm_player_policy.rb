@@ -6,10 +6,11 @@ class JammPlayerPolicy < ApplicationPolicy
   end
 
   def new?
+    create
   end
 
   def create?
-
+    true
   end
 
   def update?
