@@ -1,5 +1,5 @@
 <div class="navbar-wagon navbar-fixed-top <%=
-(controller_name = "pages" && action_name == "home") ? "navbar-wagon-transparent" : "navbar-wagon-white" %> ">
+@transparent_navbar ? "navbar-wagon-transparent" : "navbar-wagon-white" %> ">
   <!-- Logo -->
   <%= link_to root_path, class: "navbar-wagon-brand" do %>
     <%= image_tag "Grouplogo.png", height: 50 %>

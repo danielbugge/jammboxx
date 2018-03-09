@@ -7,6 +7,8 @@ class JammsController < ApplicationController
   before_action :set_jamm, only: [:edit, :update, :delete]
 
   def index
+    @transparent_navbar = true
+
     @jamms = policy_scope(Jamm.all)
 
     @jamms = policy_scope(Jamm.where.not(latitude: nil, longitude: nil))

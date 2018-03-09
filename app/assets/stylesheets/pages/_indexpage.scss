@@ -1,0 +1,33 @@
+.index-container {
+  display: flex;
+
+  .filters {
+    width: 40%;
+  }
+}
+
+.banner-index {
+  height: 50vh;
+  background-position: center;
+  position: relative;
+}
+.banner-index_content {
+  h1 {
+    color: white;
+    position: absolute;
+    bottom: 15%;
+    left: 5%;
+  }
+  h2 {
+    color: white;
+    position: absolute;
+    bottom: 15%;
+    right: 10%;
+  }
+  p {
+    color: white;
+    position: absolute;
+    bottom: 25%;
+    right: 10%;
+  }
+}
