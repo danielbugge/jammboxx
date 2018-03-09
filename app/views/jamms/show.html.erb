@@ -21,19 +21,44 @@
       <div class="players-list">
         <% jamm_players = 0 %>
         <% @jamm_players.each do |player| %>
-        <p>Player: <strong> <%= player.user ? player.user.username : "Available" %> </strong> Instrument: <strong> <%= player.instrument.instrument_type.name%> </strong> </p>
-        <% jamm_players += 1 %>
+          <% instrument_url = player.instrument.instrument_type.icon_url %>
+          <p><strong> <%= cl_image_tag(instrument_url, width: 70, class: "avatar")%>
+           <% if  player.user %>
+              <%= cl_image_tag(player.user.picture, width: 70, class: "avatar-large") %>
+              <%=  player.user.username %>
+            <% else %>
+              "Available"
+          <% end %>
+
+          </strong> </p>
+          <% jamm_players += 1 %>
         <% end %>
+
+    <% if user_signed_in? %>
         <%= render "layouts/modal" %>
+<% end %>
         <% available_spots = @jamm.max_players - jamm_players %>
         <!-- INJECTS ALL THE AVAILABLE SPOTS AS LINKS TO THE SHOW OF THE PAGE. COULD GO TO THE NEW JAMMPLAYER CONTROLLER ACTION -->
-        <% available_spots.times do |av| %>
-          <p class= "show-avaliable-spot">
-            <a href="" data-toggle="modal" data-target="#newJammPlayer">
-              <%= cl_image_tag("add.png", height: 50, width: 50, crop: "scale", class: "avatar-large plus-icon" )  %>
-            </a>
-          </p>
-        <% end %>
+
+
+
+          <% available_spots.times do |av| %>
+            <% if user_signed_in? %>
+              <p class= "show-avaliable-spot">
+                <a href="" data-toggle="modal" data-target="#newJammPlayer">
+                  <%= cl_image_tag("add.png", height: 50, width: 50, crop: "scale", class: "avatar-large plus-icon" )  %>
+                </a>
+              </p>
+              <% else %>
+
+                <%= link_to new_user_session_path do %>
+                  <%= cl_image_tag("add.png", height: 50, width: 50, crop: "scale", class: "avatar-large plus-icon" )  %>
+                <% end %>
+              <% end %>
+          <% end %>
+
+
+
       </div>
     </div>
 

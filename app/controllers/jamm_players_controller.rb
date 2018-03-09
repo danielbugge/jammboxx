@@ -6,6 +6,7 @@ before_action :set_jamm, only: [:new, :create, :update, :edit, :destroy]
   end
 
   def create
+
     if @jamm.user == current_user
       @jamm_player = JammPlayer.new(jamm_id: @jamm.id, instrument_id: params[:jamm_player][:instrument_id])
 

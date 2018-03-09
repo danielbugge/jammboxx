@@ -28,12 +28,14 @@ genre_array.each do |genre|
 end
 
 # INSTRUMENTS TYPES MODEL
-instrument_types_array = [ "accordion","agogo bells","bagpipes","banjo","baritone","bass drum","bassoon","bell lyre","bongos","bugle","castanets","celeste","cello","chimes","clarinet","claves","conga","cornet","cowbell","crash cymbal","cymbal","drum","drum set","electric guitar","euphonium","flugelhorn","flute","French horn","glockenspiel","gong","grand piano","guitar","harmonica","harp","kettledrum","lute","mandolin","maracas","marimba","oboe","orchestra bells","piano","piccolo","recorder","ride cymbal","saxophone","scraper","sizzle cymbal","snare drum","sousaphone","splash cymbal","steel drums","tenor drum","timbales","timpani","tom-tom","triangle","trombone","trumpet","tuba","vibraphone","violin","xylophone"]
+instrument_types_array = [ "Bass Guitar", "Drum Set", "Electric Guitar", "Flute", "Harp", "Maracas", "Piano",
+                           "Saxophone","Triangle","Trumpet","Violoncello"]
 
 counter = 1
 
 instrument_types_array.each do |instrument|
-  InstrumentType.create!( name: instrument)
+ InstrumentType.create!( name: instrument,
+                          icon_url: instrument)
   puts "Instrument type ##{counter} done!"
   puts "\n"
   counter += 1
@@ -42,7 +44,7 @@ end
 counter = 1
 
 # USER
-30.times do
+50.times do
   User.create!(
     email: Faker::Internet.email,
     password: '123456',
@@ -57,19 +59,16 @@ end
 counter = 1
 
 # Instruments Join Table
-instrument_user_id_counter = 1
-30.times do
+50.times do
   Instrument.create!(
     model: Faker::LordOfTheRings.location,
-    user_id: instrument_user_id_counter,
+    user_id: User.ids.sample,
     instrument_type_id: InstrumentType.all.sample.id
     )
-  instrument_user_id_counter += 1
   puts "Instrument ##{counter} done!"
   puts "\n"
   counter += 1
 end
-
 # JAMMS
 
 lorem = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
