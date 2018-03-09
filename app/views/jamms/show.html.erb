@@ -16,7 +16,7 @@
 
     <div class="players">
 
-      <h2>Jamm Players</h2>
+      <h3>Jamm Players</h3>
 
       <div class="players-list">
         <% jamm_players = 0 %>
@@ -36,11 +36,12 @@
     </div>
 
     <div class="jamm-info">
-      <p> Max Num players <%= @jamm.max_players %></p>
-      <p class= "show-duration">duration: <%= @jamm.duration %></p>
-      <p class= "show-name">genre: <%= @jamm.genre.name %></p>
-      <p class= "show-max-players">max-players: <%= @jamm.max_players %></p>
-      <p class= "show-level">level: <%= @jamm.level %></p>
+      <ul style="list-style-type: none;">
+        <li><%= @jamm.genre.name %> jamm</li>
+        <li style=" background-image: url(<%= asset_path "max_players.png" %>); background-size: 1.6rem 1.6rem;"><%= @jamm.max_players %> players maximun</li>
+        <li><%= @jamm.duration %> hours</li>
+        <li><%= @jamm.level %> level</li>
+      </ul>
     </div>
   </div>
 
