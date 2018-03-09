@@ -3,6 +3,9 @@
 
   .filters {
     width: 40%;
+    margin-left: 20px;
+    margin-top: 10px;
+    position: sticky !important;
   }
 }
 
@@ -16,7 +19,7 @@
     color: white;
     position: absolute;
     bottom: 15%;
-    left: 5%;
+    left: 3%;
   }
   h2 {
     color: white;
