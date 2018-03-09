@@ -35,12 +35,18 @@
   padding: 20px;
   margin: 5px;
 
+    ul{
+      padding-left: 10px;
+    }
+
     img {
-  padding-left: 2rem;
-  background-image: url("max_players.png");
-  background-position: 0 0;
-  background-size: 6rem 6rem;
-  }
+      height: 60px;
+      margin: 15px;
+    }
+
+    h3 {
+      text-align: center;
+    }
 }
 
 .description {

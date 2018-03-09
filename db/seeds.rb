@@ -90,3 +90,7 @@ Jamm.all.each do |jam|
   end
   puts "making jamm_players"
 end
+
+User.create!(email: 'ciao@ciao.com', password: '123456', username: 'ciaobello', picture: "p#{rand(1..20)}")
+puts "basic user --- > email: 'ciao@ciao.com' password: '123456'"
+puts "All done mfkr!"
