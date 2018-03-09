@@ -69,7 +69,7 @@ address_array = ["8 Nugent Rd, London N19 3QF, UK","15 Meadow Rd, Windermere LA2
     duration: rand(1..3),
     genre_id: Genre.all.sample.id,
     max_players: rand(1..10),
-    level: ["beginner", "intermediate", "expert"].sample,
+    level: ["Beginner", "Intermediate", "Expert"].sample,
     allow_new_instrument: [true, false].sample,
     photo: rand(1..23).to_s,
     time: rand(1..23),
