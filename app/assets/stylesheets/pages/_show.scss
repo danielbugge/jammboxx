@@ -34,6 +34,13 @@
   border: 1px white solid;
   padding: 20px;
   margin: 5px;
+
+    img {
+  padding-left: 2rem;
+  background-image: url("max_players.png");
+  background-position: 0 0;
+  background-size: 6rem 6rem;
+  }
 }
 
 .description {
@@ -67,6 +74,9 @@
   border: 1px white solid;
   padding: 20px;
   margin: 5px;
+      h3 {
+        margin-bottom: 10px;
+      }
 }
 
 .players-list {
