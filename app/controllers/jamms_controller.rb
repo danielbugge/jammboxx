@@ -8,6 +8,19 @@ class JammsController < ApplicationController
 
   def index
     @jamms = policy_scope(Jamm.all)
+
+    @jamms = policy_scope(Jamm.where.not(latitude: nil, longitude: nil))
+    if params[:query].present?
+      @jamms = Jamm.near(params[:query], 30)
+    end
+
+    @markers = @jamms.map do |jamm|
+      {
+        lat: jamm.latitude,
+        lng: jamm.longitude#,
+        # infoWindow: { content: render_to_string(partial: "/spaces/map_box", locals: { flat: flat }) }
+      }
+    end
   end
 
   def show
@@ -45,6 +58,7 @@ class JammsController < ApplicationController
   end
 
   def search
+
   end
 
   def destroy
