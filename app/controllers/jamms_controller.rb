@@ -1,4 +1,4 @@
-require 'byebug'
+#require 'byebug'
 
 class JammsController < ApplicationController
   skip_before_action :authenticate_user!, only: [:index, :show, :search]
@@ -39,7 +39,7 @@ class JammsController < ApplicationController
     @jamm.user = current_user
     # byebug
     if @jamm.save
-      redirect_to jamms_path
+      redirect_to jamm_path(@jamm)
     else
       render :new
     end

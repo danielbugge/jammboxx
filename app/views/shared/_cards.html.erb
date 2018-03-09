@@ -3,7 +3,16 @@
   <% @jamms.each do |jam|  %>
 
   <div class="card">
+
     <%= link_to "", jamm_path(jam), class: "card-link" %>
+
+    <% if jam.user.picture %>
+      <div class="card-left_content hidden-xs" style="background-image: url('<%= cl_image_path jam.user.picture %>')">
+      </div>
+    <% else %>
+      <div class="card-left_content hidden-xs" style="background-image: url(https://course_report_production.s3.amazonaws.com/rich/rich_files/rich_files/1692/s300/le-wagon-logo.png)">
+      </div>
+    <% end %>
 
       <% if jam.user.picture %>
         <div class="card-left_content hidden-xs" style="background-image: url('<%= cl_image_path jam.user.picture %>')">
@@ -54,7 +63,9 @@
 
           <!-- INJECTS ALL THE AVAILABLE SPOTS AS LINKS TO THE SHOW OF THE PAGE. COULD GO TO THE NEW JAMMPLAYER CONTROLLER ACTION -->
           <% available_spots.times do |av| %>
-            <p> <%= link_to "Available", jamm_path(jam)  %> </p>
+            <%= link_to jamm_path(jam) do %>
+                <%= cl_image_tag("add.png", height: 50, width: 50, crop: "scale", class: "avatar-large plus-icon" )  %>
+            <% end %>
           <% end  %>
 
           <p> Player max <%= jam.max_players %></p>

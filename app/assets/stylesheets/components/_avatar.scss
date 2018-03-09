@@ -18,3 +18,29 @@
   box-shadow: 0 1px 2px rgba(0,0,0,0.2);
   border: white 1px solid;
 }
+
+.plus-icon {
+    background: #9B9987;
+    color: #9B9987;
+    text-decoration: none;
+    opacity: 0.5;
+}
+
+.plus-icon:hover {
+  background: #E55381;
+  color:#E55381;
+  text-decoration:none;
+  opacity: 1;
+  cursor:pointer;
+}
+
+  .plus-icon-b {
+  color: #9B9987;
+  text-decoration: none;
+}
+
+.plus-icon-b:hover {
+  color:#E55381;
+  text-decoration:none;
+  cursor:pointer;
+}

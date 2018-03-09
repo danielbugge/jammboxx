@@ -9,38 +9,68 @@
     <div class="description">
 
       <h3> <%= @jamm.description %> </h3>
-      <br>
+      <hr>
       <h4> <%= @jamm.time %>:00 - <%= @jamm.date %> <strong> @ </strong> <%= @jamm.address %></h4>
 
     </div>
 
     <div class="players">
 
-      <h2>Jamm Players</h2>
-
+      <h3>Jamm Players</h3>
+      <hr>
       <div class="players-list">
         <% jamm_players = 0 %>
         <% @jamm_players.each do |player| %>
-        <p>Player: <strong> <%= player.user.username %> </strong> Instrument: <strong> <%= player.instrument.instrument_type.name%> </strong> </p>
-        <% jamm_players += 1 %>
+          <% instrument_url = player.instrument.instrument_type.icon_url %>
+          <p><strong> <%= cl_image_tag(instrument_url, width: 70, class: "avatar")%>
+           <% if  player.user %>
+              <%= cl_image_tag(player.user.picture, width: 70, class: "avatar-large") %>
+              <%=  player.user.username %>
+            <% else %>
+              "Available"
+          <% end %>
+
+          </strong> </p>
+          <% jamm_players += 1 %>
         <% end %>
+
+    <% if user_signed_in? %>
         <%= render "layouts/modal" %>
+<% end %>
         <% available_spots = @jamm.max_players - jamm_players %>
         <!-- INJECTS ALL THE AVAILABLE SPOTS AS LINKS TO THE SHOW OF THE PAGE. COULD GO TO THE NEW JAMMPLAYER CONTROLLER ACTION -->
-        <% available_spots.times do |av| %>
-          <p class= "show-avaliable-spot">
-            <a href="" data-toggle="modal" data-target="#newJammPlayer">Available</a>
-          </p>
-        <% end  %>
+
+
+
+          <% available_spots.times do |av| %>
+            <% if user_signed_in? %>
+              <p class= "show-avaliable-spot">
+                <a href="" data-toggle="modal" data-target="#newJammPlayer">
+                  <%= cl_image_tag("add.png", height: 50, width: 50, crop: "scale", class: "avatar-large plus-icon" )  %>
+                </a>
+              </p>
+              <% else %>
+
+                <%= link_to new_user_session_path do %>
+                  <%= cl_image_tag("add.png", height: 50, width: 50, crop: "scale", class: "avatar-large plus-icon" )  %>
+                <% end %>
+              <% end %>
+          <% end %>
+
+
+
       </div>
     </div>
 
     <div class="jamm-info">
-      <p> Max Num players <%= @jamm.max_players %></p>
-      <p class= "show-duration">duration: <%= @jamm.duration %></p>
-      <p class= "show-name">genre: <%= @jamm.genre.name %></p>
-      <p class= "show-max-players">max-players: <%= @jamm.max_players %></p>
-      <p class= "show-level">level: <%= @jamm.level %></p>
+      <h3>Jamm Settings</h3>
+      <hr>
+      <ul style="list-style-type: none;">
+        <li><img src="<%= asset_path "genre.png" %>" alt="Max Players"> <%= @jamm.genre.name %></li>
+        <li><img src="<%= asset_path "max_players.png" %>" alt="Max Players"> <%= @jamm.max_players %> players</li>
+        <li><img src="<%= asset_path "duration.png" %>" alt="Max Players"> <%= @jamm.duration %> hours</li>
+        <li><img src="<%= asset_path "level.png" %>" alt="Max Players"> <%= @jamm.level %></li>
+      </ul>
     </div>
   </div>
 

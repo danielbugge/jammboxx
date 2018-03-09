@@ -1,3 +1,5 @@
+
+
 <div id="newJammPlayer" class="modal fade" role="dialog">
   <div class="modal-dialog">
 
@@ -6,20 +8,27 @@
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <h3 class="modal-title"> <%= @jamm.name  %> </h3>
+        <h2 class="modal-title"> <%= @jamm.name  %> </h2>
       </div>
       <div class="modal-body">
-        <h4> Select your instrument </h4>
 
-        <%= f.input :instrument_id, collection: current_user.instruments.map { |instrument| ["#{instrument.instrument_type.name}: #{instrument.model}", instrument.id] } %>
+      <% if current_user.instruments.count > 0 %>
+        <h3> Select your instrument </h4>
+          <%= f.input :instrument_id, collection: current_user.instruments.map { |instrument| ["#{instrument.instrument_type.name}: #{instrument.model}", instrument.id] } %>
+      <% else %>
+        <h4> You don't have instruments </h4>
+      <% end %>
 
-        <%= render "layouts/modal_new_instrument" %>
+
+
         <%= link_to "+ add instrument",  new_instrument_path(jamm_id: @jamm.id)  %>
 
       </div>
       <div class="modal-footer">
 
+      <% if current_user.instruments.count > 0  %>
         <%= f.button :submit, class: "btn btn-success" %>
+      <% end %>
 
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
       </div>
