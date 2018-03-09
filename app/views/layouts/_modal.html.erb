@@ -12,7 +12,7 @@
       </div>
       <div class="modal-body">
 
-      <% if current_user.instruments.count > 0  %>
+      <% if current_user.instruments.count > 0 %>
         <h3> Select your instrument </h4>
           <%= f.input :instrument_id, collection: current_user.instruments.map { |instrument| ["#{instrument.instrument_type.name}: #{instrument.model}", instrument.id] } %>
       <% else %>

@@ -21,8 +21,17 @@
       <div class="players-list">
         <% jamm_players = 0 %>
         <% @jamm_players.each do |player| %>
-        <p>Player: <strong> <%= player.user ? player.user.username : "Available" %> </strong> Instrument: <strong> <%= player.instrument.instrument_type.name%> </strong> </p>
-        <% jamm_players += 1 %>
+          <% instrument_url = player.instrument.instrument_type.icon_url %>
+          <p><strong> <%= cl_image_tag(instrument_url, width: 70, class: "avatar")%>
+           <% if  player.user %>
+              <%= cl_image_tag(player.user.picture, width: 70, class: "avatar-large") %>
+              <%=  player.user.username %>
+            <% else %>
+              "Available"
+          <% end %>
+
+          </strong> </p>
+          <% jamm_players += 1 %>
         <% end %>
 
     <% if user_signed_in? %>
