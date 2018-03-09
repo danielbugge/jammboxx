@@ -1,4 +1,4 @@
-require 'byebug'
+#require 'byebug'
 
 class JammsController < ApplicationController
   skip_before_action :authenticate_user!, only: [:index, :show, :search]
