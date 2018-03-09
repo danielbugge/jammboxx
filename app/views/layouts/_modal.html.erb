@@ -11,11 +11,11 @@
       <div class="modal-body">
         <h4> Select your instrument </h4>
 
-        <%= f.input :instrument_id, collection: User.find(146).instruments.map { |instrument| ["#{instrument.instrument_type.name}: #{instrument.model}", instrument.id] } %>
+        <%= f.input :instrument_id, collection: current_user.instruments.map { |instrument| ["#{instrument.instrument_type.name}: #{instrument.model}", instrument.id] } %>
 
         <%= render "layouts/modal_new_instrument" %>
         <%= link_to "+ add instrument",  new_instrument_path(jamm_id: @jamm.id)  %>
-     
+
       </div>
       <div class="modal-footer">
 
