@@ -43,7 +43,7 @@
             <%  JammPlayer.where(jamm_id: jam.id).all.each do |player|  %>
 
             <!--THIS USES THE FIRST INSTRUMENT OF THE JAMMPLAYER AND PUT IN THE CARD,SHOULD CHANGE WHEN MANUALLY SELECT THE INSTRUMENT -->
-            <% instrument_t =InstrumentType.where(id: Instrument.where(id: player.instrument_id).first.instrument_type_id).first.name %>
+            <% instrument_t = player.instrument.instrument_type.name %>
             <!--STORE THE EMAIL OF THE USER -->
             <% email = User.where(id: player.user_id).first.email %>
             <!-- THIS SHOULD BE ICONS...SHOW THE INSTRUMENT OF THE USER AND THE EMAIL -->
