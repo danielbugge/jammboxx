@@ -10,19 +10,39 @@ class JammsController < ApplicationController
     @transparent_navbar = true
     @location = params[:city]
     @genre = params[:genre]
+    @instrument_t = params[:instrument_t]
     @genres = Genre.all
     @instrument_types = InstrumentType.all
+
+    if (@location != nil && @genre != "Choose a genre" && @instrument_t != "Choose an instrument")
+       @search_params = " #{@location}, #{@genre} %>, #{@instrument_t} %> "
+    elsif (@location != nil && @genre != "Choose a genre")
+       @search_params = "#{@location}, #{@genre} "
+    elsif (@location != nil && @instrument_t != "Choose an instrument")
+       @search_params = "#{@location}, #{@instrument_t} "
+    elsif (@genre != "Choose a genre" && @instrument_t != "Choose an instrument")
+       @search_params = "#{@genre}, #{@instrument_t} "
+    elsif (@location != nil)
+       @search_params = "#{@location}"
+    elsif (@genre != "Choose a genre")
+       @search_params = "#{@genre} "
+    elsif (@instrument_t != "Choose an instrument")
+       @search_params = "#{@instrument_t}"
+    else
+       search_params = "See all"
+    end
+
 
     @jamms = policy_scope(Jamm.where.not(latitude: nil, longitude: nil))
     if params[:city].present?
       @jamms = Jamm.near(params[:city], 30)
     end
 
-    if params[:genre].present?
+    if (params[:genre].present? &&  params[:genre] != "Choose a genre")
       @jamms = @jamms.where(genre: Genre.where(name: params[:genre]))
     end
 
-    if params[:instrument_type].present?
+    if (params[:instrument_type].present? &&  params[:instrument_type] != "Choose a instrument")
       @jamms = @jamms.where(instrument_type: Instrument_type.where(name: params[:instrument_type]))
     end
 

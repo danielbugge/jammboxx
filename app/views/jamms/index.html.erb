@@ -4,15 +4,7 @@
     <h1>Filters</h1>
     <p>Your search result for :</p>
     <div id="search-results">
-      <% if !(@location.nil? || @genre.nil?) %>
-        <h2> <%= @location %>, <%= @genre %> </h2>
-      <% elsif !@location.nil? %>
-        <h2> <%= @location %> </h2>
-      <% elsif !@genre.nil?  %>
-        <h2> <%= @genre %> </h2>
-      <% else %>
-        <h2> See all </h2>
-      <% end %>
+      <h2> <%= @search_params %> </h2>
     </div>
   </div>
 </div>
@@ -27,15 +19,15 @@
       </div>
       <div id="genre-filter" class="filter">
         <%= select_tag "genre",
-            options_from_collection_for_select(@genres, "id", "name"),
+            options_for_select(["Choose a genre"]) + options_from_collection_for_select(@genres, "name", "name", "1"),
             class: "btn form-control",
             placeholder: "Choose a genre" %>
       </div>
       <div id="instrument-type-filter" class="filter">
         <%= select_tag "instrument_t",
-            options_from_collection_for_select(@instrument_types, "id", "name"),
+            options_for_select(["Choose an instrument"]) + options_from_collection_for_select(@instrument_types, "name", "name"),
             class: "btn form-control",
-            placeholder: "Choose a genre" %>
+            placeholder: "Choose an instrument" %>
       </div>
       <%= submit_tag 'Filter',
       id: "final-butt",
