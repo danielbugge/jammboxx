@@ -8,7 +8,7 @@ before_action :set_jamm, only: [:new, :create, :update, :edit, :destroy]
   def create
 
     if @jamm.user == current_user
-      @jamm_player = JammPlayer.new(jamm_id: @jamm.id, instrument_id: params[:jamm_player][:instrument_id])
+      @jamm_player = JammPlayer.new(jamm_id: @jamm.id, user: nil, instrument_id: params[:jamm_player][:instrument_id])
 
     else
       @jamm_player = JammPlayer.new(jamm_id: @jamm.id, user: current_user, instrument_id: params[:jamm_player][:instrument_id])
@@ -25,6 +25,13 @@ before_action :set_jamm, only: [:new, :create, :update, :edit, :destroy]
   end
 
   def update
+    @jamm_player = JammPlayer.find(params[:id])
+    @jamm_player.user = current_user
+
+    if @jamm_player.save
+      redirect_to @jamm
+    end
+    authorize @jamm_player
   end
 
 
