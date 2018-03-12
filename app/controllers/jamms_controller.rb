@@ -8,11 +8,10 @@ class JammsController < ApplicationController
 
   def index
     @transparent_navbar = true
-
     @location = params[:city]
-
     @genre = params[:genre]
-
+    @genres = Genre.all
+    @instrument_types = InstrumentType.all
 
     @jamms = policy_scope(Jamm.where.not(latitude: nil, longitude: nil))
     if params[:city].present?

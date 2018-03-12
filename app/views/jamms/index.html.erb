@@ -3,11 +3,11 @@
     <h1>Filters</h1>
     <p>Your search result for :</p>
     <div id="search-results">
-      <% if !(@location.empty? || @genre.empty?) %>
+      <% if !(@location.nil? || @genre.nil?) %>
         <h2> <%= @location %>, <%= @genre %> </h2>
-      <% elsif !@location.empty? %>
+      <% elsif !@location.nil? %>
         <h2> <%= @location %> </h2>
-      <% elsif !@genre.empty?  %>
+      <% elsif !@genre.nil?  %>
         <h2> <%= @genre %> </h2>
       <% else %>
         <h2> See all </h2>
@@ -26,9 +26,14 @@
             placeholder: "Choose a city" %>
       </div>
       <div id="genre-filter" class="filter">
-        <%= text_field_tag :genre,
-            params[:genre],
-            id: "genre-filter",
+        <%= select_tag "genre",
+            options_from_collection_for_select(@genres, "id", "name"),
+            class: "btn form-control",
+            placeholder: "Choose a genre" %>
+      </div>
+      <div id="instrument-type-filter" class="filter">
+        <%= select_tag "instrument_t",
+            options_from_collection_for_select(@instrument_types, "id", "name"),
             class: "btn form-control",
             placeholder: "Choose a genre" %>
       </div>
