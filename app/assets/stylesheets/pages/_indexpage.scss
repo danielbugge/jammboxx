@@ -4,9 +4,26 @@
   .filters {
     width: 40%;
     margin-left: 20px;
-    margin-top: 10px;
-    position: sticky !important;
+
+    // text-align: left;
   }
+
+  .sharedcards {
+    width: 80%;
+  }
+}
+
+#final-butt {
+  background-color: #D93479;
+  border: none;
+  width: 100%;
+}
+
+#city-filter, #final-butt, #genre-filter, #instrument-type-filter {
+    overflow: hidden;
+    border-radius: 30px;
+    margin: 10px 0;
+    outline: none;
 }
 
 .banner-index {
@@ -14,6 +31,7 @@
   background-position: center;
   position: relative;
 }
+
 .banner-index_content {
   h1 {
     color: white;
@@ -33,9 +51,6 @@
     bottom: 25%;
     right: 10%;
   }
-}
-.btn .form-control .input {
-  outline: none;
 }
 
 // CODES FOR LOADING PAGE UNDER !
