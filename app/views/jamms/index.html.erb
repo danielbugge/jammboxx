@@ -18,18 +18,18 @@
         <%= text_field_tag :query,
           params[:query],
           class: "btn form-control",
-          placeholder: "enter location" %>
+          placeholder: "chose genre" %>
           <% end %>
           <br>
   <%= form_tag jamms_path, method: :get do %>
         <%= text_field_tag :query,
           params[:query],
           class: "btn form-control",
-          placeholder: "enter location" %>
+          placeholder: "chose instrument" %>
           <% end %>
   </div>
-
   <div class="sharedcards">
     <%= render 'shared/cards' %>
   </div>
+
 </div>
