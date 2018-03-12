@@ -13,11 +13,17 @@ class JammPlayerPolicy < ApplicationPolicy
     true
   end
 
+  def edit?
+    true
+  end
+
   def update?
-    record.user == user
+    true
+    # record.user == user
   end
 
   def destroy?
-    record.user == user
+    true
+    # record.user == user
   end
 end
