@@ -8,24 +8,24 @@ class JammsController < ApplicationController
   def index
     @transparent_navbar = true
     @location = params[:city]
-    @genre = Genre.find(params[:q][:genre_id_eq]).name if params[:q][:genre_id_eq].present?
+    @genre = Genre.find(params[:q][:genre_id_eq]).name if (params[:q] != nil && params[:q][:genre_id_eq].present?)
     @instrument_t = params[:instrument_t]
     @genres = Genre.all
     @instrument_types = InstrumentType.all
 
-    if (@location != "" && @genre != "Choose a genre" && @instrument_t != "Choose an instrument")
+    if (@location != "" && (@genre != "Choose a genre" && @genre != nil)  && (@instrument_t != "Choose an instrument" && @instrument_t != nil ))
        @search_params = "#{@location}, #{@genre}, #{@instrument_t}"
-    elsif (@location != "" && @genre != "Choose a genre")
+    elsif (@location != "" && (@genre != "Choose a genre" && @genre != nil))
        @search_params = "#{@location}, #{@genre} "
-    elsif ((@location != "" &&   @location != "Choose a city" && @location != nil) && @instrument_t != "Choose an instrument")
+    elsif ((@location != "" &&   @location != "Choose a city" && @location != nil) && @instrument_t != "Choose an instrument" && @instrument_t != nil )
        @search_params = "#{@location}, #{@instrument_t} "
-    elsif (@genre != "Choose a genre" && @instrument_t != "Choose an instrument")
+    elsif ((@genre != "Choose a genre" && @genre != nil) && @instrument_t != "Choose an instrument" && @instrument_t != nil )
        @search_params = "#{@genre}, #{@instrument_t} "
     elsif (@location != "")
        @search_params = "#{@location}"
-    elsif (@genre != "Choose a genre")
+    elsif ((@genre != "Choose a genre" && @genre != nil))
        @search_params = "#{@genre}"
-    elsif (@instrument_t != "Choose an instrument")
+    elsif (@instrument_t != "Choose an instrument" && @instrument_t != nil )
        @search_params = "#{@instrument_t}"
     else
        @search_params = "See all"
