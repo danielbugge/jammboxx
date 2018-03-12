@@ -1,5 +1,6 @@
 class JammPlayersController < ApplicationController
 before_action :set_jamm, only: [:new, :create, :update, :edit, :destroy]
+before_action :set_jamm_player, only: [:update, :destroy]
 
   def new
     authorize @jamm_player
@@ -21,11 +22,7 @@ before_action :set_jamm, only: [:new, :create, :update, :edit, :destroy]
     authorize @jamm_player
   end
 
-  def edit
-  end
-
   def update
-    @jamm_player = JammPlayer.find(params[:id])
     @jamm_player.user = current_user
 
     if @jamm_player.save
@@ -36,6 +33,11 @@ before_action :set_jamm, only: [:new, :create, :update, :edit, :destroy]
 
 
   def destroy
+    #@jamm_players = JammPlayer.where(jamm_id: @jamm)
+    #@jamm_player = @jamm_players.find(user_id: current_user)
+    @jamm_player.destroy
+      redirect_to @jamm
+    authorize @jamm_player
   end
 
   private
