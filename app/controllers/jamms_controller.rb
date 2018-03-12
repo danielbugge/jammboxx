@@ -8,7 +8,7 @@ class JammsController < ApplicationController
   def index
     @transparent_navbar = true
     @location = params[:city]
-    @genre = Genre.find(params[:q][:genre_id_eq]).name if params[:q][:genre_id_eq].present?
+    # @genre = Genre.find(params[:q][:genre_id_eq]).name if params[:q][:genre_id_eq].present?
     @instrument_t = params[:instrument_t]
     @genres = Genre.all
     @instrument_types = InstrumentType.all
@@ -19,8 +19,8 @@ class JammsController < ApplicationController
        @search_params = "#{@location}, #{@genre} "
     elsif ((@location != "" &&   @location != "Choose a city" && @location != nil) && @instrument_t != "Choose an instrument")
        @search_params = "#{@location}, #{@instrument_t} "
-    elsif (@genre != "Choose a genre" && @instrument_t != "Choose an instrument")
-       @search_params = "#{@genre}, #{@instrument_t} "
+    # elsif (@genre != "Choose a genre" && @instrument_t != "Choose an instrument")
+       # @search_params = "#{@genre}, #{@instrument_t} "
     elsif (@location != "")
        @search_params = "#{@location}"
     elsif (@genre != "Choose a genre")
@@ -69,6 +69,7 @@ class JammsController < ApplicationController
     @markers = [{ lat: @jamm.latitude, lng: @jamm.longitude }]
     @jamm_player = JammPlayer.new
     @available_spots = @jamm.max_players - @jamm_players.count
+    @instruments = Instrument.where(user_id: current_user)
          # infoWindow: { content: render_to_string(partial: "/jamm/map_box", locals: { jamm: jamm }) }
          # raise
   end

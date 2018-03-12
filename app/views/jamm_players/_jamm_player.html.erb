@@ -5,7 +5,12 @@
               <%= cl_image_tag(jamm_player.user.picture, width: 70, class: "avatar-large") %>
               <%=  jamm_player.user.username %>
               <% if jamm_player.user == current_user %>
-                <%= link_to "Leave group", jamm_jamm_player_path(@jamm, jamm_player), method: :delete, data: { confirm: 'Are you sure?' } %>
+                <% unless @instruments.include? jamm_player.instrument %>
+                <%= link_to "Leave group", jamm_jamm_player_path(@jamm, jamm_player), method: :patch, data: { confirm: 'Are you sure?' } %>
+                <% else %>
+                <%= link_to "Leave group test", jamm_jamm_player_path(@jamm, jamm_player), method: :delete, data: { confirm: 'Are you sure?' } %>
+                <% end %>
+
               <% end %>
             <% else %>
               <%= link_to "Available", jamm_jamm_player_path(@jamm, jamm_player), method: :patch %>
