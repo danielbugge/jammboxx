@@ -1,0 +1,16 @@
+
+  <% instrument_url = jamm_player.instrument.instrument_type.icon_url %>
+          <p><strong> <%= cl_image_tag(instrument_url, width: 70, class: "avatar")%>
+           <% if  jamm_player.user %>
+              <%= cl_image_tag(jamm_player.user.picture, width: 70, class: "avatar-large") %>
+              <%=  jamm_player.user.username %>
+              <% if jamm_player.user == current_user %>
+                <%= link_to "Leave group", jamm_jamm_player_path(@jamm, jamm_player), method: :delete, data: { confirm: 'Are you sure?' } %>
+              <% end %>
+            <% else %>
+              <%= link_to "Available", jamm_jamm_player_path(@jamm, jamm_player), method: :patch %>
+          <% end %>
+              </strong> </p>
+
+
+
