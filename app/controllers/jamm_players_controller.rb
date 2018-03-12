@@ -7,6 +7,7 @@ before_action :set_jamm_player, only: [:update, :destroy]
   end
 
   def create
+    @jamm_player_current = JammPlayer.where(jamm_id: @jamm.id, user_id: current_user.id)
 
     if @jamm.user == current_user
       @jamm_player = JammPlayer.new(jamm_id: @jamm.id, user: nil, instrument_id: params[:jamm_player][:instrument_id])
@@ -15,8 +16,11 @@ before_action :set_jamm_player, only: [:update, :destroy]
       @jamm_player = JammPlayer.new(jamm_id: @jamm.id, user: current_user, instrument_id: params[:jamm_player][:instrument_id])
     end
 
-    if @jamm_player.save
-      redirect_to @jamm
+    if @jamm_player_current.empty?
+        @jamm_player.save
+        redirect_to @jamm
+    else
+      redirect_to @jamm, alert: "You have already joined this jamm!"
     end
 
     authorize @jamm_player
