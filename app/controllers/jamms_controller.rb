@@ -10,8 +10,12 @@ class JammsController < ApplicationController
     @transparent_navbar = true
 
     @jamms = policy_scope(Jamm.where.not(latitude: nil, longitude: nil))
-    if params[:query].present?
-      @jamms = Jamm.near(params[:query], 30)
+    if params[:city].present?
+      @jamms = Jamm.near(params[:city], 30)
+    end
+
+    if params[:genre].present?
+      @jamms = @jamms.where(genre: params[:genre])
     end
 
     @markers = @jamms.map do |jamm|

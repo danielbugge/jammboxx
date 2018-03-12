@@ -8,24 +8,24 @@
 <div class="index-container">
   <div class="filters">
   <%= form_tag jamms_path, method: :get do %>
-        <%= text_field_tag :query,
-          params[:query],
+        <%= text_field_tag :city,
+          params[:city],
           class: "btn form-control",
           placeholder: "enter location" %>
           <% end %>
           <br>
   <%= form_tag jamms_path, method: :get do %>
-        <%= text_field_tag :query,
-          params[:query],
+        <%= text_field_tag :genre,
+          params[:genre],
           class: "btn form-control",
-          placeholder: "enter location" %>
+          placeholder: "enter genre" %>
           <% end %>
           <br>
   <%= form_tag jamms_path, method: :get do %>
-        <%= text_field_tag :query,
-          params[:query],
+        <%= text_field_tag :instrument_type,
+          params[:instrument_type],
           class: "btn form-control",
-          placeholder: "enter location" %>
+          placeholder: "enter instrument type" %>
           <% end %>
   </div>
 
