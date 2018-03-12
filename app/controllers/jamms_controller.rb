@@ -15,8 +15,15 @@ class JammsController < ApplicationController
     end
 
     if params[:genre].present?
-      @jamms = @jamms.where(genre: params[:genre])
+      @jamms = @jamms.where(genre: Genre.where(name: params[:genre]))
     end
+
+    if params[:instrument_type].present?
+      @jamms = @jamms.where(instrument_type: Instrument_type.where(name: params[:instrument_type]))
+    end
+
+
+
 
     @markers = @jamms.map do |jamm|
       {
