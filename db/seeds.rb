@@ -50,7 +50,8 @@ counter = 1
     password: '123456',
     username: Faker::Internet.user_name + rand(01..99).to_s,
     genre_id: Genre.ids.sample,
-    picture: "p#{rand(1..20)}"
+    picture: "p#{rand(1..20)}",
+    # remote_avatar_url: "http://res.cloudinary.com/dlopez10g/image/upload/v1520878724/qhwrkr8ycjj18s3opqn6.png"
     )
   puts "Users ##{counter} done!"
   puts "\n"
@@ -114,7 +115,7 @@ Jamm.all.each do |jam|
 end
 
 
-User.create!(email: 'ciao@ciao.com', password: '123456', username: 'ciaobello', genre_id: Genre.first.id, picture: "p#{rand(1..20)}")
+User.create!(email: 'ciao@ciao.com', password: '123456', username: 'ciaobello', genre_id: Genre.first.id, picture: "p#{rand(1..20)}", avatar: "p#{rand(1..20)}")
 Instrument.create!(model: Faker::LordOfTheRings.location, user_id: User.last.id, instrument_type_id: InstrumentType.all.sample.id)
 
 puts "basic user --- > email: 'ciao@ciao.com' password: '123456'"

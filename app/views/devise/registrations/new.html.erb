@@ -1,6 +1,6 @@
 <h2>Sign up</h2>
 
-<%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+<%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), :html => {:multipart => true }) do |f| %>
   <%= f.error_notification %>
 
   <div class="form-inputs">
@@ -9,6 +9,10 @@
     <%= f.input :genre_id, :collection => Genre.all, required: true , label: 'Favourite genre:' %>
     <%= f.input :password, required: true, hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length) %>
     <%= f.input :password_confirmation, required: true %>
+    <%= f.label :avatar do %>
+      <%= f.file_field :avatar %>
+     <%= f.hidden_field :avatar_cache %>
+    <% end %>
   <div class="form-actions">
 
     <%= f.button :submit, "Sign up" %>
