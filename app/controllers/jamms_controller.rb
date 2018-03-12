@@ -8,7 +8,7 @@ class JammsController < ApplicationController
   def index
     @transparent_navbar = true
     @location = params[:city]
-    @genre = params[:genre]
+    @genre = Genre.find(params[:q][:genre_id_eq]).name if params[:q][:genre_id_eq].present?
     @instrument_t = params[:instrument_t]
     @genres = Genre.all
     @instrument_types = InstrumentType.all
@@ -17,7 +17,7 @@ class JammsController < ApplicationController
        @search_params = "#{@location}, #{@genre}, #{@instrument_t}"
     elsif (@location != "" && @genre != "Choose a genre")
        @search_params = "#{@location}, #{@genre} "
-    elsif ((@location != "" &&   @location != "Choose a city") && @instrument_t != "Choose an instrument")
+    elsif ((@location != "" &&   @location != "Choose a city" && @location != nil) && @instrument_t != "Choose an instrument")
        @search_params = "#{@location}, #{@instrument_t} "
     elsif (@genre != "Choose a genre" && @instrument_t != "Choose an instrument")
        @search_params = "#{@genre}, #{@instrument_t} "
@@ -32,18 +32,24 @@ class JammsController < ApplicationController
     end
 
 
-    @jamms = policy_scope(Jamm.where.not(latitude: nil, longitude: nil))
+    #@jamms = policy_scope(Jamm.where.not(latitude: nil, longitude: nil))
+    #if params[:city].present?
+      #@jamms = Jamm.near(params[:city], 30)
+    #end
+#
+    #if (params[:genre].present? &&  params[:genre] != "Choose a genre")
+      #@jamms = @jamms.where(genre: Genre.where(name: params[:genre]))
+    #end
+#
+    #if (params[:instrument_type].present? &&  params[:instrument_type] != "Choose a instrument")
+      #@jamms = @jamms.where(instrument_type: Instrument_type.where(name: params[:instrument_type]))
+    #end
     if params[:city].present?
-      @jamms = Jamm.near(params[:city], 30)
+       @q = Jamm.near(params[:city], 30).ransack(params[:q])
+    else
+      @q = policy_scope(Jamm).where.not(latitude: nil, longitude: nil).ransack(params[:q])
     end
-
-    if (params[:genre].present? &&  params[:genre] != "Choose a genre")
-      @jamms = @jamms.where(genre: Genre.where(name: params[:genre]))
-    end
-
-    if (params[:instrument_type].present? &&  params[:instrument_type] != "Choose a instrument")
-      @jamms = @jamms.where(instrument_type: Instrument_type.where(name: params[:instrument_type]))
-    end
+    @jamms = @q.result(distinct: true)
 
 
 
