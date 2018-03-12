@@ -1,4 +1,3 @@
-#require 'byebug'
 
 class JammsController < ApplicationController
   skip_before_action :authenticate_user!, only: [:index, :show, :search]
@@ -14,22 +13,22 @@ class JammsController < ApplicationController
     @genres = Genre.all
     @instrument_types = InstrumentType.all
 
-    if (@location != nil && @genre != "Choose a genre" && @instrument_t != "Choose an instrument")
-       @search_params = " #{@location}, #{@genre} %>, #{@instrument_t} %> "
-    elsif (@location != nil && @genre != "Choose a genre")
+    if (@location != "" && @genre != "Choose a genre" && @instrument_t != "Choose an instrument")
+       @search_params = "#{@location}, #{@genre}, #{@instrument_t}"
+    elsif (@location != "" && @genre != "Choose a genre")
        @search_params = "#{@location}, #{@genre} "
-    elsif (@location != nil && @instrument_t != "Choose an instrument")
+    elsif ((@location != "" &&   @location != "Choose a city") && @instrument_t != "Choose an instrument")
        @search_params = "#{@location}, #{@instrument_t} "
     elsif (@genre != "Choose a genre" && @instrument_t != "Choose an instrument")
        @search_params = "#{@genre}, #{@instrument_t} "
-    elsif (@location != nil)
+    elsif (@location != "")
        @search_params = "#{@location}"
     elsif (@genre != "Choose a genre")
-       @search_params = "#{@genre} "
+       @search_params = "#{@genre}"
     elsif (@instrument_t != "Choose an instrument")
        @search_params = "#{@instrument_t}"
     else
-       search_params = "See all"
+       @search_params = "See all"
     end
 
 
@@ -71,7 +70,6 @@ class JammsController < ApplicationController
   def create
     @jamm = Jamm.new(jamm_params)
     @jamm.user = current_user
-    # byebug
     if @jamm.save
       redirect_to jamm_path(@jamm)
     else
