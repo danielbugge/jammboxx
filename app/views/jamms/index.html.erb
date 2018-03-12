@@ -9,12 +9,11 @@
   </div>
 </div>
 <div class="index-container">
-  <div class="filters text-center">
+  <div class="filters">
     <%= form_tag jamms_path, method: "get" do %>
-      <div class="filter">
+      <div id="city-filter" class="filter">
         <%= text_field_tag :city,
             params[:city],
-            id: "city-filter",
             class: "btn form-control",
             placeholder: "Choose a city" %>
       </div>
@@ -31,6 +30,7 @@
             placeholder: "Choose an instrument" %>
       </div>
       <%= submit_tag 'Filter',
+      id: "final-butt",
       class: "btn btn-success" %>
     <% end %>
   </div>
