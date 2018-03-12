@@ -37,7 +37,7 @@
 
     <% if user_signed_in? %>
         <%= render "layouts/modal" %>
-<% end %>
+    <% end %>
         <% available_spots = @jamm.max_players - jamm_players %>
         <!-- INJECTS ALL THE AVAILABLE SPOTS AS LINKS TO THE SHOW OF THE PAGE. COULD GO TO THE NEW JAMMPLAYER CONTROLLER ACTION -->
 
