@@ -10,6 +10,7 @@ class JammsController < ApplicationController
     @transparent_navbar = true
     @location = params[:city]
     @genre = params[:genre]
+    @instrument_t = params[:instrument_t]
     @genres = Genre.all
     @instrument_types = InstrumentType.all
 
