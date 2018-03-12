@@ -12,20 +12,20 @@
         <%= text_field_tag :city,
             params[:city],
             class: "btn form-control",
-            placeholder: "Select a city" %>
+            placeholder: "Choose a city" %>
       </div>
       <div class="filter">
         <%= text_field_tag :genre,
             params[:genre],
             class: "btn form-control",
-            placeholder: "Select a genre" %>
+            placeholder: "Choose a genre" %>
       </div>
       <%= submit_tag 'Filter',
       class: "btn btn-success" %>
     <% end %>
   </div>
-
   <div class="sharedcards">
     <%= render 'shared/cards' %>
   </div>
+
 </div>

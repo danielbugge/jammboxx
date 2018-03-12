@@ -27,7 +27,7 @@
               <%= cl_image_tag(player.user.picture, width: 70, class: "avatar-large") %>
               <%=  player.user.username %>
             <% else %>
-              "Available"
+              <%= link_to "Available", jamm_jamm_player_path(@jamm, player), method: :patch %>
           <% end %>
 
           </strong> </p>
