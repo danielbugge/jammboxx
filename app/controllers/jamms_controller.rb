@@ -9,10 +9,26 @@ class JammsController < ApplicationController
   def index
     @transparent_navbar = true
 
+    @location = params[:city]
+
+    @genre = params[:genre]
+
+
     @jamms = policy_scope(Jamm.where.not(latitude: nil, longitude: nil))
-    if params[:query].present?
-      @jamms = Jamm.near(params[:query], 30)
+    if params[:city].present?
+      @jamms = Jamm.near(params[:city], 30)
     end
+
+    if params[:genre].present?
+      @jamms = @jamms.where(genre: Genre.where(name: params[:genre]))
+    end
+
+    if params[:instrument_type].present?
+      @jamms = @jamms.where(instrument_type: Instrument_type.where(name: params[:instrument_type]))
+    end
+
+
+
 
     @markers = @jamms.map do |jamm|
       {
