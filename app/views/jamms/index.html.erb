@@ -19,7 +19,7 @@
       </div>
       <div id="genre-filter" class="filter">
         <%= select_tag "genre",
-            options_for_select(["Choose a genre"]) + options_from_collection_for_select(@genres, "name", "name", "1"),
+            options_for_select(["Choose a genre"]) + options_from_collection_for_select(@genres, "name", "name"),
             class: "btn form-control",
             placeholder: "Choose a genre" %>
       </div>
