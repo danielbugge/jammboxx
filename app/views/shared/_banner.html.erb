@@ -8,8 +8,9 @@
       <%= form_tag jamms_path, method: :get do %>
         <%= text_field_tag :query,
           params[:query],
-          class: "btn form-control",
-          placeholder: "enter location" %>
+          class: "btn form-control input",
+          value: "",
+          placeholder: "Choose your city" %>
       <% end %>
     </h2>
   </div>
