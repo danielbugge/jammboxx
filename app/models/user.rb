@@ -1,3 +1,5 @@
+require_relative '../uploaders/avatar_uploader.rb'
+
 class User < ApplicationRecord
   mount_uploader :avatar, AvatarUploader
   # Include default devise modules. Others available are:
@@ -8,7 +10,7 @@ class User < ApplicationRecord
   has_many :jamm_players
   has_many :jamms
 
-  validates_presence_of   :avatar
+  # validates_presence_of   :avatar
   validates_integrity_of  :avatar
   validates_processing_of :avatar
 end
