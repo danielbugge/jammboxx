@@ -4,7 +4,6 @@
 
   <div class="card">
 
-    <%= link_to "", jamm_path(jam), class: "card-link" %>
 
     <% if jam.user.picture %>
       <div class="card-left_content hidden-xs" style="background-image: url('<%= cl_image_path jam.user.picture %>')">
@@ -73,6 +72,7 @@
 
     </div>
       <div class="card-extra-right">
+        <%= link_to "", jamm_path(jam), class: "card-link" %>
         <p>more info</p>
       </div>
   </div>

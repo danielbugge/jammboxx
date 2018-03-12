@@ -1,6 +1,7 @@
 .cards_container {
 
 }
+
 .card-link {
   position: absolute;
   width: 100%;
@@ -84,7 +85,7 @@
     font-weight: bold;
     text-align: center;
     background-color: #D93479;
-    transition: 0.05s;
+    transition: 0.09s;
     visibility: hidden;
     display: flex;
     justify-content: center;
@@ -100,6 +101,7 @@
       right: 0;
       width: 100px;
       visibility: visible;
+      cursor: pointer;
     }
   }
 }
