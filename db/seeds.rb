@@ -49,7 +49,8 @@ counter = 1
     email: Faker::Internet.email,
     password: '123456',
     username: Faker::Internet.user_name + rand(01..99).to_s,
-    genre_id: Genre.ids.sample
+    genre_id: Genre.ids.sample,
+    picture: "p#{rand(1..20)}"
     )
   puts "Users ##{counter} done!"
   puts "\n"
@@ -113,7 +114,7 @@ Jamm.all.each do |jam|
 end
 
 
-User.create!(email: 'ciao@ciao.com', password: '123456', username: 'ciaobello', genre_id: Genre.first.id)
+User.create!(email: 'ciao@ciao.com', password: '123456', username: 'ciaobello', genre_id: Genre.first.id, picture: "p#{rand(1..20)}")
 Instrument.create!(model: Faker::LordOfTheRings.location, user_id: User.last.id, instrument_type_id: InstrumentType.all.sample.id)
 
 puts "basic user --- > email: 'ciao@ciao.com' password: '123456'"
