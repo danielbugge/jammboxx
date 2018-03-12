@@ -4,35 +4,38 @@
     <h1>Filters</h1>
     <p>Your search result for :</p>
     <div id="search-results">
+
       <h2> <%= @search_params %> </h2>
     </div>
   </div>
 </div>
 <div class="index-container">
   <div class="filters">
-    <%= form_tag jamms_path, method: "get" do %>
-      <div id="city-filter" class="filter">
-        <%= text_field_tag :city,
-            params[:city],
-            class: "btn form-control",
-            placeholder: "Choose a city" %>
-      </div>
-      <div id="genre-filter" class="filter">
-        <%= select_tag "genre",
-            options_for_select(["Choose a genre"]) + options_from_collection_for_select(@genres, "name", "name"),
-            class: "btn form-control",
-            placeholder: "Choose a genre" %>
-      </div>
-      <div id="instrument-type-filter" class="filter">
-        <%= select_tag "instrument_t",
+
+    <%= search_form_for @q, url: jamms_path, method: "get" do |f| %>
+      <%= form_tag jamms_path, method: "get" do %>
+        <div id="city-filter" class="filter">
+          <%= text_field_tag :city,
+              params[:city],
+              class: "btn form-control",
+              placeholder: "Choose a city" %>
+        </div>
+        <div id="genre-filter" class="filter">
+          <%= f.collection_select :genre_id_eq, @genres, "id", "name", {include_blank: "All"}, {class: "btn form-control" } %>
+        </div>
+        <div id="instrument-type-filter" class="filter">
+           <%= select_tag "instrument_t",
             options_for_select(["Choose an instrument"]) + options_from_collection_for_select(@instrument_types, "name", "name"),
-            class: "btn form-control",
-            placeholder: "Choose an instrument" %>
-      </div>
-      <%= submit_tag 'Filter',
-      id: "final-butt",
-      class: "btn btn-success" %>
+            class: "btn form-control" %>
+        </div>
+        <div>
+          <%= f.submit 'Filter',
+          id: "final-butt",
+          class: "btn btn-success" %>
+        </div>
+      <% end %>
     <% end %>
+
   </div>
   <div class="sharedcards">
     <%= render 'shared/cards' %>
