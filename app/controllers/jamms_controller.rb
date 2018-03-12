@@ -9,8 +9,6 @@ class JammsController < ApplicationController
   def index
     @transparent_navbar = true
 
-    @jamms = policy_scope(Jamm.all)
-
     @jamms = policy_scope(Jamm.where.not(latitude: nil, longitude: nil))
     if params[:query].present?
       @jamms = Jamm.near(params[:query], 30)

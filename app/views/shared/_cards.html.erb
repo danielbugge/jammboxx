@@ -45,9 +45,12 @@
             <!--THIS USES THE FIRST INSTRUMENT OF THE JAMMPLAYER AND PUT IN THE CARD,SHOULD CHANGE WHEN MANUALLY SELECT THE INSTRUMENT -->
             <% instrument_t = player.instrument.instrument_type.name %>
             <!--STORE THE EMAIL OF THE USER -->
-            <% email = User.where(id: player.user_id).first.email %>
-            <!-- THIS SHOULD BE ICONS...SHOW THE INSTRUMENT OF THE USER AND THE EMAIL -->
-            <p class="card-instrument-taken"> <%= cl_image_tag(player.user.picture, width: 70, class: "avatar-large") %> </p>
+
+            <%  unless player.user_id.nil? %>
+              <% email = User.where(id: player.user_id).first.email %>
+              <!-- THIS SHOULD BE ICONS...SHOW THE INSTRUMENT OF THE USER AND THE EMAIL -->
+              <p class="card-instrument-taken"> <%= cl_image_tag(player.user.picture, width: 70, class: "avatar-large") %> </p>
+            <% end %>
 
             <% jamm_players += 1 %>
           <% end %>
