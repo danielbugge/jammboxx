@@ -18,7 +18,7 @@ Genre.destroy_all
 counter = 1
 
 # GENRE
-genre_array = [ "Alternative Music", "Blues", "Classical Music", "Country Music", "Dance Music", "Easy Listening", "Electronic Music", "European Music", "Hip Hop / Rap", "Indie Pop", "Inspirational", "Asian Pop", "Jazz", "Latin Music", "New Age", "Opera", "Pop", "R&B / Soul", "Reggae", "Rock", "Folk", "World Music" ]
+genre_array = [ "Blues", "Classical", "Hip Hop / Rap", "Indie", "Jazz", "Latin", "Reggae", "Rock", "Folk", "Metal"]
 
 genre_array.each do |genre|
   Genre.create!( name: genre)
