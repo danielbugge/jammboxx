@@ -3,5 +3,7 @@ class PagesController < ApplicationController
 
   def home
     @transparent_navbar = true
+    @jamms = Jamm.where(genre_id: current_user.genre_id)
   end
+
 end
