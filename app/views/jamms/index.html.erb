@@ -3,8 +3,8 @@
 
   <div class="banner-index_content">
     <h1>Filters</h1>
-    <p>Your search result for :</p>
-    <div id="search-results">
+    <p>Your search result for: </p>
+    <div id="search-results-s">
       <h2> <%= @search_params %> </h2>
     </div>
   </div>
@@ -14,7 +14,7 @@
 
     <%= search_form_for @q, url: jamms_path, method: "get" do |f| %>
       <%= form_tag jamms_path, method: "get" do %>
-        <div id="city-filter" class="filter">
+        <div id="city-filter" class="filter input">
           <%= text_field_tag :city,
               params[:city],
               class: "btn form-control",

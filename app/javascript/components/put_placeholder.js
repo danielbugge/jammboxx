@@ -6,5 +6,14 @@ function putPlaceholder() {
     }
   });
 };
+function putPlaceholderFilter() {
+  const filterPlaceholder = document.getElementById("city");
+  filterPlaceholder.addEventListener("blur", (event) =>{
+    if (filterPlaceholder.value  === "") {
+      filterPlaceholder.placeholder = "Choose your city";
+    }
+  });
+};
 
 export { putPlaceholder };
+export { putPlaceholderFilter };
