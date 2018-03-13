@@ -46,6 +46,7 @@ class JammsController < ApplicationController
     # HERE WE SHOULD CALD THE METHOD AND THEN RANDSACK
       #@jamms = @jamms.where(instrument_type: Instrument_type.where(name: params[:instrument_type]))
     #end
+
     if params[:city].present?
        @q = Jamm.near(params[:city], 30).ransack(params[:q])
     else
@@ -53,8 +54,9 @@ class JammsController < ApplicationController
     end
     @jamms = @q.result(distinct: true)
 
-
-
+    if (params[:instrument_t].present? &&  params[:instrument_t] != "Choose a genre")
+      @q = jamms_with_spaces_available_for_instrument(params[:instrument_t]).ransack(params[:q])
+    end
 
     @markers = @jamms.map do |jamm|
       {

@@ -39,7 +39,7 @@
                 <% instrument_t_pic = player.instrument.instrument_type.icon_url %>
                 <!--STORE THE EMAIL OF THE USER -->
 
-                <%  if player.user_id.nil? %>
+                <% if player.user_id.nil? %>
                   <!-- THIS SHOULD BE ICONS...SHOW THE INSTRUMENT OF THE USER AND THE EMAIL -->
                   <%= cl_image_tag(instrument_t_pic, width: 40, class: "avatar-instrument") %>
                 <% else %>
@@ -51,13 +51,11 @@
               <!-- STORE A VALUE WITH THE NUMBER OF AVAILABLE SPOTS -->
               <% available_spots = jam.max_players - jamm_players %>
 
-              <!-- INJECTS ALL THE AVAILABLE SPOTS AS LINKS TO THE SHOW OF THE PAGE. COULD GO TO THE NEW JAMMPLAYER CONTROLLER ACTION -->
-              <% available_spots.times do |av| %>
-                <%#= link_to jamm_path(jam) do %>
-                  <%#= cl_image_tag("add.png", height: 50, width: 50, crop: "scale", class: "avatar-large plus-icon" )  %>
-                <%# end %>
-              <% end  %>
-              <p class="card-available-spots"> <%= available_spots %> available spots to bring your instruments</p>
+              <% if available_spots == 1 %>
+                <p class="card-available-spots"> <%= available_spots %> available spot to bring your instrument</p>
+              <% else %>
+                <p class="card-available-spots"> <%= available_spots %> available spots to bring your instruments</p>
+              <% end %>
             </div>
           </div>
           <div class="card-extra-right">
