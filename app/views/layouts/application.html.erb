@@ -16,16 +16,21 @@
     <%= render 'shared/flashes' %>
 
     <%= yield %>
+
     <%= javascript_include_tag 'application' %>
     <%= javascript_pack_tag 'application' %>
     <%= javascript_include_tag "https://maps.googleapis.com/maps/api/js?libraries=places&key=#{ENV['GOOGLE_API_BROWSER_KEY']}" %>
     <%= javascript_pack_tag "map" %>
-  <div class="modal" id="loading"></div>
+
+    <div class="modal" id="loading"></div>
+
     <%= yield :after_js %>
-  <script>
-    setTimeout(function(){
-      document.getElementById("loading").classList.add("hidden");
-    }, 1200);
-  </script>
+
+    <script>
+      setTimeout(function(){
+        document.getElementById("loading").classList.add("hidden");
+      }, 1200);
+    </script>
+
   </body>
 </html>
