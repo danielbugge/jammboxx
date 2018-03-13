@@ -1,50 +1,57 @@
 class JammPlayersController < ApplicationController
 before_action :set_jamm, only: [:new, :create, :update, :edit, :destroy]
 before_action :set_jamm_player, only: [:update, :destroy]
-
-  def new
-    authorize @jamm_player
-  end
+before_action :current_jamm_player, only: [:create, :update, :destroy]
+before_action :user_instruments, only: [:update, :destroy]
 
   def create
-    @jamm_player_current = JammPlayer.where(jamm_id: @jamm.id, user_id: current_user.id)
-
     if @jamm.user == current_user
       @jamm_player = JammPlayer.new(jamm_id: @jamm.id, user: nil, instrument_id: params[:jamm_player][:instrument_id])
-
     else
       @jamm_player = JammPlayer.new(jamm_id: @jamm.id, user: current_user, instrument_id: params[:jamm_player][:instrument_id])
     end
 
     if @jamm_player_current.empty?
-        @jamm_player.save
-        redirect_to @jamm
+      @jamm_player.save
+      redirect_to @jamm
     else
       redirect_to @jamm, alert: "You have already joined this jamm!"
     end
-
     authorize @jamm_player
   end
 
   def update
-    @jamm_player.user = current_user
-
-    if @jamm_player.save
+    if @jamm_player.user == nil && @jamm_player_current.empty?
+      @jamm_player.user = current_user
+      @jamm_player.save
       redirect_to @jamm
+    elsif @jamm_player.user != nil
+      @jamm_player.user = nil
+      @jamm_player.save
+      redirect_to @jamm
+    else #@jamm_player.user != nil && @jamm_player_current.empty == false
+      redirect_to @jamm, alert: "You have already joined this jamm!"
     end
     authorize @jamm_player
   end
-
 
   def destroy
     #@jamm_players = JammPlayer.where(jamm_id: @jamm)
     #@jamm_player = @jamm_players.find(user_id: current_user)
     @jamm_player.destroy
-      redirect_to @jamm
+    redirect_to @jamm
     authorize @jamm_player
   end
 
   private
+
+  def current_jamm_player
+    @jamm_player_current = JammPlayer.where(jamm_id: @jamm.id, user_id: current_user.id)
+  end
+
+  def user_instruments
+    @instruments = Instrument.where(user_id: current_user)
+  end
 
   def set_jamm
     @jamm = Jamm.find(params[:jamm_id])

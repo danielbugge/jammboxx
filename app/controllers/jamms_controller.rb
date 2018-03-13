@@ -20,7 +20,7 @@ class JammsController < ApplicationController
     elsif ((@location != "" &&   @location != "Choose a city" && @location != nil) && @instrument_t != "Choose an instrument" && @instrument_t != nil )
        @search_params = "#{@location}, #{@instrument_t} "
     elsif ((@genre != "Choose a genre" && @genre != nil) && @instrument_t != "Choose an instrument" && @instrument_t != nil )
-       @search_params = "#{@genre}, #{@instrument_t} "
+       @search_params = "#{@genre}, #{@instrument_t} ">>>>>>> master
     elsif (@location != "")
        @search_params = "#{@location}"
     elsif ((@genre != "Choose a genre" && @genre != nil))
@@ -69,6 +69,7 @@ class JammsController < ApplicationController
     @markers = [{ lat: @jamm.latitude, lng: @jamm.longitude }]
     @jamm_player = JammPlayer.new
     @available_spots = @jamm.max_players - @jamm_players.count
+    @instruments = Instrument.where(user_id: current_user)
          # infoWindow: { content: render_to_string(partial: "/jamm/map_box", locals: { jamm: jamm }) }
          # raise
   end
