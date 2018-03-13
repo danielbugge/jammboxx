@@ -39,12 +39,12 @@
                 <% instrument_t_pic = player.instrument.instrument_type.icon_url %>
                 <!--STORE THE EMAIL OF THE USER -->
 
-                <%  unless player.user_id.nil? %>
-                  <% email = User.where(id: player.user_id).first.email %>
+                <%  if player.user_id.nil? %>
                   <!-- THIS SHOULD BE ICONS...SHOW THE INSTRUMENT OF THE USER AND THE EMAIL -->
-                  <p class="card-instrument-taken"> <%= cl_image_tag(instrument_t_pic, width: 40, class: "avatar-square") %> </p>
+                  <%= cl_image_tag(instrument_t_pic, width: 40, class: "avatar-instrument") %>
+                <% else %>
+                  <%= cl_image_tag(instrument_t_pic, width: 40, class: "avatar-instrument-taken") %>
                 <% end %>
-
                 <% jamm_players += 1 %>
               <% end %>
 
@@ -57,7 +57,7 @@
                   <%#= cl_image_tag("add.png", height: 50, width: 50, crop: "scale", class: "avatar-large plus-icon" )  %>
                 <%# end %>
               <% end  %>
-              <p> <%= available_spots %> Available Spots</p>
+              <p class="card-available-spots"> <%= available_spots %> available spots to bring your instruments</p>
             </div>
           </div>
           <div class="card-extra-right">
