@@ -10,7 +10,7 @@
 
       <h3> <%= @jamm.description %> </h3>
       <hr>
-      <h4> <%= @jamm.time %>:00 - <%= @jamm.date %> <strong> @ </strong> <%= @jamm.address %></h4>
+      <h4> <%= @jamm.time %>:00 - <%= @jamm.date.strftime('%b %d, %Y') %> <strong> @ </strong> <%= @jamm.address %></h4>
 
     </div>
 
