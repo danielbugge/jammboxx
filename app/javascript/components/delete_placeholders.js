@@ -6,4 +6,14 @@ function deletePlaceholder() {
   });
 };
 
+function deletePlaceholderFilter() {
+  const filterPlaceholder = document.getElementById("city");
+  filterPlaceholder.addEventListener("focus", (event) => {
+    filterPlaceholder.placeholder = "";
+  })
+}
+
+
+
 export { deletePlaceholder };
+export { deletePlaceholderFilter };
