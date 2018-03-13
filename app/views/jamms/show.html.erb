@@ -27,13 +27,14 @@
 
         <!-- INJECTS ALL THE AVAILABLE SPOTS AS LINKS TO THE SHOW OF THE PAGE. COULD GO TO THE NEW JAMMPLAYER CONTROLLER ACTION -->
 
-
-
           <% @available_spots.times do |av| %>
             <% if user_signed_in? %>
               <p class= "show-avaliable-spot">
-                <a href="" data-toggle="modal" data-target="#newJammPlayer">
+                <a href="" data-toggle="modal" data-target="#newJammPlayer" class="join-but hvr-icon-float-away">
                   <%= cl_image_tag("add.png", height: 50, width: 50, crop: "scale", class: "avatar-large plus-icon" )  %>
+
+
+
                 </a>
               </p>
               <% else %>
