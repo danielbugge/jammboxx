@@ -52,11 +52,13 @@ class JammsController < ApplicationController
     else
       @q = policy_scope(Jamm).where.not(latitude: nil, longitude: nil).ransack(params[:q])
     end
+
     @jamms = @q.result(distinct: true)
 
-    if (params[:instrument_t].present? &&  params[:instrument_t] != "Choose a genre")
-      @q = jamms_with_spaces_available_for_instrument(params[:instrument_t]).ransack(params[:q])
+    if (params[:instrument_t].present? &&  params[:instrument_t] != "Choose an instrument")
+      @jamms = @jamms.jamms_with_spaces_available_for_instrument(params[:instrument_t])
     end
+
 
     @markers = @jamms.map do |jamm|
       {
