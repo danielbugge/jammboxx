@@ -7,7 +7,9 @@
   <div class="form-inputs">
     <%= f.input :username, required: true, autofocus: true, label: false, placeholder: "username" %>
     <%= f.input :email, required: true, label: false, placeholder: "email" %>
-    <%= f.input :genre_id, :collection => Genre.all, required: true, label: false, prompt: "favourite genre" %>
+    <div id="i" class="filters">
+      <%= f.input :genre_id, :collection => Genre.all, required: true, label: false, prompt: "favourite genre" %>
+    </div>
     <%= f.input :password, required: true, label: false, placeholder: "password (#{@minimum_password_length} char min.)" %>
     <%= f.input :password_confirmation, required: true, label: false, placeholder: "confirm password" %>
     <%= f.label :avatar do %>
