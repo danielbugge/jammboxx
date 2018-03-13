@@ -1,17 +1,15 @@
-<div class="container" style=" color: white; margin-top: 60px; text-shadow: 1px 1px 1px black; margin-bottom: 20px;">
-  <div class="text-center">
-    <h1>Create a new Jamm!</h1>
-  </div>
+<div class="simple-form jamm-form">
+    <h2>Create a new Jamm!</h2>
 
   <div class="new-jamm-form">
   <%= simple_form_for @jamm do |f| %>
 
-    <%= f.input :name, label: 'Title:', error: 'Title is mandatory, please specify one' %>
-    <%= f.input :description, label: 'Description:', error: 'Description is mandatory, please specify one' %>
-    <%= f.input :address, label: 'Address:', error: 'Address is mandatory, please specify one' %>
+    <%= f.input :name, label: false, placeholder: "jamm title", error: 'Title is mandatory, please specify one' %>
+    <%= f.input :description, label: false, placeholder: "description", error: 'Description is mandatory, please specify one' %>
+    <%= f.input :address, label: false, placeholder: "address", error: 'Address is mandatory, please specify one' %>
 
     <div style='columns: 3;'>
-      <%= f.input :date, label: 'Date:', error: 'Date is mandatory, please specify one' %>
+      <%= f.input :date, label: 'Date:', as: :date, error: 'Date is mandatory, please specify one' %>
       <%= f.input :time, :collection => (0..23), label: 'Start time:', error: 'Start time is mandatory, please specify one' %>
       <%= f.input :duration, :collection => (1..24), label: 'Session duration:' %>
     </div>
@@ -33,4 +31,5 @@
     </div>
   <% end %>
   </div>
-</div>
+
+  </div>
