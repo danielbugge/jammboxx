@@ -1,27 +1,27 @@
 <div class="simple-form jamm-form">
-    <h2>Create a new Jamm!</h2>
+  <h2>Create a new Jamm!</h2>
 
   <div class="new-jamm-form">
-  <%= simple_form_for @jamm do |f| %>
+    <%= simple_form_for @jamm do |f| %>
 
     <%= f.input :name, label: false, placeholder: "jamm title", error: 'Title is mandatory, please specify one' %>
     <%= f.input :description, label: false, placeholder: "description", error: 'Description is mandatory, please specify one' %>
     <%= f.input :address, label: false, placeholder: "address", error: 'Address is mandatory, please specify one' %>
 
     <div style='columns: 3;'>
-      <%= f.input :date, label: 'Date:', as: :date, error: 'Date is mandatory, please specify one' %>
-      <%= f.input :time, :collection => (0..23), label: 'Start time:', error: 'Start time is mandatory, please specify one' %>
-      <%= f.input :duration, :collection => (1..24), label: 'Session duration:' %>
+      <%= f.input :date, label: false, :order => [:day, :month], discard_year: true, error: 'Date is mandatory, please specify one' %>
+      <%= f.input :time, :collection => (0..23), label: false, prompt: "start time", error: 'Start time is mandatory, please specify one' %>
+      <%= f.input :duration, :collection => (1..24), label: false, prompt: "duration" %>
     </div>
 
     <div style='columns: 2;'>
-      <%= f.input :max_players, :collection => (1..10), label: 'Max number of players:' %>
-      <%= f.input :genre_id, :collection => Genre.all, label: 'Genre:' %>
+      <%= f.input :max_players, :collection => (1..10), label: false, prompt: "max players" %>
+      <%= f.input :genre_id, :collection => Genre.all, label: false, prompt: "genre" %>
     </div>
 
     <div style='columns: 2;'>
-      <%= f.input :level, :collection => ["Beginner", "Intermediate", "Expert"], label: 'Level of expertise:' %>
-      <%= f.input :allow_new_instrument,  as: :select, label: 'Are players allowed to bring their own instruments?' %>
+      <%= f.input :level, :collection => ["Beginner", "Intermediate", "Expert"], label: false, prompt: "expertise level" %>
+      <%= f.input :allow_new_instrument,  as: :select, label: false, prompt: "allow new instrument?" %>
     </div>
 
     <%= f.input :photo %>
@@ -29,7 +29,7 @@
     <div class="text-center">
       <%= f.button :submit %>
     </div>
-  <% end %>
+    <% end %>
   </div>
 
-  </div>
+</div>
