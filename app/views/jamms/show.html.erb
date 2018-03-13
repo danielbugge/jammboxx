@@ -19,38 +19,22 @@
     </div>
 
     <div class="players">
+    <h3>Jamm Players</h3>
+    <hr>
+    <div class="players-list">
+      <%= render @jamm_players %>
+          <% #@available_spots_bring_your_own.times do |av| %>
 
-      <h3>Jamm Players</h3>
-      <hr>
-      <div class="players-list">
-         <%= render @jamm_players %>
-
-    <% if user_signed_in? %>
+      <% if user_signed_in? %>
         <%= render "layouts/modal" %>
-    <% end %>
-
-        <!-- INJECTS ALL THE AVAILABLE SPOTS AS LINKS TO THE SHOW OF THE PAGE. COULD GO TO THE NEW JAMMPLAYER CONTROLLER ACTION -->
-
-          <% @available_spots.times do |av| %>
-            <% if user_signed_in? %>
-              <p class= "show-avaliable-spot">
-                <a href="" data-toggle="modal" data-target="#newJammPlayer" class="join-but hvr-icon-float-away">
-                  <%= cl_image_tag("add.png", height: 50, width: 50, crop: "scale", class: "avatar-large plus-icon" )  %>
-
-
-
-                </a>
-              </p>
-              <% else %>
-
-                <%= link_to new_user_session_path do %>
-                  <%#= cl_image_tag("add.png", height: 50, width: 50, crop: "scale", class: "avatar-large plus-icon" )  %>
-                <% end %>
-              <% end %>
+          <p class= "show-avaliable-spot">
+            <a href="" data-toggle="modal" data-target="#newJammPlayer" class="join-but hvr-icon-float-away">Add
+              <% # cl_image_tag("add.png", height: 50, width: 50, crop: "scale", class: "avatar-large plus-icon" )  %>
+            </a>
+          </p>
+      <% else %>
+        <%= link_to "Join", new_user_session_path, class: "join-but hvr-icon-float-away"  %>
           <% end %>
-
-
-
       </div>
     </div>
 
