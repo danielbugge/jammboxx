@@ -79,7 +79,7 @@ address_array = ["8 Nugent Rd, London N19 3QF, UK","15 Meadow Rd, Windermere LA2
 counter = 1
 
 20.times do
-  new_jamm = Jamm.create!(
+  Jamm.create!(
     name: Faker::FamilyGuy.location,
     description: Faker::HitchhikersGuideToTheGalaxy.quote,
     address: address_array.sample,
@@ -114,6 +114,17 @@ Jamm.all.each do |jam|
   counter += 1
 end
 
+50.times do
+  jamm = Jamm.where.not(instrument_ids: []).sample
+  JammPlayer.create!(
+    jamm_id: jamm.id,
+    user_id: nil,
+    instrument_id: jamm.instrument_ids.first
+    )
+  puts "Jamm player joint ##{counter} done!"
+  puts "\n"
+  counter += 1
+end
 
 User.create!(email: 'ciao@ciao.com', password: '123456', username: 'ciaobello', genre_id: Genre.first.id, picture: "p#{rand(1..20)}", avatar: "p#{rand(1..20)}")
 Instrument.create!(model: Faker::LordOfTheRings.location, user_id: User.last.id, instrument_type_id: InstrumentType.all.sample.id)
