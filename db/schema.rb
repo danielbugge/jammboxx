@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180312173256) do
+ActiveRecord::Schema.define(version: 20180313121821) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -67,6 +67,7 @@ ActiveRecord::Schema.define(version: 20180312173256) do
     t.float "latitude"
     t.float "longitude"
     t.bigint "user_id"
+    t.string "jamm_picture"
     t.index ["genre_id"], name: "index_jamms_on_genre_id"
     t.index ["user_id"], name: "index_jamms_on_user_id"
   end

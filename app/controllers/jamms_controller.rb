@@ -1,3 +1,4 @@
+require_relative '../uploaders/jamm_picture_uploader.rb'
 
 class JammsController < ApplicationController
   skip_before_action :authenticate_user!, only: [:index, :show, :search]
@@ -114,6 +115,6 @@ class JammsController < ApplicationController
   end
 
   def jamm_params
-    params.require(:jamm).permit(:user_id, :name, :address, :description, :date, :time, :duration, :max_players, :genre_id, :level, :allow_new_instrument, :photo)
+    params.require(:jamm).permit(:user_id, :name, :address, :description, :date, :time, :duration, :max_players, :genre_id, :level, :allow_new_instrument, :photo, :jamm_picture, :jamm_picture_cache)
   end
 end

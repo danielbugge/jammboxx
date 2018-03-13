@@ -1,9 +1,16 @@
+require_relative '../uploaders/jamm_picture_uploader.rb'
+
 class Jamm < ApplicationRecord
   belongs_to :genre
   belongs_to :user
   has_many :jamm_players
   has_many :users, through: :jamm_players
   has_many :instruments, through: :jamm_players
+
+  mount_uploader :jamm_picture, JammPictureUploader
+
+  validates_integrity_of  :jamm_picture
+  validates_processing_of :jamm_picture
 
   validates :name, presence: :true
   validates :description, presence: :true
