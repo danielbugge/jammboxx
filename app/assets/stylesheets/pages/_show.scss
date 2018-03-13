@@ -31,8 +31,7 @@
   grid-column: 3 / span 1;
   background-color: white;
   color: black;
-  border: 1px white solid;
-  padding: 20px;
+  padding: 0px;
   margin: 5px;
 
     ul{
@@ -89,4 +88,17 @@
   columns: 2;
   -webkit-columns: 2;
   -moz-columns: 2;
+}
+
+.jamms-settings {
+  list-style-type: none;
+  padding-bottom: 30px;
+}
+
+.jamm-set-item {
+  padding-left: 30px;
+}
+
+.jamm-info-title {
+  padding-top: 20px;
 }

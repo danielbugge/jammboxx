@@ -39,7 +39,7 @@
               <% else %>
 
                 <%= link_to new_user_session_path do %>
-                  <%= cl_image_tag("add.png", height: 50, width: 50, crop: "scale", class: "avatar-large plus-icon" )  %>
+                  <%#= cl_image_tag("add.png", height: 50, width: 50, crop: "scale", class: "avatar-large plus-icon" )  %>
                 <% end %>
               <% end %>
           <% end %>
@@ -50,7 +50,7 @@
     </div>
 
     <div class="jamm-info">
-      <h3>Jamm Settings</h3>
+      <h3 class="jamm-info-title">Jamm Settings</h3>
       <%= render "jamm_players/jamm_details" %>
     </div>
   </div>
