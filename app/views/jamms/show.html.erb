@@ -1,5 +1,9 @@
 <div class="banner-show-container" >
-  <div class="banner banner-show" style="background-image: url(<%= image_url(cl_image_path @jamm.photo) %>)"></div>
+  <% if @jamm.jamm_picture.nil? %>
+    <div class="banner banner-show" style="background-image: url(<%= image_url(cl_image_path @jamm.photo) %>)"></div>
+  <% else %>
+    <div class="banner banner-show" style="background-image: url(<%= image_url(cl_image_path @jamm.jamm_picture) %>)"></div>
+  <% end %>
   <div class="banner-show-content">
     <h1><%=@jamm.name %></h1>
   </div>
@@ -10,7 +14,7 @@
 
       <h3> <%= @jamm.description %> </h3>
       <hr>
-      <h4> <%= @jamm.time %>:00 - <%= @jamm.date %> <strong> @ </strong> <%= @jamm.address %></h4>
+      <h4> <%= @jamm.time %>:00 - <%= @jamm.date.strftime('%b %d, %Y') %> <strong> @ </strong> <%= @jamm.address %></h4>
 
     </div>
 
