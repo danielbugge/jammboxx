@@ -75,7 +75,8 @@ class JammsController < ApplicationController
     @jamm = Jamm.where.not(latitude: nil, longitude: nil).find(params[:id])
     @markers = [{ lat: @jamm.latitude, lng: @jamm.longitude }]
     @jamm_player = JammPlayer.new
-    @available_spots = @jamm.max_players - @jamm_players.count
+    @available_spots = @jamm.max_players - @jamm_players.count + @jamm_players.where(user_id: nil).count
+    raise
     @instruments = Instrument.where(user_id: current_user)
          # infoWindow: { content: render_to_string(partial: "/jamm/map_box", locals: { jamm: jamm }) }
          # raise
