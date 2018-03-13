@@ -43,6 +43,7 @@ class JammsController < ApplicationController
     #end
 #
     #if (params[:instrument_type].present? &&  params[:instrument_type] != "Choose a instrument")
+    # HERE WE SHOULD CALD THE METHOD AND THEN RANDSACK
       #@jamms = @jamms.where(instrument_type: Instrument_type.where(name: params[:instrument_type]))
     #end
     if params[:city].present?
