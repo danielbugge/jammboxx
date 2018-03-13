@@ -25,7 +25,7 @@
         </div>
         <div id="instrument-type-filter" class="filter">
            <%= select_tag "instrument_t",
-            options_for_select(["Choose an instrument"]) + options_from_collection_for_select(@instrument_types, "name", "name"),
+            options_from_collection_for_select(@instrument_types, "name", "name", {include_blank: "All"}),
             class: "btn form-control" %>
         </div>
         <div>

@@ -41,9 +41,9 @@
 
                 <% if player.user_id.nil? %>
                   <!-- THIS SHOULD BE ICONS...SHOW THE INSTRUMENT OF THE USER AND THE EMAIL -->
-                  <%= cl_image_tag(instrument_t_pic, width: 40, class: "avatar-instrument") %>
+                  <%= cl_image_tag(instrument_t_pic, width: 40, class: "avatar-instrument avatar-instrument-available") %>
                 <% else %>
-                  <%= cl_image_tag(instrument_t_pic, width: 40, class: "avatar-instrument-taken") %>
+                  <%= cl_image_tag(instrument_t_pic, width: 40, class: "avatar-instrument") %>
                 <% end %>
                 <% jamm_players += 1 %>
               <% end %>
