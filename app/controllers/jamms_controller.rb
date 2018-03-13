@@ -29,7 +29,7 @@ class JammsController < ApplicationController
     elsif (@instrument_t != "Choose an instrument" && @instrument_t != nil )
        @search_params = "#{@instrument_t}"
     else
-       @search_params = "See all"
+       @search_params = "All"
     end
 
 
