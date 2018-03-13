@@ -1,8 +1,8 @@
 <div class="banner-show-container" >
   <% if @jamm.jamm_picture.nil? %>
     <div class="banner banner-show" style="background-image: url(<%= image_url(cl_image_path @jamm.photo) %>)"></div>
-  <% else %>
-    <div class="banner banner-show" style="background-image: url(<%= image_url(cl_image_path @jamm.jamm_picture) %>)"></div>
+ <!--  <% %>
+    <div class="banner banner-show" style="background-image: url(<%= image_url(cl_image_path @jamm.jamm_picture) %>)"></div> -->
   <% end %>
   <div class="banner-show-content">
     <h1><%=@jamm.name %></h1>
@@ -19,22 +19,27 @@
     </div>
 
     <div class="players">
-    <h3>Jamm Players</h3>
-    <hr>
-    <div class="players-list">
-      <%= render @jamm_players %>
-          <% #@available_spots_bring_your_own.times do |av| %>
+      <h3>Jamm Players</h3>
+      <hr>
+      <div class="players-list">
+        <%= render @jamm_players %>
+            <% #@available_spots_bring_your_own.times do |av| %>
 
-      <% if user_signed_in? %>
-        <%= render "layouts/modal" %>
-          <p class= "show-avaliable-spot">
-            <a href="" data-toggle="modal" data-target="#newJammPlayer" class="join-but hvr-icon-float-away">Add
-              <% # cl_image_tag("add.png", height: 50, width: 50, crop: "scale", class: "avatar-large plus-icon" )  %>
-            </a>
-          </p>
-      <% else %>
-        <%= link_to "Join", new_user_session_path, class: "join-but hvr-icon-float-away"  %>
-          <% end %>
+        <% if user_signed_in? %>
+            <%= render "layouts/modal" %>
+
+            <% if current_user == @jamm.user %>
+                <p class= "show-avaliable-spot">
+                <a href="" data-toggle="modal" data-target="#newJammPlayer" class="join-but hvr-icon-float-away">Add your instruments!</a>
+                </p>
+            <% else %>
+                <p class= "show-avaliable-spot">
+                <a href="" data-toggle="modal" data-target="#newJammPlayer" class="join-but hvr-icon-float-away">Bring your instrument!</a>
+                </p>
+            <% end %>
+        <% else %>
+            <%= link_to "Join", new_user_session_path, class: "join-but hvr-icon-float-away"  %>
+        <% end %>
       </div>
     </div>
 
