@@ -61,7 +61,7 @@ end
 counter = 1
 
 # Instruments Join Table
-50.times do
+150.times do
   Instrument.create!(
     model: Faker::LordOfTheRings.location,
     user_id: User.ids.sample,
@@ -78,7 +78,7 @@ address_array = ["8 Nugent Rd, London N19 3QF, UK","15 Meadow Rd, Windermere LA2
 
 counter = 1
 
-20.times do
+40.times do
   Jamm.create!(
     name: Faker::FamilyGuy.location,
     description: Faker::HitchhikersGuideToTheGalaxy.quote,
@@ -86,7 +86,7 @@ counter = 1
     date: Faker::Date.forward(30),
     duration: rand(1..3),
     genre_id: Genre.all.sample.id,
-    max_players: rand(1..10),
+    max_players: rand(2..10),
     level: ["Beginner", "Intermediate", "Expert"].sample,
     allow_new_instrument: [true, false].sample,
     photo: rand(1..23).to_s,
@@ -119,8 +119,9 @@ end
   JammPlayer.create!(
     jamm_id: jamm.id,
     user_id: nil,
-    instrument_id: jamm.instrument_ids.first
+    instrument_id: jamm.instrument_ids.sample
     )
+  jamm.max_players += 2
   puts "Jamm player joint ##{counter} done!"
   puts "\n"
   counter += 1
