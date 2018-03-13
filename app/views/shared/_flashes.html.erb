@@ -1,12 +1,28 @@
 <% if notice %>
-  <div class="alert alert-info alert-dismissible" role="alert">
-    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-    <%= notice %>
-  </div>
+    <div class="alert alert-info alert-dismissible" role="alert" id="devise_alert" onmouseover="setTimeout(fadeDeviseFlash(element), 1000)">
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      <%= notice %>
+    </div>
 <% end %>
 <% if alert %>
-  <div class="alert alert-warning alert-dismissible" role="alert">
-    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-    <%= alert %>
-  </div>
+    <div class="alert alert-warning alert-dismissible" role="alert" id="devise_alert" onmouseover="setTimeout(closeDeviseFlash, 1000)">
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      <%= alert %>
+    </div>
 <% end %>
+
+<script>
+  var element = document.getElementById("devise_alert")
+  function fadeDeviseFlash(element) {
+      var op = 1;
+      var timer = setInterval(function () {
+          if (op <= 0.1){
+              clearInterval(timer);
+              element.style.display = 'none';
+          }
+          element.style.opacity = op;
+          element.style.filter = 'alpha(opacity=' + op * 100 + ")";
+          op -= op * 0.1;
+      }, 50);
+  }
+</script>
