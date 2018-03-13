@@ -20,7 +20,7 @@ class JammsController < ApplicationController
     elsif ((@location != "" &&   @location != "Choose a city" && @location != nil) && @instrument_t != "Choose an instrument" && @instrument_t != nil )
        @search_params = "#{@location}, #{@instrument_t} "
     elsif ((@genre != "Choose a genre" && @genre != nil) && @instrument_t != "Choose an instrument" && @instrument_t != nil )
-       @search_params = "#{@genre}, #{@instrument_t} ">>>>>>> master
+       @search_params = "#{@genre}, #{@instrument_t} "
     elsif (@location != "")
        @search_params = "#{@location}"
     elsif ((@genre != "Choose a genre" && @genre != nil))
