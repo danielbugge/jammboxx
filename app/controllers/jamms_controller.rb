@@ -13,20 +13,21 @@ class JammsController < ApplicationController
     @instrument_t = params[:instrument_t]
     @genres = Genre.all
     @instrument_types = InstrumentType.all
+    @levels = ["Beginner", "Intermediate", "Expert"]
 
-    if (@location != "" && (@genre != "Choose a genre" && @genre != nil)  && (@instrument_t != "Choose an instrument" && @instrument_t != nil ))
+    if (@location != "" && (@genre != "All" && @genre != nil)  && (@instrument_t != "All" && @instrument_t != nil ))
        @search_params = "#{@location}, #{@genre}, #{@instrument_t}"
-    elsif (@location != "" && (@genre != "Choose a genre" && @genre != nil))
+    elsif (@location != "" && (@genre != "All" && @genre != nil))
        @search_params = "#{@location}, #{@genre} "
-    elsif ((@location != "" &&   @location != "Choose a city" && @location != nil) && @instrument_t != "Choose an instrument" && @instrument_t != nil )
+    elsif ((@location != "" &&   @location != "Choose a city" && @location != nil) && @instrument_t != "All" && @instrument_t != nil )
        @search_params = "#{@location}, #{@instrument_t} "
-    elsif ((@genre != "Choose a genre" && @genre != nil) && @instrument_t != "Choose an instrument" && @instrument_t != nil )
+    elsif ((@genre != "All" && @genre != nil) && @instrument_t != "All" && @instrument_t != nil )
        @search_params = "#{@genre}, #{@instrument_t} "
     elsif (@location != "")
        @search_params = "#{@location}"
-    elsif ((@genre != "Choose a genre" && @genre != nil))
+    elsif ((@genre != "All" && @genre != nil))
        @search_params = "#{@genre}"
-    elsif (@instrument_t != "Choose an instrument" && @instrument_t != nil )
+    elsif (@instrument_t != "All" && @instrument_t != nil )
        @search_params = "#{@instrument_t}"
     else
        @search_params = "All"
@@ -48,14 +49,14 @@ class JammsController < ApplicationController
     #end
 
     if params[:city].present?
-       @q = Jamm.near(params[:city], 30).ransack(params[:q])
+      @q = Jamm.near(params[:city], 30).ransack(params[:q])
+      @jamms = @q.result(distinct: true)
     else
       @q = policy_scope(Jamm).where.not(latitude: nil, longitude: nil).ransack(params[:q])
+      @jamms = @q.result(distinct: true)
     end
 
-    @jamms = @q.result(distinct: true)
-
-    if (params[:instrument_t].present? &&  params[:instrument_t] != "Choose an instrument")
+    if (params[:instrument_t].present? &&  params[:instrument_t] != "All")
       @jamms = @jamms.jamms_with_spaces_available_for_instrument(params[:instrument_t])
     end
 
