@@ -28,6 +28,11 @@
   }
 }
 
+#i {
+    overflow: hidden !important;
+    border-radius: 30px !important;
+}
+
 #city-filter, #final-butt, #genre-filter, #instrument-type-filter {
     overflow: hidden;
     border-radius: 30px;
