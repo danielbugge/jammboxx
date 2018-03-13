@@ -1,12 +1,16 @@
-<div class="container form form-container">
-  <h2>Creating a new instrument</h2>
+<div class="simple-form instrument-form">
+  <h2>New instrument</h2>
+  <hr>
   <div class="row">
-      <%= simple_form_for @instrument do |f| %>
-        <%= hidden_field_tag :jamm_id, @jamm.id    %>
-        <%= f.input :model, label: 'Whats the model of your instrument:' %>
-        <%= f.input :instrument_type_id,  :collection => InstrumentType.all, label: 'Select your instrument type' %>
-        <%= f.submit "Create", class: "btn btn-danger" %>
-      <% end %>
+    <%= simple_form_for @instrument do |f| %>
+    <%= hidden_field_tag :jamm_id, @jamm.id    %>
+    <%= f.input :model, label: false, placeholder: "instrument model" %>
+    <%= f.input :instrument_type_id,  :collection => InstrumentType.all, label: false, prompt: "instrument type" %>
+    <hr>
+    <div class="simple-form-input form-actions">
+      <%= f.submit "Create", class: "btn btn-danger" %>
+    </div>
+    <% end %>
   </div>
 </div>
 
