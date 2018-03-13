@@ -16,6 +16,7 @@ before_action :user_instruments, only: [:update, :destroy]
       redirect_to @jamm
     else
       redirect_to @jamm, alert: "You have already joined this jamm!"
+      #raise
     end
     authorize @jamm_player
   end
