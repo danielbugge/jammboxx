@@ -47,3 +47,23 @@
   text-decoration:none;
   cursor:pointer;
 }
+
+.avatar-instrument-type {
+  visibility: hidden;
+  position: absolute;
+  color: white;
+  padding: 0 4px;
+  border-radius: 8%;
+  font-size: 12px;
+}
+.icon-wrap:hover .avatar-instrument-type {
+  visibility: visible;
+}
+
+.avatar-instrument-type-available {
+  background: #D93479;
+}
+
+.avatar-instrument-type-taken {
+  background: black;
+}
