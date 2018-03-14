@@ -15,19 +15,19 @@ class JammsController < ApplicationController
     @instrument_types = InstrumentType.all
     @levels = ["Beginner", "Intermediate", "Expert"]
 
-    if (@location != "" && (@genre != "All" && @genre != nil)  && (@instrument_t != "All" && @instrument_t != nil ))
+    if (@location != "" && (@genre != "All" && @genre && @genre != "Choose a genre" )  && (@instrument_t != "All" && @instrument_t && @instrument_t != "Choose an instrument" ))
        @search_params = "#{@location}, #{@genre}, #{@instrument_t}"
-    elsif (@location != "" && (@genre != "All" && @genre != nil))
+    elsif (@location != "" && (@genre != "All" && @genre && @genre != "Choose a genre"))
        @search_params = "#{@location}, #{@genre} "
-    elsif ((@location != "" &&   @location != "Choose your city" && @location != nil) && @instrument_t != "All" && @instrument_t != nil )
+    elsif ((@location != "" &&   @location != "Choose your city" && @location) && @instrument_t != "All" && @instrument_t && @instrument_t != "Choose an instrument" )
        @search_params = "#{@location}, #{@instrument_t} "
-    elsif ((@genre != "All" && @genre != nil) && @instrument_t != "All" && @instrument_t != nil )
+    elsif ((@genre != "All" && @genre) && @instrument_t != "All" && @instrument_t && @instrument_t != "Choose an instrument" )
        @search_params = "#{@genre}, #{@instrument_t} "
     elsif (@location != "")
        @search_params = "#{@location}"
-    elsif ((@genre != "All" && @genre != nil))
+    elsif @genre != "All" && @genre && @genre != "Choose a genre"
        @search_params = "#{@genre}"
-    elsif (@instrument_t != "All" && @instrument_t != nil )
+    elsif (@instrument_t != "All" && @instrument_t && @instrument_t != "Choose an instrument" )
        @search_params = "#{@instrument_t}"
     else
        @search_params = "All"
@@ -41,10 +41,19 @@ class JammsController < ApplicationController
       @jamms = @q.result(distinct: true)
     end
 
+    session[:instrument] = params[:instrument_t]
+    if (params[:instrument_t].present? &&  (params[:instrument_t] != "All" && params[:instrument_t] != "Choose an instrument"))
+      j_array = @jamms.jamms_with_spaces_available_for_instrument(params[:instrument_t])
 
-    if (params[:instrument_t].present? &&  params[:instrument_t] != "All")
-      @jamms = @jamms.jamms_with_spaces_available_for_instrument(params[:instrument_t])
+      # @jamms.select{ |jamm| jamm.jamm_players.select {|jp| jp.instrument.instrument_type == params[:instrument_t] }
+      # @jamms = @q.result(distinct: true)
+
+      #@a = @jamms.select { |jamm| jamm.available? }
+      #@b = @a.select {|jamm| jamm.available_jamm_players.select { |jp| jp.instrument.instrument_type == params[:instrument_t]}}
+      #a = jamm_players.where(instrument: Instrument.where(instrument_id: (instrument_type.name == params[:instrument_t])
     end
+
+    @jamms = @jamms & j_array if j_array
 
 
     @markers = @jamms.map do |jamm|
@@ -53,6 +62,10 @@ class JammsController < ApplicationController
         lng: jamm.longitude#,
         # infoWindow: { content: render_to_string(partial: "/spaces/map_box", locals: { flat: flat }) }
       }
+    end
+    respond_to do |format|
+      format.html
+      format.js
     end
   end
 

@@ -24,10 +24,17 @@ class Jamm < ApplicationRecord
   geocoded_by :address
   after_validation :geocode, if: :will_save_change_to_address?
 
+  def available_jamm_players
+    jamm_players.select { |jp|  jp.user.nil? }
 
+  end
+
+  def available?
+    available_jamm_players.size != 0
+  end
 
   def self.jamms_with_spaces_available_for_instrument(instrument)
-    Jamm.find_by_sql(["SELECT * FROM jamms WHERE jamms.id IN (
+    find_by_sql(["SELECT * FROM jamms WHERE jamms.id IN (
         SELECT jamm_players.jamm_id
         FROM jamm_players
           INNER JOIN instruments ON jamm_players.instrument_id = instruments.id

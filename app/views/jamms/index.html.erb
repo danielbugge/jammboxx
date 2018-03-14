@@ -12,7 +12,7 @@
 <div class="index-container">
   <div class="filters">
 
-    <%= search_form_for @q, url: jamms_path, method: "get" do |f| %>
+    <%= search_form_for @q, url: jamms_path, method: "get", remote: true do |f| %>
       <%= form_tag jamms_path, method: "get" do %>
         <div id="city-filter" class="filter input">
           <%= text_field_tag :city,
@@ -21,12 +21,12 @@
               placeholder: "Choose a city" %>
         </div>
         <div id="genre-filter" class="filter">
-          <%= f.collection_select :genre_id_eq, @genres, "id", "name", {include_blank: "All"}, {class: "btn form-control" } %>
+          <%= f.collection_select :genre_id_eq, @genres, "id", "name", {include_blank: "Choose a genre"}, {class: "btn form-control" } %>
         </div>
         <div id="instrument-type-filter" class="filter">
            <%= select_tag "instrument_t",
-            options_for_select(["All"]) + options_from_collection_for_select(@instrument_types, "name", "name"),
-            class: "btn form-control" %>
+            options_for_select(["Choose an instrument"], selected: session[:instrument]) + options_from_collection_for_select(@instrument_types, "name", "name"),
+            class: "btn form-control " %>
         </div>
         <div>
           <%= f.submit 'FILTER',
@@ -37,7 +37,7 @@
     <% end %>
 
   </div>
-  <div class="sharedcards">
+  <div id="search-results" class="sharedcards">
     <%= render 'shared/cards' %>
   </div>
 </div>
