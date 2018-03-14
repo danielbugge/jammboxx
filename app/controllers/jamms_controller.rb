@@ -4,7 +4,7 @@ class JammsController < ApplicationController
   skip_before_action :authenticate_user!, only: [:index, :show, :search]
   skip_after_action :verify_authorized, only: [:show, :search]
   skip_after_action :verify_policy_scoped, only: [:index]
-  before_action :set_jamm, only: [:edit, :update, :delete]
+  before_action :set_jamm, only: [:edit, :update, :delete, :show]
 
   def index
     @transparent_navbar = true
@@ -33,21 +33,6 @@ class JammsController < ApplicationController
        @search_params = "All"
     end
 
-
-    #@jamms = policy_scope(Jamm.where.not(latitude: nil, longitude: nil))
-    #if params[:city].present?
-      #@jamms = Jamm.near(params[:city], 30)
-    #end
-#
-    #if (params[:genre].present? &&  params[:genre] != "Choose a genre")
-      #@jamms = @jamms.where(genre: Genre.where(name: params[:genre]))
-    #end
-#
-    #if (params[:instrument_type].present? &&  params[:instrument_type] != "Choose a instrument")
-    # HERE WE SHOULD CALD THE METHOD AND THEN RANDSACK
-      #@jamms = @jamms.where(instrument_type: Instrument_type.where(name: params[:instrument_type]))
-    #end
-
     if params[:city].present?
       @q = Jamm.near(params[:city], 30).ransack(params[:q])
       @jamms = @q.result(distinct: true)
@@ -73,11 +58,11 @@ class JammsController < ApplicationController
 
   def show
     @jamm_players = JammPlayer.where(jamm_id: params[:id])
-    @jamm = Jamm.where.not(latitude: nil, longitude: nil).find(params[:id])
+    #@jamm = Jamm.where.not(latitude: nil, longitude: nil).find(params[:id])
     @markers = [{ lat: @jamm.latitude, lng: @jamm.longitude }]
     @jamm_player = JammPlayer.new
-    
-    ### WATCH THIS 
+
+    ### WATCH THIS
     @available_spots_bring_your_own = @jamm.max_players - @jamm_players.count
     ## AND THIS
     @available_spots = @jamm.max_players - @jamm_players.count + @jamm_players.where(user_id: nil).count
@@ -90,6 +75,7 @@ class JammsController < ApplicationController
   def create
     @jamm = Jamm.new(jamm_params)
     @jamm.user = current_user
+    @jamm.photo = rand(1..23).to_s
     if @jamm.save
       redirect_to jamm_path(@jamm)
     else
@@ -127,6 +113,6 @@ class JammsController < ApplicationController
   end
 
   def jamm_params
-    params.require(:jamm).permit(:user_id, :name, :address, :description, :date, :time, :duration, :max_players, :genre_id, :level, :allow_new_instrument, :photo, :jamm_picture, :jamm_picture_cache)
+    params.require(:jamm).permit(:user_id, :name, :address, :description, :date, :time, :duration, :max_players, :genre_id, :level, :allow_new_instrument, :photo, :jamm_picture)
   end
 end
