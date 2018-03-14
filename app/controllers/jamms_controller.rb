@@ -15,19 +15,19 @@ class JammsController < ApplicationController
     @instrument_types = InstrumentType.all
     @levels = ["Beginner", "Intermediate", "Expert"]
 
-    if (@location != "" && (@genre != "All" && @genre != nil)  && (@instrument_t != "All" && @instrument_t != nil ))
+    if (@location != "" && (@genre != "All" && @genre && @genre != "Choose a genre" )  && (@instrument_t != "All" && @instrument_t && @instrument_t != "Choose an instrument" ))
        @search_params = "#{@location}, #{@genre}, #{@instrument_t}"
-    elsif (@location != "" && (@genre != "All" && @genre != nil))
+    elsif (@location != "" && (@genre != "All" && @genre && @genre != "Choose a genre"))
        @search_params = "#{@location}, #{@genre} "
-    elsif ((@location != "" &&   @location != "Choose your city" && @location != nil) && @instrument_t != "All" && @instrument_t != nil )
+    elsif ((@location != "" &&   @location != "Choose your city" && @location) && @instrument_t != "All" && @instrument_t && @instrument_t != "Choose an instrument" )
        @search_params = "#{@location}, #{@instrument_t} "
-    elsif ((@genre != "All" && @genre != nil) && @instrument_t != "All" && @instrument_t != nil )
+    elsif ((@genre != "All" && @genre) && @instrument_t != "All" && @instrument_t && @instrument_t != "Choose an instrument" )
        @search_params = "#{@genre}, #{@instrument_t} "
     elsif (@location != "")
        @search_params = "#{@location}"
-    elsif ((@genre != "All" && @genre != nil))
+    elsif @genre != "All" && @genre && @genre != "Choose a genre"
        @search_params = "#{@genre}"
-    elsif (@instrument_t != "All" && @instrument_t != nil )
+    elsif (@instrument_t != "All" && @instrument_t && @instrument_t != "Choose an instrument" )
        @search_params = "#{@instrument_t}"
     else
        @search_params = "All"
@@ -42,7 +42,7 @@ class JammsController < ApplicationController
     end
 
 
-    if (params[:instrument_t].present? &&  params[:instrument_t] != "All")
+    if (params[:instrument_t].present? &&  (params[:instrument_t] != "All" && params[:instrument_t] != "Choose an instrument"))
       @jamms = @jamms.jamms_with_spaces_available_for_instrument(params[:instrument_t])
     end
 

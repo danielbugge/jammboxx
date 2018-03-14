@@ -6,7 +6,7 @@ function slideBanner() {
   const name = document.querySelector(".name");
   const containeri = document.querySelector(".containeri");
 
-  firstForm.addEventListener("focusout", function(event) {
+  firstForm.addEventListener("change", function(event) {
     containeri.classList.add("center");
     containeri.classList.add("slider-two-active");
     containeri.classList.remove("full");
@@ -14,7 +14,7 @@ function slideBanner() {
     event.preventDefault();
   });
 
-  secondForm.addEventListener("focusout", function(event) {
+  secondForm.addEventListener("change", function(event) {
     containeri.classList.add("full");
     containeri.classList.add("slider-three-active");
     containeri.classList.remove("center");
