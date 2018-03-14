@@ -47,7 +47,7 @@
                   </div>
                 <% else %>
                   <div class="icon-wrap">
-                    <%= cl_image_tag(instrument_t.icon_url, width: 40, class: "avatar-instrument") %>
+                    <%= cl_image_tag(instrument_t.icon_url, color: "#D93479", effect: "colorize:100", width: 40, class: "avatar-instrument") %>
                     <p class="avatar-instrument-type avatar-instrument-type-taken"> <%= instrument_t.name %> </p>
                   </div>
                 <% end %>
