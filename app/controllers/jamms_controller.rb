@@ -4,7 +4,7 @@ class JammsController < ApplicationController
   skip_before_action :authenticate_user!, only: [:index, :show, :search]
   skip_after_action :verify_authorized, only: [:show, :search]
   skip_after_action :verify_policy_scoped, only: [:index]
-  before_action :set_jamm, only: [:edit, :update, :delete]
+  before_action :set_jamm, only: [:edit, :update, :delete, :show]
 
   def index
     @transparent_navbar = true
@@ -13,47 +13,38 @@ class JammsController < ApplicationController
     @instrument_t = params[:instrument_t]
     @genres = Genre.all
     @instrument_types = InstrumentType.all
+    @levels = ["Beginner", "Intermediate", "Expert"]
 
-    if (@location != "" && (@genre != "Choose a genre" && @genre != nil)  && (@instrument_t != "Choose an instrument" && @instrument_t != nil ))
+    if (@location != "" && (@genre != "All" && @genre != nil)  && (@instrument_t != "All" && @instrument_t != nil ))
        @search_params = "#{@location}, #{@genre}, #{@instrument_t}"
-    elsif (@location != "" && (@genre != "Choose a genre" && @genre != nil))
+    elsif (@location != "" && (@genre != "All" && @genre != nil))
        @search_params = "#{@location}, #{@genre} "
-    elsif ((@location != "" &&   @location != "Choose a city" && @location != nil) && @instrument_t != "Choose an instrument" && @instrument_t != nil )
+    elsif ((@location != "" &&   @location != "Choose your city" && @location != nil) && @instrument_t != "All" && @instrument_t != nil )
        @search_params = "#{@location}, #{@instrument_t} "
-    elsif ((@genre != "Choose a genre" && @genre != nil) && @instrument_t != "Choose an instrument" && @instrument_t != nil )
+    elsif ((@genre != "All" && @genre != nil) && @instrument_t != "All" && @instrument_t != nil )
        @search_params = "#{@genre}, #{@instrument_t} "
     elsif (@location != "")
        @search_params = "#{@location}"
-    elsif ((@genre != "Choose a genre" && @genre != nil))
+    elsif ((@genre != "All" && @genre != nil))
        @search_params = "#{@genre}"
-    elsif (@instrument_t != "Choose an instrument" && @instrument_t != nil )
+    elsif (@instrument_t != "All" && @instrument_t != nil )
        @search_params = "#{@instrument_t}"
     else
-       @search_params = "See all"
+       @search_params = "All"
     end
 
-
-    #@jamms = policy_scope(Jamm.where.not(latitude: nil, longitude: nil))
-    #if params[:city].present?
-      #@jamms = Jamm.near(params[:city], 30)
-    #end
-#
-    #if (params[:genre].present? &&  params[:genre] != "Choose a genre")
-      #@jamms = @jamms.where(genre: Genre.where(name: params[:genre]))
-    #end
-#
-    #if (params[:instrument_type].present? &&  params[:instrument_type] != "Choose a instrument")
-    # HERE WE SHOULD CALD THE METHOD AND THEN RANDSACK
-      #@jamms = @jamms.where(instrument_type: Instrument_type.where(name: params[:instrument_type]))
-    #end
     if params[:city].present?
-       @q = Jamm.near(params[:city], 30).ransack(params[:q])
+      @q = Jamm.near(params[:city], 30).ransack(params[:q])
+      @jamms = @q.result(distinct: true)
     else
       @q = policy_scope(Jamm).where.not(latitude: nil, longitude: nil).ransack(params[:q])
+      @jamms = @q.result(distinct: true)
     end
-    @jamms = @q.result(distinct: true)
 
 
+    if (params[:instrument_t].present? &&  params[:instrument_t] != "All")
+      @jamms = @jamms.jamms_with_spaces_available_for_instrument(params[:instrument_t])
+    end
 
 
     @markers = @jamms.map do |jamm|
@@ -67,10 +58,15 @@ class JammsController < ApplicationController
 
   def show
     @jamm_players = JammPlayer.where(jamm_id: params[:id])
-    @jamm = Jamm.where.not(latitude: nil, longitude: nil).find(params[:id])
+    #@jamm = Jamm.where.not(latitude: nil, longitude: nil).find(params[:id])
     @markers = [{ lat: @jamm.latitude, lng: @jamm.longitude }]
     @jamm_player = JammPlayer.new
-    @available_spots = @jamm.max_players - @jamm_players.count
+
+    ### WATCH THIS
+    @available_spots_bring_your_own = @jamm.max_players - @jamm_players.count
+    ## AND THIS
+    @available_spots = @jamm.max_players - @jamm_players.count + @jamm_players.where(user_id: nil).count
+
     @instruments = Instrument.where(user_id: current_user)
          # infoWindow: { content: render_to_string(partial: "/jamm/map_box", locals: { jamm: jamm }) }
          # raise
@@ -79,6 +75,7 @@ class JammsController < ApplicationController
   def create
     @jamm = Jamm.new(jamm_params)
     @jamm.user = current_user
+    @jamm.photo = rand(1..23).to_s
     if @jamm.save
       redirect_to jamm_path(@jamm)
     else
@@ -116,6 +113,6 @@ class JammsController < ApplicationController
   end
 
   def jamm_params
-    params.require(:jamm).permit(:user_id, :name, :address, :description, :date, :time, :duration, :max_players, :genre_id, :level, :allow_new_instrument, :photo, :jamm_picture, :jamm_picture_cache)
+    params.require(:jamm).permit(:user_id, :name, :address, :description, :date, :time, :duration, :max_players, :genre_id, :level, :allow_new_instrument, :photo, :jamm_picture)
   end
 end

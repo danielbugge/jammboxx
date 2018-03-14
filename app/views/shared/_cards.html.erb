@@ -17,7 +17,7 @@
           <div class="card-right_content">
             <div class= "card-top">
               <h3><%= jam.name %></h3>
-              <p> <%= jam.date %> </p>
+              <p> <%= jam.time %>:00 - <%= jam.date.strftime('%A, %b %d') %> </p>
             </div>
             <div class="card-middle-top">
               <div>
@@ -36,14 +36,20 @@
               <%  JammPlayer.where(jamm_id: jam.id).all.each do |player|  %>
 
                 <!--THIS USES THE FIRST INSTRUMENT OF THE JAMMPLAYER AND PUT IN THE CARD,SHOULD CHANGE WHEN MANUALLY SELECT THE INSTRUMENT -->
-                <% instrument_t_pic = player.instrument.instrument_type.icon_url %>
+                <% instrument_t = player.instrument.instrument_type %>
                 <!--STORE THE EMAIL OF THE USER -->
 
-                <%  if player.user_id.nil? %>
+                <% if player.user_id.nil? %>
                   <!-- THIS SHOULD BE ICONS...SHOW THE INSTRUMENT OF THE USER AND THE EMAIL -->
-                  <%= cl_image_tag(instrument_t_pic, width: 40, class: "avatar-instrument") %>
+                  <div class="icon-wrap">
+                    <%= cl_image_tag(instrument_t.icon_url, width: 40, class: "avatar-instrument avatar-instrument-available") %>
+                    <p class="avatar-instrument-type avatar-instrument-type-available"> <%= instrument_t.name %> </p>
+                  </div>
                 <% else %>
-                  <%= cl_image_tag(instrument_t_pic, width: 40, class: "avatar-instrument-taken") %>
+                  <div class="icon-wrap">
+                    <%= cl_image_tag(instrument_t.icon_url, width: 40, class: "avatar-instrument") %>
+                    <p class="avatar-instrument-type avatar-instrument-type-taken"> <%= instrument_t.name %> </p>
+                  </div>
                 <% end %>
                 <% jamm_players += 1 %>
               <% end %>
@@ -51,13 +57,11 @@
               <!-- STORE A VALUE WITH THE NUMBER OF AVAILABLE SPOTS -->
               <% available_spots = jam.max_players - jamm_players %>
 
-              <!-- INJECTS ALL THE AVAILABLE SPOTS AS LINKS TO THE SHOW OF THE PAGE. COULD GO TO THE NEW JAMMPLAYER CONTROLLER ACTION -->
-              <% available_spots.times do |av| %>
-                <%#= link_to jamm_path(jam) do %>
-                  <%#= cl_image_tag("add.png", height: 50, width: 50, crop: "scale", class: "avatar-large plus-icon" )  %>
-                <%# end %>
-              <% end  %>
-              <p class="card-available-spots"> <%= available_spots %> available spots to bring your instruments</p>
+              <% if available_spots == 1 %>
+                <p class="card-available-spots"> <%= available_spots %> available spot to bring your instrument</p>
+              <% else %>
+                <p class="card-available-spots"> <%= available_spots %> available spots to bring your instruments</p>
+              <% end %>
             </div>
           </div>
           <div class="card-extra-right">

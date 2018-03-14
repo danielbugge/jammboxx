@@ -61,7 +61,7 @@ end
 counter = 1
 
 # Instruments Join Table
-50.times do
+150.times do
   Instrument.create!(
     model: Faker::LordOfTheRings.location,
     user_id: User.ids.sample,
@@ -78,15 +78,15 @@ address_array = ["8 Nugent Rd, London N19 3QF, UK","15 Meadow Rd, Windermere LA2
 
 counter = 1
 
-20.times do
-  new_jamm = Jamm.create!(
+40.times do
+  Jamm.create!(
     name: Faker::FamilyGuy.location,
     description: Faker::HitchhikersGuideToTheGalaxy.quote,
     address: address_array.sample,
     date: Faker::Date.forward(30),
     duration: rand(1..3),
     genre_id: Genre.all.sample.id,
-    max_players: rand(1..10),
+    max_players: rand(2..10),
     level: ["Beginner", "Intermediate", "Expert"].sample,
     allow_new_instrument: [true, false].sample,
     photo: rand(1..23).to_s,
@@ -106,7 +106,11 @@ Jamm.all.each do |jam|
   ts = rand(1..jam.max_players)
   ts.times do
     user_id = User.all.sample.id
-    Instrument.where(user_id: user_id).empty? ? instrument_played_id = Instrument.all.sample.id : instrument_played_id = Instrument.where(user_id: user_id).sample.id
+    if Instrument.where(user_id: user_id).empty?
+     instrument_played_id = Instrument.all.sample.id
+    else
+      instrument_played_id = Instrument.where(user_id: user_id).sample.id
+    end
     new_jamm_player = JammPlayer.create!(jamm_id: jam.id, user_id: user_id, instrument_id: instrument_played_id)
   end
   puts "Jamm player joint ##{counter} done!"
@@ -114,10 +118,22 @@ Jamm.all.each do |jam|
   counter += 1
 end
 
+50.times do
+  jamm = Jamm.where.not(instrument_ids: []).sample
+  JammPlayer.create!(
+    jamm_id: jamm.id,
+    user_id: nil,
+    instrument_id: jamm.instrument_ids.sample
+    )
+  jamm.update!(max_players: jamm.max_players += 2)
+  puts "Jamm player joint ##{counter} done!"
+  puts "\n"
+  counter += 1
+end
 
 User.create!(email: 'ciao@ciao.com', password: '123456', username: 'ciaobello', genre_id: Genre.first.id, picture: "p#{rand(1..20)}", avatar: "p#{rand(1..20)}")
 Instrument.create!(model: Faker::LordOfTheRings.location, user_id: User.last.id, instrument_type_id: InstrumentType.all.sample.id)
 
 puts "basic user --- > email: 'ciao@ciao.com' password: '123456'"
 puts "\n"
-puts "All done mfkr!"
+puts "All done mfkr! Sig?"

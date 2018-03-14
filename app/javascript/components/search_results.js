@@ -1,4 +1,4 @@
-function addSearchResults() {
+/*function addSearchResults() {
   var searchPlaceHolder = document.getElementById("search-results");
   var cityFilter = document.getElementById("city-filter").value;
   var genreFilter = document.getElementById("genre-filter").value;
@@ -6,3 +6,4 @@ function addSearchResults() {
 };
 
 export { addSearchResults };
+*/

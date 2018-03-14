@@ -4,6 +4,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery
   before_action :authenticate_user!
   before_action :configure_permitted_parameters, if: :devise_controller?
+  before_action :authenticate_user!, :store_location
 
   include Pundit
 
@@ -24,6 +25,12 @@ class ApplicationController < ActionController::Base
     added_attrs = [:username, :genre_id, :picture, :email, :password, :password_confirmation, :remember_me, :avatar, :avatar_cache, :remove_avatar]
     devise_parameter_sanitizer.permit :sign_up, keys: added_attrs
     devise_parameter_sanitizer.permit :account_update, keys: added_attrs
+  end
+
+  def store_location
+      # store last url as long as it isn't a /users path
+      store_location_for(:user, request.fullpath) unless devise_controller?
+    # session[:previous_url] = request.fullpath unless request.fullpath =~ /\/users/
   end
 
   private

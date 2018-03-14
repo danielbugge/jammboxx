@@ -15,6 +15,10 @@
 .avatar-instrument {
   width: 40px;
   border-radius: 10%;
+  margin: 0px 4px;
+}
+
+.avatar-instrument-available {
   opacity: 0.4;
 }
 
@@ -42,4 +46,24 @@
   color:#E55381;
   text-decoration:none;
   cursor:pointer;
+}
+
+.avatar-instrument-type {
+  visibility: hidden;
+  position: absolute;
+  color: white;
+  padding: 0 4px;
+  border-radius: 8%;
+  font-size: 12px;
+}
+.icon-wrap:hover .avatar-instrument-type {
+  visibility: visible;
+}
+
+.avatar-instrument-type-available {
+  background: #D93479;
+}
+
+.avatar-instrument-type-taken {
+  background: black;
 }
