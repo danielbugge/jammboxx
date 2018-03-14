@@ -1,17 +1,11 @@
 <div class="banner" style="align-items: center; background-image: linear-gradient(to top, rgba(0, 0, 0, 0) 0, #000 200%),  url('<%= image_url("banner_image.jpg") %>');">
   <div class="banner-content">
-    <div>
+    <div class="brand_logo">
       <h1><%= image_tag "jammboxx.png", height: 150 %></h1>
       <p>Join fellow musicians wherever you go!</p>
     </div>
-    <h2>
-      <%= form_tag jamms_path, method: :get do %>
-        <%= text_field_tag :city,
-          params[:city],
-          class: "btn form-control input",
-          value: "",
-          placeholder: "Choose a city" %>
-      <% end %>
-    </h2>
+    <div class="slider-banner">
+      <%= render 'shared/slider' %>
+    </div>
   </div>
 </div>

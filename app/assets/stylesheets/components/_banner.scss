@@ -39,6 +39,14 @@
 
 .form-control {
   border-radius: 30px;
+  outline: none;
 }
+
+.btn:focus, .btn.focus, .btn:active:focus, .btn:active.focus, .btn.active:focus, .btn.active.focus {
+  outline: none;
+  outline-offset: none;
+}
+
+
 
 
