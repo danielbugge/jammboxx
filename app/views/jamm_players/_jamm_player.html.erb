@@ -1,22 +1,68 @@
+<% leader = @jamm.user %> <% participant = jamm_player.user %>
+  <% instrument = jamm_player.instrument.instrument_type.icon_url %>
+          <p><strong> <%= cl_image_tag(instrument, width: 70, class: "avatar")%>
 
-  <% instrument_url = jamm_player.instrument.instrument_type.icon_url %>
-          <p><strong> <%= cl_image_tag(instrument_url, width: 70, class: "avatar")%>
-           <% if  jamm_player.user %>
-              <%= cl_image_tag(jamm_player.user.picture, width: 70, class: "avatar-large") %>
-              <%=  jamm_player.user.username %>
-              <% if jamm_player.user == current_user %>
-                <% if @jamm.user == current_user %>
-                  <%= link_to "Leave group", jamm_jamm_player_path(@jamm, jamm_player), method: :patch, data: { confirm: 'Are you sure?' } %>
-                <% elsif @instruments.include? jamm_player.instrument %>
-                  <%= link_to "Leave group test", jamm_jamm_player_path(@jamm, jamm_player), method: :delete, class: "join-but hvr-icon-float-away", data: { confirm: 'Are you sure?' } %>
-                <% elsif current_user != @jamm.user%>
-                <%= link_to "Leave group", jamm_jamm_player_path(@jamm, jamm_player), method: :patch, data: { confirm: 'Are you sure?' } %>
-                <% end %>
+            <% if user_signed_in? %>
+
+
+               <% unless participant.nil? %>
+
+
+                  <%= cl_image_tag(jamm_player.user.picture, width: 70, class: "avatar-large") %>
+                  <%=  participant.username %>
+                  <% #if current user is the user in the jamm_player instance i.e if he has joined %>
+                  <% if current_user == participant || leader == current_user  %>
+
+
+
+                  <% # if user is the jamm leader create leave link to update instance %>
+                    <% if current_user == participant && leader != current_user%></%>
+                      <% if @instruments.include? jamm_player.instrument  %>
+                         <%= link_to "Leave group as instrument owner", jamm_jamm_player_path(@jamm, jamm_player), method: :delete, class: "join-but hvr-icon-float-away", data: { confirm: 'Are you sure?' } %>
+                      <% else %>
+                        <%= link_to "Leave group", jamm_jamm_player_path(@jamm, jamm_player), method: :patch, class: "join-but hvr-icon-float-away", data: { confirm: 'Are you sure?' } %>
+
+                      <% end %>
+                    <% end %>
+                    <% if leader == current_user %>
+
+                      <%= link_to "Leave group", jamm_jamm_player_path(@jamm, jamm_player), method: :patch, class: "join-but hvr-icon-float-away", data: { confirm: 'Are you sure?' } %>
+
+                    </p>
+                      <% end %>
+
+
+
+
+
+
+
+                  <%# end %>
+
+
+                    <%# if @instruments.include? jamm_player.instrument %>
+                      <%#= link_to "Leave group test", jamm_jamm_player_path(@jamm, jamm_player), method: :delete, class: "join-but hvr-icon-float-away", data: { confirm: 'Are you sure?' } %>
+                      <% # if current user is not the jamm leader create leave link to update instance %>
+
+
+
+
+                    <%# if leader == current_user %>
+                      <% # if user brings his own instrument create leave link to destroy instance %>
+                    <%# elsif current_user != leader %>
+                    <%#= link_to "Leave group", jamm_jamm_player_path(@jamm, jamm_player), method: :patch, class: "join-but hvr-icon-float-away", data: { confirm: 'Are you sure?' } %>
+                    <% end %>
+
+
+                  <% # if the current user is not the user in the jamm_player instance create available to play link %>
+                <% else %>
+                  <%= link_to "Play this instrument", jamm_jamm_player_path(@jamm, jamm_player), method: :patch %>
+
               <% end %>
             <% else %>
-              <%= link_to "Play this instrument", jamm_jamm_player_path(@jamm, jamm_player), method: :patch %>
-          <% end %>
-              </strong> </p>
+              <%#= link_to "Join Jamm", new_user_session_path, class: "join-but hvr-icon-float-away"  %>
+            <% end %>
+          </strong> </p>
 
 
 
