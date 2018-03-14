@@ -25,8 +25,6 @@
       <hr>
       <div class="players-list">
         <%= render @jamm_players %>
-            <% #@available_spots_bring_your_own.times do |av| %>
-
         <% if user_signed_in? %>
             <%= render "layouts/modal" %>
              <% if leader == current_user %>
