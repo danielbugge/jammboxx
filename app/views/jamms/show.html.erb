@@ -29,18 +29,21 @@
             <%= render "layouts/modal" %>
              <% if leader == current_user %>
                       <p class= "show-avaliable-spot">
-                      <a href="" data-toggle="modal" data-target="#newJammPlayer" class="join-but hvr-icon-float-away">Add your available instruments</a>
+                      <a href="" data-toggle="modal" data-target="#newJammPlayer">Add your available instruments</a>
                     <% end %>
-
+      </div>
+<div class="text-center">
              <% if @jamm.jamm_players.where(user: current_user).empty? && leader != current_user%></%>
+                      <hr>
                       <p class= "show-avaliable-spot">
-                        <a href="" data-toggle="modal" data-target="#newJammPlayer" class="join-but hvr-icon-float-away">Bring your own!</a>
+                        <strong><a href="" data-toggle="modal" data-target="#newJammPlayer">Bring your instrument!</a></strong>
                       </p>
               <% end %>
+
+</div>
         <% else %>
-            <%= link_to "Join Jamm", new_user_session_path, class: "join-but hvr-icon-float-away"  %>
+            <%= link_to "Join Jamm", new_user_session_path %>
         <% end %>
-      </div>
     </div>
 
     <div class="jamm-info">
