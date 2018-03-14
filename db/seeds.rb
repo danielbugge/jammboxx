@@ -28,7 +28,7 @@ genre_array.each do |genre|
 end
 
 # INSTRUMENTS TYPES MODEL
-instrument_types_array = [ "Bass Guitar", "Drum Set", "Electric Guitar", "Flute", "Harp", "Maracas", "Piano",
+instrument_types_array = [ "Bass Guitar", "Drum Set", "Electric guitar", "Flute", "Harp", "Maracas", "Piano",
                            "Saxophone","Triangle","Trumpet","Violoncello"]
 
 counter = 1
