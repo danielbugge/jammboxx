@@ -24,10 +24,13 @@
       <%= f.input :allow_new_instrument,  as: :select, label: false, prompt: "allow new instrument?" %>
     </div>
 
-    <%= f.label :jamm_picture do %>
-      <%= f.file_field :jamm_picture %>
-     <%= f.hidden_field :jamm_picture_cache %>
-    <% end %>
+      <%= f.input :jamm_picture %>
+      <%= f.input :jamm_picture_cache, as: :hidden %>
+
+    <%#= f.label :jamm_picture do %>
+      <%#= f.file_field :jamm_picture %>
+     <%#= f.hidden_field :jamm_picture_cache %>
+    <%# end %>
     <hr>
     <div class="text-center">
       <%= f.button :submit %>
