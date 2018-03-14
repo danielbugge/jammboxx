@@ -136,4 +136,4 @@ Instrument.create!(model: Faker::LordOfTheRings.location, user_id: User.last.id,
 
 puts "basic user --- > email: 'ciao@ciao.com' password: '123456'"
 puts "\n"
-puts "All done mfkr?"
+puts "All done mfkr! Sig?"
