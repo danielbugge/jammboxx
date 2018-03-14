@@ -1,8 +1,9 @@
+<% leader = @jamm.user %>
 <div class="banner-show-container" >
   <% if @jamm.jamm_picture.nil? %>
     <div class="banner banner-show" style="background-image: url(<%= image_url(cl_image_path @jamm.photo) %>)"></div>
- <!--  <% %>
-    <div class="banner banner-show" style="background-image: url(<%= image_url(cl_image_path @jamm.jamm_picture) %>)"></div> -->
+  <% # else %>
+    <!-- <div class="banner banner-show" style="background-image: url(<%= image_url(cl_image_path @jamm.jamm_picture) %>)"></div> -->
   <% end %>
   <div class="banner-show-content">
     <h1><%=@jamm.name %></h1>
@@ -27,16 +28,16 @@
 
         <% if user_signed_in? %>
             <%= render "layouts/modal" %>
+             <% if leader == current_user %>
+                      <p class= "show-avaliable-spot">
+                      <a href="" data-toggle="modal" data-target="#newJammPlayer" class="join-but hvr-icon-float-away">Add your available instruments</a>
+                    <% end %>
 
-            <% if current_user == @jamm.user %>
-                <p class= "show-avaliable-spot">
-                  <a href="" data-toggle="modal" data-target="#newJammPlayer" class="join-but hvr-icon-float-away">Add your available instruments</a>
-                </p>
-            <% else %>
-                <p class= "show-avaliable-spot">
-                  <a href="" data-toggle="modal" data-target="#newJammPlayer" class="join-but hvr-icon-float-away">Bring your own!</a>
-                </p>
-            <% end %>
+             <% if @jamm.jamm_players.where(user: current_user).empty? && leader != current_user%></%>
+                      <p class= "show-avaliable-spot">
+                        <a href="" data-toggle="modal" data-target="#newJammPlayer" class="join-but hvr-icon-float-away">Bring your own!</a>
+                      </p>
+              <% end %>
         <% else %>
             <%= link_to "Join Jamm", new_user_session_path, class: "join-but hvr-icon-float-away"  %>
         <% end %>
