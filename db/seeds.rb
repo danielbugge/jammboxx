@@ -106,7 +106,11 @@ Jamm.all.each do |jam|
   ts = rand(1..jam.max_players)
   ts.times do
     user_id = User.all.sample.id
-    Instrument.where(user_id: user_id).empty? ? instrument_played_id = Instrument.all.sample.id : instrument_played_id = Instrument.where(user_id: user_id).sample.id
+    if Instrument.where(user_id: user_id).empty?
+     instrument_played_id = Instrument.all.sample.id
+    else
+      instrument_played_id = Instrument.where(user_id: user_id).sample.id
+    end
     new_jamm_player = JammPlayer.create!(jamm_id: jam.id, user_id: user_id, instrument_id: instrument_played_id)
   end
   puts "Jamm player joint ##{counter} done!"
@@ -121,7 +125,7 @@ end
     user_id: nil,
     instrument_id: jamm.instrument_ids.sample
     )
-  jamm.max_players += 2
+  jamm.update!(max_players: jamm.max_players += 2)
   puts "Jamm player joint ##{counter} done!"
   puts "\n"
   counter += 1
@@ -132,4 +136,4 @@ Instrument.create!(model: Faker::LordOfTheRings.location, user_id: User.last.id,
 
 puts "basic user --- > email: 'ciao@ciao.com' password: '123456'"
 puts "\n"
-puts "Sig?"
+puts "All done mfkr?"
