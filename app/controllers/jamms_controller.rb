@@ -41,10 +41,19 @@ class JammsController < ApplicationController
       @jamms = @q.result(distinct: true)
     end
 
-
+    session[:instrument] = params[:instrument_t]
     if (params[:instrument_t].present? &&  (params[:instrument_t] != "All" && params[:instrument_t] != "Choose an instrument"))
-      @jamms = @jamms.jamms_with_spaces_available_for_instrument(params[:instrument_t])
+      j_array = @jamms.jamms_with_spaces_available_for_instrument(params[:instrument_t])
+
+      # @jamms.select{ |jamm| jamm.jamm_players.select {|jp| jp.instrument.instrument_type == params[:instrument_t] }
+      # @jamms = @q.result(distinct: true)
+
+      #@a = @jamms.select { |jamm| jamm.available? }
+      #@b = @a.select {|jamm| jamm.available_jamm_players.select { |jp| jp.instrument.instrument_type == params[:instrument_t]}}
+      #a = jamm_players.where(instrument: Instrument.where(instrument_id: (instrument_type.name == params[:instrument_t])
     end
+
+    @jamms = @jamms & j_array if j_array
 
 
     @markers = @jamms.map do |jamm|

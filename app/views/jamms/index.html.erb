@@ -21,12 +21,12 @@
               placeholder: "Choose a city" %>
         </div>
         <div id="genre-filter" class="filter">
-          <%= f.collection_select :genre_id_eq, @genres, "id", "name", {include_blank: "All"}, {class: "btn form-control" } %>
+          <%= f.collection_select :genre_id_eq, @genres, "id", "name", {include_blank: "Choose a genre"}, {class: "btn form-control" } %>
         </div>
         <div id="instrument-type-filter" class="filter">
            <%= select_tag "instrument_t",
-            options_for_select(["All"]) + options_from_collection_for_select(@instrument_types, "name", "name"),
-            class: "btn form-control" %>
+            options_for_select(["Choose an instrument"], selected: session[:instrument]) + options_from_collection_for_select(@instrument_types, "name", "name"), value: session[:instrument],
+            class: "btn form-control " %>
         </div>
         <div>
           <%= f.submit 'FILTER',
