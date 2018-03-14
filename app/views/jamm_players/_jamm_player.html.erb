@@ -7,14 +7,14 @@
               <% if jamm_player.user == current_user %>
                 <% if @jamm.user == current_user %>
                   <%= link_to "Leave group", jamm_jamm_player_path(@jamm, jamm_player), method: :patch, data: { confirm: 'Are you sure?' } %>
-                <% elsif @instruments.include? jamm_player.instrument #|| @jamm.user_id == current_user.id%>
-                  <%= link_to "Leave group test", jamm_jamm_player_path(@jamm, jamm_player), method: :delete, data: { confirm: 'Are you sure?' } %>
+                <% elsif @instruments.include? jamm_player.instrument %>
+                  <%= link_to "Leave group test", jamm_jamm_player_path(@jamm, jamm_player), method: :delete, class: "join-but hvr-icon-float-away", data: { confirm: 'Are you sure?' } %>
                 <% elsif current_user != @jamm.user%>
                 <%= link_to "Leave group", jamm_jamm_player_path(@jamm, jamm_player), method: :patch, data: { confirm: 'Are you sure?' } %>
                 <% end %>
               <% end %>
             <% else %>
-              <%= link_to "Available", jamm_jamm_player_path(@jamm, jamm_player), method: :patch %>
+              <%= link_to "Play this instrument", jamm_jamm_player_path(@jamm, jamm_player), method: :patch %>
           <% end %>
               </strong> </p>
 

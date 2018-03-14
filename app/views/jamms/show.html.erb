@@ -30,15 +30,15 @@
 
             <% if current_user == @jamm.user %>
                 <p class= "show-avaliable-spot">
-                <a href="" data-toggle="modal" data-target="#newJammPlayer" class="join-but hvr-icon-float-away">Add your instruments!</a>
+                  <a href="" data-toggle="modal" data-target="#newJammPlayer" class="join-but hvr-icon-float-away">Add your available instruments</a>
                 </p>
             <% else %>
                 <p class= "show-avaliable-spot">
-                <a href="" data-toggle="modal" data-target="#newJammPlayer" class="join-but hvr-icon-float-away">Bring your instrument!</a>
+                  <a href="" data-toggle="modal" data-target="#newJammPlayer" class="join-but hvr-icon-float-away">Bring your own!</a>
                 </p>
             <% end %>
         <% else %>
-            <%= link_to "Join", new_user_session_path, class: "join-but hvr-icon-float-away"  %>
+            <%= link_to "Join Jamm", new_user_session_path, class: "join-but hvr-icon-float-away"  %>
         <% end %>
       </div>
     </div>
