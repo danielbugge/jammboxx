@@ -9,13 +9,13 @@
                   <% if current_user == participant || leader == current_user  %>
                     <% if current_user == participant && leader != current_user%></%>
                       <% if @instruments.include? jamm_player.instrument  %>
-                         <%= link_to "Leave group as instrument owner", jamm_jamm_player_path(@jamm, jamm_player), method: :delete, class: "join-but hvr-icon-float-away", data: { confirm: 'Are you sure?' } %>
+                         <%= link_to "Leave group as instrument owner", jamm_jamm_player_path(@jamm, jamm_player), method: :delete, data: { confirm: 'Are you sure?' } %>
                       <% else %>
-                        <%= link_to "Leave group", jamm_jamm_player_path(@jamm, jamm_player), method: :patch, class: "join-but hvr-icon-float-away", data: { confirm: 'Are you sure?' } %>
+                        <%= link_to "Leave group", jamm_jamm_player_path(@jamm, jamm_player), method: :patch, data: { confirm: 'Are you sure?' } %>
                       <% end %>
                     <% end %>
                     <% if leader == current_user %>
-                      <%= link_to "Play different instrument", jamm_jamm_player_path(@jamm, jamm_player), method: :patch, class: "join-but hvr-icon-float-away", data: { confirm: 'Are you sure?' } %>
+                      <%= link_to "Play different instrument", jamm_jamm_player_path(@jamm, jamm_player), method: :patch, data: { confirm: 'Are you sure?' } %>
 
                       <% end %>
                     <% end %>
