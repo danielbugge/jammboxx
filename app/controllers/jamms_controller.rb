@@ -63,6 +63,10 @@ class JammsController < ApplicationController
         # infoWindow: { content: render_to_string(partial: "/spaces/map_box", locals: { flat: flat }) }
       }
     end
+    respond_to do |format|
+      format.html
+      format.js
+    end
   end
 
   def show

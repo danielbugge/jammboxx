@@ -1,0 +1,6 @@
+var searchResults = document.getElementById('search-results')
+var searchQuery = document.getElementById('search-results-s')
+var jamms = '<%= j render "shared/cards" %>'
+
+searchResults.innerHTML = jamms
+searchQuery.innerHTML = ' <h2> <%= @search_params %> </h2>'
