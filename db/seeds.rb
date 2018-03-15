@@ -80,7 +80,7 @@ counter = 1
 
 40.times do
   Jamm.create!(
-    name: Faker::FamilyGuy.location,
+    name: Faker::FamilyGuy.location, ["Trial Jamm in my new apartment!", "Wonderful Jamm", "Jamm with friends", "Jamm in nice studio in Lisbon", "Nice Jamm Sesh", "Moved to Lisbon!", ""]
     description: Faker::HitchhikersGuideToTheGalaxy.quote,
     address: address_array.sample,
     date: Faker::Date.forward(30),
