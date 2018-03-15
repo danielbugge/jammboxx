@@ -105,3 +105,20 @@
 .containeri.full .step-two .liner {
   width: 100%;
 }
+
+#home-butt {
+  margin-top: 10px;
+  color: #D93479;
+  background-color: #080215;
+  border-radius: 30px;
+  border: 1px solid #D93479;
+  width: 60%;
+  opacity: 1;
+  letter-spacing: 5px;
+  -webkit-transition: background 500ms;
+  font-weight: lighter;
+  &:hover {
+    color: #080215;
+    background-color: #D93479;
+  }
+}
