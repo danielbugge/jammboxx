@@ -1,6 +1,6 @@
 <% leader = @jamm.user %> <% participant = jamm_player.user %>
   <% instrument = jamm_player.instrument.instrument_type.icon_url %>
-          <p><strong> <%= cl_image_tag(instrument, width: 70, class: "avatar")%>
+          <p><strong> <%= cl_image_tag(instrument, width: 70, class: "avatar-instrument-show")%>
 
             <% if user_signed_in? %>
                <% unless participant.nil? %>
