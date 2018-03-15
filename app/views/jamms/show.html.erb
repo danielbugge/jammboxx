@@ -1,9 +1,9 @@
 <% leader = @jamm.user %>
 <div class="banner-show-container" >
   <% if @jamm.jamm_picture.url  %>
-    <div class="banner banner-show" style="background-image: url(<%= image_url(cl_image_path @jamm.jamm_picture) %>)"></div>
+    <div class="banner banner-show" style="background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0, #090216 100%), url(<%= image_url(cl_image_path @jamm.jamm_picture) %>)"></div>
   <% else %>
-    <div class="banner banner-show" style="background-image: url(<%= image_url(cl_image_path @jamm.photo) %>)"></div>
+    <div class="banner banner-show" style="background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0, #090216 100%), url(<%= image_url(cl_image_path @jamm.photo) %>)"></div>
   <% end %>
 
   <div class="banner-show-content">
@@ -13,9 +13,9 @@
 <div class="container">
   <div class="grid">
     <div class="description">
-      <h3> <%= @jamm.description %> </h3>
+      <h4><em> <%= @jamm.description %> </em></h4>
       <hr>
-      <h4> <%= @jamm.time %>:00 - <%= @jamm.date.strftime('%b %d, %Y') %> <strong> @ </strong> <%= @jamm.address %></h4>
+      <h5> <%= @jamm.time %>:00 - <%= @jamm.date.strftime('%b %d, %Y') %> <strong> @ </strong> <%= @jamm.address %></h5>
     </div>
 
     <div class="players">

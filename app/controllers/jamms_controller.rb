@@ -76,6 +76,7 @@ class JammsController < ApplicationController
   end
 
   def show
+    @transparent_navbar = true
     @jamm_players = JammPlayer.where(jamm_id: params[:id])
     #@jamm = Jamm.where.not(latitude: nil, longitude: nil).find(params[:id])
     @markers = [{ lat: @jamm.latitude, lng: @jamm.longitude }]
