@@ -51,6 +51,17 @@
   height: 40px;
 }
 
+// .slider-banner {
+//   position: relative;
+// }
 
+.skip {
+  position: absolute;
+  bottom: 28%;
+  right: 38%;
+  &:hover {
+    color: #D93479;
+  }
 
+}
 
