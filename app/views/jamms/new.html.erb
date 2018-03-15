@@ -4,9 +4,9 @@
   <div class="new-jamm-form">
     <%= simple_form_for @jamm do |f| %>
 
-    <%= f.input :name, label: false, placeholder: "jamm title", error: 'Title is mandatory, please specify one' %>
-    <%= f.input :description, label: false, placeholder: "description", error: 'Description is mandatory, please specify one' %>
-    <%= f.input :address, label: false, placeholder: "address", error: 'Address is mandatory, please specify one' %>
+    <%= f.input :name, label: false, placeholder: "jamm title", input_html: {value: f.object.name || 'Jamm in nice studio in Lisbon'}, error: 'Title is mandatory, please specify one' %>
+    <%= f.input :description, label: false, placeholder: "description", input_html: {value: f.object.description || 'Wanted to get a few friends together to jamm after work'}, error: 'Description is mandatory, please specify one' %>
+    <%= f.input :address, label: false, placeholder: "address", input_html: {value: f.object.address || 'Rua da Pimenta, 9, Parque das Nações, Lisboa'}, error: 'Address is mandatory, please specify one' %>
 
     <div style='columns: 3;'>
       <%= f.input :date, label: false, :order => [:day, :month], discard_year: true, error: 'Date is mandatory, please specify one' %>
