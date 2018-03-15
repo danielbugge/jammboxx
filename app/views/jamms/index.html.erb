@@ -12,7 +12,7 @@
 <div class="index-container">
   <div class="filters">
 
-    <%= search_form_for @q, url: jamms_path, method: "get", remote: true do |f| %>
+    <%= search_form_for @q, url: jamms_path, method: "get", class: "francisco" , remote: true do |f| %>
       <%= form_tag jamms_path, method: "get" do %>
         <div id="city-filter" class="filter input">
           <%= text_field_tag :city,

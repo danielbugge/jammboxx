@@ -15,10 +15,11 @@
     <div class="description">
       <div class="desc-flex">
         <div class="desc-left">
-
-          <%= cl_image_tag(leader.picture, width: 70, class: "avatar-square")%>
-
-
+          <% if @jamm.user.picture %>
+          <%= cl_image_tag(@jamm.user.picture, width: 70, class: "avatar-square")%>
+          <% else %>
+          <%= cl_image_tag(@jamm.user.avatar, width: 70, class: "avatar-square")%>
+          <% end %>
         </div>
         <div class="desc-right">
           <h4><em>'' <%= @jamm.description %> ,,</em></h4>
