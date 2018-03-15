@@ -18,7 +18,7 @@ a {
 .banner-show-content {
   position: absolute;
   bottom: 5px;
-  left: 15%;
+  left: 12%;
   color: white;
   text-shadow: 1px 1px 1px black;
 }
@@ -62,8 +62,23 @@ a {
   color: black;
 
   border: 1px white solid;
-  padding: 20px;
+  padding: 10px;
   margin: 5px;
+
+  .desc-flex {
+    display: flex;
+    .desc-left {
+
+    }
+    .desc-right {
+      background-color: #D93479;
+      padding: 15px;
+      border-radius: 30px;
+      margin-left: 15px;
+      color: white;
+    }
+  }
+
 }
 
 .map {
