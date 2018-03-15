@@ -13,7 +13,19 @@
 <div class="container">
   <div class="grid">
     <div class="description">
-      <h4><em> <%= @jamm.description %> </em></h4>
+      <div class="desc-flex">
+        <div class="desc-left">
+          <% unless leader.avatar.nil? %>
+          <%= cl_image_tag(leader.avatar, width: 70, class: "avatar-square")%>
+          <% else %>
+          <%= cl_image_tag(leader.picture, width: 70, class: "avatar-square")%>
+          <%end%>
+
+        </div>
+        <div class="desc-right">
+          <h4><em>'' <%= @jamm.description %> ,,</em></h4>
+        </div>
+      </div>
       <hr>
       <h5> <%= @jamm.time %>:00 - <%= @jamm.date.strftime('%b %d, %Y') %> <strong> @ </strong> <%= @jamm.address %></h5>
     </div>
