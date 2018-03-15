@@ -17,7 +17,11 @@
       <div class="navbar-wagon-item">
         <div class="notification"></div>
         <div class="dropdown navbar-jammbox-avatar">
-          <%= image_tag current_user.avatar, class: "avatar dropdown-toggle", id: "navbar-wagon-menu", "data-toggle" => "dropdown" %>
+          <% if current_user.avatar.url.nil? %>
+            <%= cl_image_tag("avatar-default.png",class: "avatar dropdown-toggle", id: "navbar-wagon-menu", "data-toggle" => "dropdown") %>
+          <% else %>
+            <%= image_tag current_user.avatar, class: "avatar dropdown-toggle", id: "navbar-wagon-menu", "data-toggle" => "dropdown" %>
+          <% end %>
           <ul class="dropdown-menu dropdown-menu-right navbar-wagon-dropdown-menu">
             <li>
               <%= link_to jamms_path do %>
