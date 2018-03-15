@@ -42,6 +42,7 @@
 .slider-one,
 .slider-two,
 .slider-three {
+  width: 60%;
   -webkit-transition: .3s all ease;
   transition: .3s all ease;
 }
@@ -80,6 +81,7 @@
   font-weight: 300;
   position: relative;
 }
+
 
 /* Center */
 .containeri.center .slider {
