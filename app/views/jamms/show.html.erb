@@ -42,16 +42,15 @@
           <%= link_to "Join Jamm", new_user_session_path %>
         <% end %>
       </div>
-
-      <div class="jamm-info">
-        <h3 class="jamm-info-title">Jamm Settings</h3>
-        <%= render "jamm_players/jamm_details" %>
-      </div>
     </div>
-    <div class="map"
-      id="map" style="width: 99%;"
-      data-markers="<%= @markers.to_json %>">
+    <div class="jamm-info">
+      <h3 class="jamm-info-title">Jamm Settings</h3>
+      <%= render "jamm_players/jamm_details" %>
     </div>
+  </div>
+  <div class="map"
+    id="map" style="width: 99%;"
+    data-markers="<%= @markers.to_json %>">
   </div>
 </div>
 <%= render 'shared/footer' %>
