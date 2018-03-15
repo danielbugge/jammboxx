@@ -2,26 +2,20 @@
   <div class="containeri slider-one-active">
     <div class="slider-ctr">
       <div class="slider filters">
-
         <div class="slider-form slider-one first" id="firstForm">
           <%= text_field_tag :city, params[:city], class: "input btn form-control",placeholder: "Choose a city" %>
         </div>
-
         <div class="slider-form slider-two second" id="secondForm" >
-            <%= genre = select_tag "genre",
+          <%= genre = select_tag "genre",
             options_for_select(["Choose a genre"]) + options_from_collection_for_select(Genre.all, "name", "name"),
             class: "btn form-control" %>
         </div>
-
         <div class="slider-form slider-three" >
-            <%= instrument = select_tag "instrument_t",
+          <%= instrument = select_tag "instrument_t",
             options_for_select(["Choose an instrument"]) + options_from_collection_for_select(InstrumentType.all, "name", "name"),
             class: "btn form-control" %>
-          <%# city =  %>
-          <%# genre = Genre.find(params)%>
-        <%= f.submit "go", class: "hidden" %>
+          <%= f.submit "go", class: "btn btn-success" %>
         </div>
-
       </div>
     </div>
   </div>
