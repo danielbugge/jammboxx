@@ -11,7 +11,7 @@
           <% if jam.user.picture %>
             <div class="card-left_content hidden-xs" style="background-image: url('<%= cl_image_path jam.user.picture %>')"></div>
           <% else %>
-            <div class="card-left_content hidden-xs" style="background-image: url(https://course_report_production.s3.amazonaws.com/rich/rich_files/rich_files/1692/s300/le-wagon-logo.png)"></div>
+            <div class="card-left_content hidden-xs" style="background-image: url('<%= cl_image_path jam.user.avatar %>')"></div>
           <% end %>
           <div class="card-right_content">
             <div class= "card-top">
