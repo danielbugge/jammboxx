@@ -26,8 +26,11 @@
         </div>
       </div>
       <hr>
-      <h4 style="text-decoration: underline;">Jamm:</h4>
-      <h5> <%= @jamm.time %>:00 - <%= @jamm.date.strftime('%b %d, %Y') %> <strong> @ </strong> <%= @jamm.address %></h5>
+      <div class="desc-bottom">
+        <h4 style="text-decoration: underline;">Jamm:</h4>
+        <br>
+        <h5> <%= @jamm.time %>:00 - <%= @jamm.date.strftime('%b %d, %Y') %> <strong> @ </strong> <%= @jamm.address %></h5>
+      </div>
     </div>
 
     <div class="players">
@@ -44,7 +47,6 @@
           <% end %>
           <div class="text-center">
             <% if @jamm.jamm_players.where(user: current_user).empty? && leader != current_user%>
-              <hr>
               <p class= "show-avaliable-spot">
                 <strong><a href="" data-toggle="modal" data-target="#newJammPlayer">Bring your instrument!</a></strong>
               </p>

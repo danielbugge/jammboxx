@@ -3,8 +3,6 @@
 
 </div>
 
-<%= render 'shared/cards' if user_signed_in? %>
-
 <% content_for :after_js do %>
   <%= javascript_pack_tag "home" %>
 <% end %>
