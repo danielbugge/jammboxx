@@ -28,24 +28,22 @@ class JammsController < ApplicationController
     @levels = ["Beginner", "Intermediate", "Expert"]
     @instrument_t_id = @instrument_types.where(name: params[:instrument_t]).first.id if params[:instrument_t] && params[:instrument_t] != "Choose an instrument"
     if (@location != "" && (@genre != "All" && @genre && @genre != "Choose a genre" )  && (@instrument_t != "All" && @instrument_t && @instrument_t != "Choose an instrument" ))
-       @search_params = "#{@location}, #{@genre}, #{@instrument_t}"
+       @search_params = "#{@location.capitalize}, #{@genre.capitalize}, #{@instrument_t.capitalize}"
     elsif (@location != "" && (@genre != "All" && @genre && @genre != "Choose a genre"))
-       @search_params = "#{@location}, #{@genre} "
+       @search_params = "#{@location.capitalize}, #{@genre.capitalize} "
     elsif ((@location != "" &&   @location != "Choose your city" && @location) && @instrument_t != "All" && @instrument_t && @instrument_t != "Choose an instrument" )
-       @search_params = "#{@location}, #{@instrument_t} "
+       @search_params = "#{@location.capitalize}, #{@instrument_t.capitalize} "
     elsif ((@genre != "All" && @genre) && @instrument_t != "All" && @instrument_t && @instrument_t != "Choose an instrument" )
-       @search_params = "#{@genre}, #{@instrument_t} "
+       @search_params = "#{@genre.capitalize}, #{@instrument_t.capitalize} "
     elsif (@location != "" && @location != nil )
-       @search_params = "#{@location}"
+       @search_params = "#{@location.capitalize}"
     elsif @genre != "All" && @genre && @genre != "Choose a genre"
-       @search_params = "#{@genre}"
+       @search_params = "#{@genre.capitalize}"
     elsif (@instrument_t != "All" && @instrument_t && @instrument_t != "Choose an instrument" )
-       @search_params = "#{@instrument_t}"
+       @search_params = "#{@instrument_t.capitalize}"
     else
        @search_params = "All"
     end
-
-    @search_params.capitalize!
 
     if params[:city].present?
       @q = Jamm.near(params[:city], 30).ransack(params[:q])
