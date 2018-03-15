@@ -13,11 +13,9 @@
 <div class="container">
   <div class="grid">
     <div class="description">
-
       <h3> <%= @jamm.description %> </h3>
       <hr>
       <h4> <%= @jamm.time %>:00 - <%= @jamm.date.strftime('%b %d, %Y') %> <strong> @ </strong> <%= @jamm.address %></h4>
-
     </div>
 
     <div class="players">
@@ -26,32 +24,30 @@
       <div class="players-list">
         <%= render @jamm_players %>
         <% if user_signed_in? %>
-            <%= render "layouts/modal" %>
-             <% if leader == current_user %>
-                      <p class= "show-avaliable-spot">
-                      <a href="" data-toggle="modal" data-target="#newJammPlayer">Add your available instruments</a>
-                    <% end %>
-      </div>
-<div class="text-center">
-             <% if @jamm.jamm_players.where(user: current_user).empty? && leader != current_user%></%>
-                      <hr>
-                      <p class= "show-avaliable-spot">
-                        <strong><a href="" data-toggle="modal" data-target="#newJammPlayer">Bring your instrument!</a></strong>
-                      </p>
-              <% end %>
-
-</div>
+          <%= render "layouts/modal" %>
+          <% if leader == current_user %>
+            <p class= "show-avaliable-spot">
+              <a href="" data-toggle="modal" data-target="#newJammPlayer">Add your available instruments</a>
+            </p>
+          <% end %>
+          <div class="text-center">
+            <% if @jamm.jamm_players.where(user: current_user).empty? && leader != current_user%>
+              <hr>
+              <p class= "show-avaliable-spot">
+                <strong><a href="" data-toggle="modal" data-target="#newJammPlayer">Bring your instrument!</a></strong>
+              </p>
+            <% end %>
+          </div>
         <% else %>
-            <%= link_to "Join Jamm", new_user_session_path %>
+          <%= link_to "Join Jamm", new_user_session_path %>
         <% end %>
+      </div>
     </div>
-
     <div class="jamm-info">
       <h3 class="jamm-info-title">Jamm Settings</h3>
       <%= render "jamm_players/jamm_details" %>
     </div>
   </div>
-
   <div class="map"
     id="map" style="width: 99%;"
     data-markers="<%= @markers.to_json %>">
