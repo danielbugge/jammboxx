@@ -7,13 +7,27 @@ class JammsController < ApplicationController
   before_action :set_jamm, only: [:edit, :update, :delete, :show]
 
   def index
+    # byebug
     @transparent_navbar = true
     @location = params[:city]
     @genre = Genre.find(params[:q][:genre_id_eq]).name if (params[:q] != nil && params[:q][:genre_id_eq].present?)
     @instrument_t = params[:instrument_t]
+
     @genres = Genre.all
+
+    @genre_id = @genres.find_by_name(params[:genre]).id if params[:genre] && params[:genre] != "Choose a genre"
+
+
+    if params[:genre]
+      @genre = params[:genre]
+      params[:q] = {}
+      params[:q]["genre_id_eq"] = @genre_id
+    end
+
     @instrument_types = InstrumentType.all
     @levels = ["Beginner", "Intermediate", "Expert"]
+
+    @instrument_t_id = @instrument_types.where(name: params[:instrument_t]).first.id if params[:instrument_t] && params[:instrument_t] != "Choose an instrument"
 
     if (@location != "" && (@genre != "All" && @genre && @genre != "Choose a genre" )  && (@instrument_t != "All" && @instrument_t && @instrument_t != "Choose an instrument" ))
        @search_params = "#{@location}, #{@genre}, #{@instrument_t}"
@@ -44,23 +58,15 @@ class JammsController < ApplicationController
     session[:instrument] = params[:instrument_t]
     if (params[:instrument_t].present? &&  (params[:instrument_t] != "All" && params[:instrument_t] != "Choose an instrument"))
       j_array = @jamms.jamms_with_spaces_available_for_instrument(params[:instrument_t])
-
-      # @jamms.select{ |jamm| jamm.jamm_players.select {|jp| jp.instrument.instrument_type == params[:instrument_t] }
-      # @jamms = @q.result(distinct: true)
-
-      #@a = @jamms.select { |jamm| jamm.available? }
-      #@b = @a.select {|jamm| jamm.available_jamm_players.select { |jp| jp.instrument.instrument_type == params[:instrument_t]}}
-      #a = jamm_players.where(instrument: Instrument.where(instrument_id: (instrument_type.name == params[:instrument_t])
     end
 
-    @jamms = @jamms & j_array if j_array
 
+    @jamms = @jamms & j_array if j_array
 
     @markers = @jamms.map do |jamm|
       {
         lat: jamm.latitude,
         lng: jamm.longitude#,
-        # infoWindow: { content: render_to_string(partial: "/spaces/map_box", locals: { flat: flat }) }
       }
     end
     respond_to do |format|
@@ -82,7 +88,6 @@ class JammsController < ApplicationController
 
     @instruments = Instrument.where(user_id: current_user)
          # infoWindow: { content: render_to_string(partial: "/jamm/map_box", locals: { jamm: jamm }) }
-         # raise
   end
 
   def create
