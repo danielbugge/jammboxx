@@ -15,11 +15,9 @@
     <div class="description">
       <div class="desc-flex">
         <div class="desc-left">
-          <% unless leader.avatar.nil? %>
-          <%= cl_image_tag(leader.avatar, width: 70, class: "avatar-square")%>
-          <% else %>
+
           <%= cl_image_tag(leader.picture, width: 70, class: "avatar-square")%>
-          <%end%>
+
 
         </div>
         <div class="desc-right">
@@ -27,6 +25,7 @@
         </div>
       </div>
       <hr>
+      <h4 style="text-decoration: underline;">Jamm Space:</h4>
       <h5> <%= @jamm.time %>:00 - <%= @jamm.date.strftime('%b %d, %Y') %> <strong> @ </strong> <%= @jamm.address %></h5>
     </div>
 
