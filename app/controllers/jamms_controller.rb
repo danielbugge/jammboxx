@@ -26,9 +26,7 @@ class JammsController < ApplicationController
 
     @instrument_types = InstrumentType.all
     @levels = ["Beginner", "Intermediate", "Expert"]
-
     @instrument_t_id = @instrument_types.where(name: params[:instrument_t]).first.id if params[:instrument_t] && params[:instrument_t] != "Choose an instrument"
-
     if (@location != "" && (@genre != "All" && @genre && @genre != "Choose a genre" )  && (@instrument_t != "All" && @instrument_t && @instrument_t != "Choose an instrument" ))
        @search_params = "#{@location}, #{@genre}, #{@instrument_t}"
     elsif (@location != "" && (@genre != "All" && @genre && @genre != "Choose a genre"))
@@ -37,7 +35,7 @@ class JammsController < ApplicationController
        @search_params = "#{@location}, #{@instrument_t} "
     elsif ((@genre != "All" && @genre) && @instrument_t != "All" && @instrument_t && @instrument_t != "Choose an instrument" )
        @search_params = "#{@genre}, #{@instrument_t} "
-    elsif (@location != "")
+    elsif (@location != "" && @location != nil )
        @search_params = "#{@location}"
     elsif @genre != "All" && @genre && @genre != "Choose a genre"
        @search_params = "#{@genre}"
