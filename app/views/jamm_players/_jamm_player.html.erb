@@ -4,7 +4,11 @@
 
             <% if user_signed_in? %>
                <% unless participant.nil? %>
-                  <%= cl_image_tag(jamm_player.user.picture, width: 70, class: "avatar-large") %>
+                  <% if jamm_player.user.picture %>
+                    <%= cl_image_tag(jamm_player.user.picture, width: 70, class: "avatar-large") %>
+                  <% else %>
+                    <%= cl_image_tag(jamm_player.user.avatar, width: 70, class: "avatar-large")%>
+                  <% end %>
                   <%=  participant.username %>
                   <% if current_user == participant || leader == current_user  %>
                     <% if current_user == participant && leader != current_user%></%>
