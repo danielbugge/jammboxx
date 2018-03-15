@@ -7,7 +7,7 @@
   <% end %>
 
   <div class="banner-show-content">
-    <h1><%=@jamm.name.capitalize! %></h1>
+    <h1><%=@jamm.name %></h1>
   </div>
 </div>
 <div class="container">
@@ -22,7 +22,7 @@
           <% end %>
         </div>
         <div class="desc-right">
-          <h4><em>'' <%= @jamm.description.capitalize! %> ,,</em></h4>
+          <h4><em> "<%= @jamm.description%>" </em></h4>
         </div>
       </div>
       <hr>

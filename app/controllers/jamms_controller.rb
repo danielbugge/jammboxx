@@ -89,6 +89,8 @@ class JammsController < ApplicationController
 
     @instruments = Instrument.where(user_id: current_user)
          # infoWindow: { content: render_to_string(partial: "/jamm/map_box", locals: { jamm: jamm }) }
+    @jamm.name.capitalize!
+    @jamm.description.capitalize!
   end
 
   def create
