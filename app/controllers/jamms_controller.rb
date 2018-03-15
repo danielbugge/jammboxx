@@ -45,6 +45,8 @@ class JammsController < ApplicationController
        @search_params = "All"
     end
 
+    @search_params.capitalize!
+
     if params[:city].present?
       @q = Jamm.near(params[:city], 30).ransack(params[:q])
       @jamms = @q.result(distinct: true)
