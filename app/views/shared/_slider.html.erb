@@ -14,7 +14,11 @@
           <%= instrument = select_tag "instrument_t",
             options_for_select(["Choose an instrument"]) + options_from_collection_for_select(InstrumentType.all, "name", "name"),
             class: "btn form-control" %>
-          <%= f.submit "go", class: "btn btn-success" %>
+            <div>
+              <%= f.submit 'Let\'s Jamm!',
+              id: "final-butt",
+              class: "btn btn-success" %>
+        </div>
         </div>
       </div>
     </div>
