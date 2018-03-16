@@ -50,7 +50,7 @@ counter = 1
     password: '123456',
     username: Faker::Internet.user_name + rand(01..99).to_s,
     genre_id: Genre.ids.sample,
-    picture: "p#{rand(1..20)}",
+    picture: "p#{rand(1..53)}",
     # remote_avatar_url: "http://res.cloudinary.com/dlopez10g/image/upload/v1520878724/qhwrkr8ycjj18s3opqn6.png"
     )
   puts "Users ##{counter} done!"
