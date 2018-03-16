@@ -19,6 +19,7 @@
     <%#= stylesheet_pack_tag 'application', media: 'all' %> <!-- Uncomment if you import CSS in app/javascript/packs/application.js -->
   </head>
   <body>
+    <%= render 'shared/loader' %>
     <%= render 'shared/navbar' %>
     <%= render 'shared/flashes' %>
 
@@ -29,7 +30,6 @@
     <%= javascript_include_tag "https://maps.googleapis.com/maps/api/js?libraries=places&key=#{ENV['GOOGLE_API_BROWSER_KEY']}" %>
     <%= javascript_pack_tag "map" %>
 
-    <div class="modal" id="loading"></div>
 
     <%= yield :after_js %>
 

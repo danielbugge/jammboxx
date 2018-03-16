@@ -102,6 +102,7 @@ class JammsController < ApplicationController
   end
 
   def new
+    @transparent_navbar = true
     @jamm = Jamm.new
     authorize @jamm
   end
