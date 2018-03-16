@@ -29,7 +29,7 @@
             <div class="card-middle">
               <p><em>> <%= jam.address %></em></p>
             </div>
-            <div class="line" style="border: 1px solid #DE7B39"></div>
+            <div class="line" style="border: 0.5px solid #DE7B39"></div>
             <div class="card-bottom">
               <% jamm_players = 0 %> <!-- COUNTER TO KNOW HOW MANY PLAYER ARE ACTIVE RIGHT NOW IN THE JAMM SESH -->
               <%  JammPlayer.where(jamm_id: jam.id).all.each do |player|  %>
