@@ -19,7 +19,6 @@
     <%#= stylesheet_pack_tag 'application', media: 'all' %> <!-- Uncomment if you import CSS in app/javascript/packs/application.js -->
   </head>
   <body>
-    <%= render 'shared/loader' %>
     <%= render 'shared/navbar' %>
     <%= render 'shared/flashes' %>
 
@@ -33,11 +32,7 @@
 
     <%= yield :after_js %>
 
-    <script>
-      setTimeout(function(){
-        document.getElementById("loading").classList.add("hidden");
-      }, 1200);
-    </script>
+
 
   </body>
 </html>
