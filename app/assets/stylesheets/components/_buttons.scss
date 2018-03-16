@@ -72,3 +72,18 @@
   animation-timing-function: ease-out;
 }
 
+.btn-pink {
+  background-color: #D93479;
+  color: white;
+  border-style: none;
+  opacity: 0.8;
+  padding: 8px 100px;
+}
+
+.btn-pink:hover {
+    opacity: 1;
+    background-color: #D93479;
+    color: white;
+    border-style: none;
+}
+
