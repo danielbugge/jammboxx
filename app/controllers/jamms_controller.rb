@@ -12,8 +12,8 @@ class JammsController < ApplicationController
     @location = params[:city]
     @genre = Genre.find(params[:q][:genre_id_eq]).name if (params[:q] != nil && params[:q][:genre_id_eq].present?)
     @instrument_t = params[:instrument_t]
-
     @genres = Genre.all
+
 
     @genre_id = @genres.find_by_name(params[:genre]).id if params[:genre] && params[:genre] != "Choose a genre"
 
@@ -60,6 +60,7 @@ class JammsController < ApplicationController
 
 
     @jamms = @jamms & j_array if j_array
+    @jamms = @jamms.sort_by { |j| j.date }
 
     @markers = @jamms.map do |jamm|
       {
