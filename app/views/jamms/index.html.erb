@@ -41,4 +41,7 @@
   </div>
 </div>
 <%= render 'shared/footer' %>
+<% content_for :after_js do %>
+  <%= javascript_pack_tag "home" %>
+<% end %>
 
